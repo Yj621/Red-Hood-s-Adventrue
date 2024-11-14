@@ -185,12 +185,12 @@ TextureImporter:
       name: itch run-Sheet sheet_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 20
-        width: 24
-        height: 35
+        x: 0
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -207,12 +207,12 @@ TextureImporter:
       name: itch run-Sheet sheet_1
       rect:
         serializedVersion: 2
-        x: 97
-        y: 23
-        width: 26
-        height: 33
+        x: 80
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -229,12 +229,12 @@ TextureImporter:
       name: itch run-Sheet sheet_2
       rect:
         serializedVersion: 2
-        x: 177
-        y: 26
-        width: 25
-        height: 32
+        x: 160
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -251,12 +251,12 @@ TextureImporter:
       name: itch run-Sheet sheet_3
       rect:
         serializedVersion: 2
-        x: 257
-        y: 28
-        width: 26
-        height: 31
+        x: 240
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -273,12 +273,12 @@ TextureImporter:
       name: itch run-Sheet sheet_4
       rect:
         serializedVersion: 2
-        x: 338
-        y: 26
-        width: 23
-        height: 31
+        x: 320
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -295,12 +295,12 @@ TextureImporter:
       name: itch run-Sheet sheet_5
       rect:
         serializedVersion: 2
-        x: 420
-        y: 22
-        width: 19
-        height: 32
+        x: 400
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -317,12 +317,12 @@ TextureImporter:
       name: itch run-Sheet sheet_6
       rect:
         serializedVersion: 2
-        x: 501
-        y: 20
-        width: 18
-        height: 31
+        x: 480
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -339,12 +339,12 @@ TextureImporter:
       name: itch run-Sheet sheet_7
       rect:
         serializedVersion: 2
-        x: 582
-        y: 20
-        width: 17
-        height: 30
+        x: 560
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -361,12 +361,12 @@ TextureImporter:
       name: itch run-Sheet sheet_8
       rect:
         serializedVersion: 2
-        x: 662
-        y: 20
-        width: 17
-        height: 28
+        x: 640
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -383,12 +383,12 @@ TextureImporter:
       name: itch run-Sheet sheet_9
       rect:
         serializedVersion: 2
-        x: 741
-        y: 20
-        width: 18
-        height: 31
+        x: 720
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -405,12 +405,12 @@ TextureImporter:
       name: itch run-Sheet sheet_10
       rect:
         serializedVersion: 2
-        x: 820
-        y: 20
-        width: 21
-        height: 31
+        x: 800
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -427,12 +427,12 @@ TextureImporter:
       name: itch run-Sheet sheet_11
       rect:
         serializedVersion: 2
-        x: 901
-        y: 20
-        width: 22
-        height: 33
+        x: 880
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -449,12 +449,12 @@ TextureImporter:
       name: itch run-Sheet sheet_12
       rect:
         serializedVersion: 2
-        x: 980
-        y: 21
-        width: 25
-        height: 34
+        x: 960
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -471,12 +471,12 @@ TextureImporter:
       name: itch run-Sheet sheet_13
       rect:
         serializedVersion: 2
-        x: 1059
-        y: 23
-        width: 25
-        height: 33
+        x: 1040
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -493,12 +493,12 @@ TextureImporter:
       name: itch run-Sheet sheet_14
       rect:
         serializedVersion: 2
-        x: 1138
-        y: 26
-        width: 26
-        height: 32
+        x: 1120
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -515,12 +515,12 @@ TextureImporter:
       name: itch run-Sheet sheet_15
       rect:
         serializedVersion: 2
-        x: 1218
-        y: 28
-        width: 26
-        height: 31
+        x: 1200
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -537,12 +537,12 @@ TextureImporter:
       name: itch run-Sheet sheet_16
       rect:
         serializedVersion: 2
-        x: 1297
-        y: 26
-        width: 26
-        height: 31
+        x: 1280
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -559,12 +559,12 @@ TextureImporter:
       name: itch run-Sheet sheet_17
       rect:
         serializedVersion: 2
-        x: 1380
-        y: 22
-        width: 23
-        height: 33
+        x: 1360
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -581,12 +581,12 @@ TextureImporter:
       name: itch run-Sheet sheet_18
       rect:
         serializedVersion: 2
-        x: 1462
-        y: 20
-        width: 19
-        height: 32
+        x: 1440
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -603,12 +603,12 @@ TextureImporter:
       name: itch run-Sheet sheet_19
       rect:
         serializedVersion: 2
-        x: 1543
-        y: 20
-        width: 18
-        height: 30
+        x: 1520
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -625,12 +625,12 @@ TextureImporter:
       name: itch run-Sheet sheet_20
       rect:
         serializedVersion: 2
-        x: 1623
-        y: 20
-        width: 18
-        height: 29
+        x: 1600
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -647,12 +647,12 @@ TextureImporter:
       name: itch run-Sheet sheet_21
       rect:
         serializedVersion: 2
-        x: 1701
-        y: 20
-        width: 20
-        height: 30
+        x: 1680
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -669,12 +669,12 @@ TextureImporter:
       name: itch run-Sheet sheet_22
       rect:
         serializedVersion: 2
-        x: 1780
-        y: 20
-        width: 22
-        height: 31
+        x: 1760
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -691,12 +691,12 @@ TextureImporter:
       name: itch run-Sheet sheet_23
       rect:
         serializedVersion: 2
-        x: 1860
-        y: 20
-        width: 24
-        height: 32
+        x: 1840
+        y: 0
+        width: 60
+        height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -713,7 +713,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4ba3664a6e02e2e429f44f01587e1dcc
     internalID: 0
     vertices: []
     indices: 

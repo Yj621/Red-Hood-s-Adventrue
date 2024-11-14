@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: ef86737fe3a48b747a50b1b10b6371f8
+guid: ed54cf25205ed614e836e15677266d22
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2852367170795208527
-    second: Red hood run turnaround-Sheet_0
-  - first:
-      213: 8791614479567739497
-    second: Red hood run turnaround-Sheet_1
-  - first:
-      213: 1439663834602510098
-    second: Red hood run turnaround-Sheet_2
-  - first:
-      213: -7565634649753608363
-    second: Red hood run turnaround-Sheet_3
-  - first:
-      213: 5357150259237887747
-    second: Red hood run turnaround-Sheet_4
+      213: -3254779602812191047
+    second: background_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -63,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -125,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Red hood run turnaround-Sheet_0
+      name: background_1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 80
-        height: 64
+        width: 288
+        height: 63
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,96 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f4ffb3054d4a59720800000000000000
-      internalID: 2852367170795208527
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Red hood run turnaround-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 80
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 96ad0d80ac6120a70800000000000000
-      internalID: 8791614479567739497
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Red hood run turnaround-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 80
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 217957141a6baf310800000000000000
-      internalID: 1439663834602510098
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Red hood run turnaround-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 80
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 55f9c09de57710790800000000000000
-      internalID: -7565634649753608363
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Red hood run turnaround-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 80
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 30f144207cb685a40800000000000000
-      internalID: 5357150259237887747
+      spriteID: 9be31302233b4d2d0800000000000000
+      internalID: -3254779602812191047
       vertices: []
       indices: 
       edges: []
@@ -238,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 55a3c4c4767924d4b92070eb85edf4bc
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -248,11 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Red hood run turnaround-Sheet_0: 2852367170795208527
-      Red hood run turnaround-Sheet_1: 8791614479567739497
-      Red hood run turnaround-Sheet_2: 1439663834602510098
-      Red hood run turnaround-Sheet_3: -7565634649753608363
-      Red hood run turnaround-Sheet_4: 5357150259237887747
+      background_1_0: -3254779602812191047
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

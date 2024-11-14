@@ -125,10 +125,10 @@ TextureImporter:
       name: Red hood wall slide-Sheet_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 14
-        width: 17
-        height: 34
+        x: 0
+        y: 0
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +147,10 @@ TextureImporter:
       name: Red hood wall slide-Sheet_1
       rect:
         serializedVersion: 2
-        x: 112
-        y: 14
-        width: 17
-        height: 35
+        x: 80
+        y: 0
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,10 +169,10 @@ TextureImporter:
       name: Red hood wall slide-Sheet_2
       rect:
         serializedVersion: 2
-        x: 192
-        y: 14
-        width: 18
-        height: 35
+        x: 160
+        y: 0
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,10 +191,10 @@ TextureImporter:
       name: Red hood wall slide-Sheet_3
       rect:
         serializedVersion: 2
-        x: 272
-        y: 14
-        width: 18
-        height: 35
+        x: 240
+        y: 0
+        width: 80
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b4debd527850f3e4bb7e1d5639240f88
     internalID: 0
     vertices: []
     indices: 
