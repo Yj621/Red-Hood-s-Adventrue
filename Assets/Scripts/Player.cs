@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -7,13 +8,16 @@ public class Player : MonoBehaviour
     public Collider2D bottomCollider;
     public CompositeCollider2D terrainCollider;
 
+    Rigidbody2D rb;
+
     float prevVx = 0;
     float vx = 0;
     bool isGround;
+    bool goIdle;
 
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();   
     }
 
     void Update()
@@ -30,6 +34,7 @@ public class Player : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = false;
         }
 
+        //땅에 닿아있는가
         if (bottomCollider.IsTouching(terrainCollider))
         {
             if (!isGround)
@@ -56,6 +61,12 @@ public class Player : MonoBehaviour
                         GetComponent<Animator>().SetTrigger("Walk");
                     }
                 }
+                else if(goIdle)
+                {
+                    GetComponent<Animator>().SetTrigger("Idle");
+                    goIdle = false;
+                }
+
             }
         }
         else
@@ -80,12 +91,37 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GetComponent<Animator>().SetTrigger("Attack1");
-            Debug.Log("Attack1");
         }
         if (Input.GetMouseButtonDown(1))
         {
             GetComponent<Animator>().SetTrigger("Attack2");
-            Debug.Log("Attack2");
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            GetComponent<Animator>().SetTrigger("BowAttack");
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            GetComponent<Animator>().SetTrigger("RightAttack");
+        }
+    }
+
+
+    //애니메이션 스프라이트 문제 해결 함수
+    void UpY()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+        rb.gravityScale = 0;
+    }
+    void DownY()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y - 0.4f, transform.position.z);
+        rb.gravityScale = 4;
+        isGround = false;
+    }
+
+    void SetGoIdle()
+    {
+        goIdle = true;
     }
 }
