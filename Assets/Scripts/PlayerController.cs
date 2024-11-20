@@ -15,9 +15,15 @@ public class PlayerController : MonoBehaviour
     private float vx = 0;
     private bool isGround;
     private bool goIdle;
-
+    
+    private static PlayerController instance;
+    public static PlayerController Instance
+    {
+        get { return instance; }
+    }
     void Start()
     {
+        instance = this;
         rb = GetComponent<Rigidbody2D>();
         //player 데이터 초기화 (Hp, Damage, Exp)
         player = new Player(100, 5, 0);
@@ -27,6 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         vx = Input.GetAxisRaw("Horizontal") * speed;
         float vy = GetComponent<Rigidbody2D>().linearVelocityY;
+        Debug.Log(vx);
 
         if (vx < 0)
         {
@@ -94,7 +101,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GetComponent<Animator>().SetTrigger("Attack1");
-            DealDamage(1);
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -110,7 +116,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void DealDamage(int damage) 
+    public void DealDamage(int damage) 
     {
         Debug.Log($"Dealt {player.Damage * damage} damage!");
     }
@@ -120,15 +126,12 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
         rb.gravityScale = 0;
-        
-        Debug.Log("UPY");
     }
     void DownY()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.4f, transform.position.z);
         rb.gravityScale = 4;
         isGround = false;
-        Debug.Log("DownY");
     }
 
     void SetGoIdle()

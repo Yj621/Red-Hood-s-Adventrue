@@ -14,7 +14,7 @@ public class Player
         Experience = experience;
     }
 
-    public void Attack(int damage) 
+    public void PlayerDamage(int damage) 
     {
         Hp -= damage;
         if(Hp < 0)
