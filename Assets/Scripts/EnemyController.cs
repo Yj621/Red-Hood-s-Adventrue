@@ -3,7 +3,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public float speed = 1f;
-    public int Hp;
+    public int hp;
+    public int damage;
     Vector2 vx;
 
     public Collider2D FrontCollider;
@@ -25,9 +26,18 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-
     private void FixedUpdate()
     {
         transform.Translate(vx*Time.fixedDeltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.CompareTag ("Player"))
+        {
+            PlayerController.Instance.DealDamage(damage);
+            Debug.Log($"Player가 {gameObject.name}와 충돌하여 {damage} 데미지를 받음!");
+
+        }
     }
 }

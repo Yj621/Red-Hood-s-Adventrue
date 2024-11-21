@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private float vx = 0;
     private bool isGround;
     private bool goIdle;
+    public bool isAttack;
+    
     
     private static PlayerController instance;
     public static PlayerController Instance
@@ -33,11 +35,11 @@ public class PlayerController : MonoBehaviour
     {
         vx = Input.GetAxisRaw("Horizontal") * speed;
         float vy = GetComponent<Rigidbody2D>().linearVelocityY;
-        Debug.Log(vx);
 
         if (vx < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
+            Debug.Log("FLIP");
         }
         if (vx > 0)
         {
@@ -118,7 +120,13 @@ public class PlayerController : MonoBehaviour
 
     public void DealDamage(int damage) 
     {
+        player.PlayerDamage(damage);
         Debug.Log($"Dealt {player.Damage * damage} damage!");
+
+        if(!player.IsAlive())
+        {
+            //플레이어 die
+        }
     }
 
     //애니메이션 스프라이트 문제 해결 함수
