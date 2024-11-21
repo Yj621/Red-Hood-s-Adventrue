@@ -14,10 +14,9 @@ public class Attack : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Enemy" && !PlayerController.Instance.isAttack)
         {
-            PlayerController.Instance.DealDamage(1);
-            Debug.Log("Attack");
+            PlayerController.Instance.Attack();
         }
     }
 }

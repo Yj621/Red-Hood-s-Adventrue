@@ -3,21 +3,30 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public float speed = 1f;
-    public int hp;
+    public int hp =1;
     public int damage;
     Vector2 vx;
 
     public Collider2D FrontCollider;
     public Collider2D FrontBottomCollider;
     public CompositeCollider2D TerrainCollider;
+
+
+    private static EnemyController instance;
+    public static EnemyController Instance
+    {
+        get { return instance; }
+    }
+
     void Start()
     {
+        instance = this;
         vx = Vector2.left * speed;
-
+        Debug.Log("적 체력 : " + hp);
     }
     void Update()
     {
-        if (FrontCollider.IsTouching(TerrainCollider) || !FrontBottomCollider.IsTouching(TerrainCollider)) 
+        if (FrontCollider.IsTouching(TerrainCollider) || !FrontBottomCollider.IsTouching(TerrainCollider))
         //벽이 있거나 || (절벽이 있는 경우) 바닥이 없는 경우
         {
             vx = -vx; //좌우반전
@@ -28,16 +37,14 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Translate(vx*Time.fixedDeltaTime);
+        transform.Translate(vx * Time.fixedDeltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnCollisionStay2D(Collision2D other)
     {
-        if(other.CompareTag ("Player"))
+        if (other.gameObject.tag == "Player")
         {
             PlayerController.Instance.DealDamage(damage);
-            Debug.Log($"Player가 {gameObject.name}와 충돌하여 {damage} 데미지를 받음!");
-
         }
     }
 }

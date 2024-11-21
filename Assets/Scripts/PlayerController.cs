@@ -94,6 +94,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGround == true)
         {
+            rb.gravityScale = 4f;
             vy = jumpSpeed;
         }
         prevVx = vx;
@@ -116,18 +117,33 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<Animator>().SetTrigger("RightAttack");
         }
+
+        Debug.Log(isAttack);
     }
 
     public void DealDamage(int damage) 
     {
         player.PlayerDamage(damage);
-        Debug.Log($"Dealt {player.Damage * damage} damage!");
+        Debug.Log("플레이어가 맞음");
 
         if(!player.IsAlive())
         {
             //플레이어 die
         }
     }
+    public void Attack()
+    {
+        EnemyController.Instance.hp -= player.Damage;
+        Debug.Log("player.Damage : " + player.Damage);
+        Debug.Log("EnemyController.Instance.hp : "+ EnemyController.Instance.hp);
+        Invoke("IsAttackTrue", 1f);
+
+    }
+    void IsAttackTrue()
+    {
+        isAttack = false;
+    }
+
 
     //애니메이션 스프라이트 문제 해결 함수
     void UpY()
