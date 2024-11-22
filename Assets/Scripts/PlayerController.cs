@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 5;
     public float jumpSpeed = 5;
+    public float invincibilityTime = 1f;
+
     public Collider2D bottomCollider;
     public CompositeCollider2D terrainCollider;
 
@@ -15,9 +17,13 @@ public class PlayerController : MonoBehaviour
     private float vx = 0;
     private bool isGround;
     private bool goIdle;
+
+    public bool isDie;
+    [HideInInspector]
     public bool isAttack;
-    
-    
+    public bool isHit=false;
+
+
     private static PlayerController instance;
     public static PlayerController Instance
     {
@@ -28,7 +34,7 @@ public class PlayerController : MonoBehaviour
         instance = this;
         rb = GetComponent<Rigidbody2D>();
         //player 데이터 초기화 (Hp, Damage, Exp)
-        player = new Player(100, 5, 0);
+        player = new Player(30, 5, 0);
     }
 
     void Update()
@@ -39,7 +45,6 @@ public class PlayerController : MonoBehaviour
         if (vx < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
-            Debug.Log("FLIP");
         }
         if (vx > 0)
         {
@@ -73,7 +78,7 @@ public class PlayerController : MonoBehaviour
                         GetComponent<Animator>().SetTrigger("Walk");
                     }
                 }
-                else if(goIdle)
+                else if (goIdle)
                 {
                     GetComponent<Animator>().SetTrigger("Idle");
                     goIdle = false;
@@ -118,27 +123,49 @@ public class PlayerController : MonoBehaviour
             GetComponent<Animator>().SetTrigger("RightAttack");
         }
 
-        Debug.Log(isAttack);
     }
 
-    public void DealDamage(int damage) 
+    //플레이어가 맞는 행위
+    public void DealDamage(int damage)
     {
-        player.PlayerDamage(damage);
-        Debug.Log("플레이어가 맞음");
-
-        if(!player.IsAlive())
+        if (!isHit && !isDie)
         {
-            //플레이어 die
+            isHit = true;
+            player.PlayerDamage(damage);
+            Debug.Log("플레이어가 맞음");
+            GetComponent<Animator>().SetTrigger("Hurt");
+            Invoke("Invincibility", invincibilityTime);
+        }
+        if (!player.IsAlive() && isDie == false)
+        {
+            Die();
+            isDie = true;
         }
     }
-    public void Attack()
+    void Invincibility()
     {
-        EnemyController.Instance.hp -= player.Damage;
-        Debug.Log("player.Damage : " + player.Damage);
-        Debug.Log("EnemyController.Instance.hp : "+ EnemyController.Instance.hp);
-        Invoke("IsAttackTrue", 1f);
-
+        isHit = false;
     }
+
+    //플레이어가 죽음
+    void Die()
+    {
+        GetComponent<Animator>().SetTrigger("Dead");
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        enabled = false;
+    }
+
+    //플레이어가 때리는 행위
+    public void Attack(EnemyController enemy)
+    {
+        if (enemy != null)
+        {
+            enemy.TakeDamage(player.Damage);
+            Debug.Log($"{player.Damage}만큼 적이 피해를 입음");
+        }
+        Invoke("IsAttackTrue", 1f);
+    }
+
     void IsAttackTrue()
     {
         isAttack = false;

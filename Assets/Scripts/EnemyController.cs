@@ -12,15 +12,8 @@ public class EnemyController : MonoBehaviour
     public CompositeCollider2D TerrainCollider;
 
 
-    private static EnemyController instance;
-    public static EnemyController Instance
-    {
-        get { return instance; }
-    }
-
     void Start()
     {
-        instance = this;
         vx = Vector2.left * speed;
         Debug.Log("적 체력 : " + hp);
     }
@@ -47,4 +40,16 @@ public class EnemyController : MonoBehaviour
             PlayerController.Instance.DealDamage(damage);
         }
     }
+
+    public void TakeDamage(int damage)
+    {
+        hp -= damage;
+        Debug.Log($"적({gameObject}) 체력 : {hp}");
+
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
