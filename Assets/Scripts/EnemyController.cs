@@ -1,9 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
     public float speed = 1f;
-    public int hp =1;
+    public int hp = 1;
     public int damage;
     Vector2 vx;
 
@@ -45,11 +46,20 @@ public class EnemyController : MonoBehaviour
     {
         hp -= damage;
         Debug.Log($"적({gameObject}) 체력 : {hp}");
+        GetComponent<Animator>().SetTrigger("Hurt");
+        StartCoroutine(ReturnToIdle()); // Idle로 복귀하는 코루틴 실행
 
         if (hp <= 0)
         {
+            GetComponent<Animator>().SetTrigger("Dead");
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator ReturnToIdle()
+    {
+        yield return new WaitForSeconds(0.75f); // Hurt 애니메이션 재생 후 대기 시간
+        GetComponent<Animator>().SetTrigger("Idle"); // Idle 상태로 복귀
     }
 
 }

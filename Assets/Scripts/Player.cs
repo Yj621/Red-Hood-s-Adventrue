@@ -3,12 +3,14 @@ using UnityEngine;
 public class Player
 {
     public int Hp { get; private set; }
+    public int MaxHp { get; private set; }
     public int Damage { get; private set; }
     public int Experience { get; private set; }
 
     
     public Player(int hp, int damage, int experience)
     {
+        MaxHp = hp;
         Hp = hp;
         Damage = damage;
         Experience = experience;

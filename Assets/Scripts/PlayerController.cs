@@ -1,27 +1,33 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public StateMachine stateMachine;
+    private Player player;
+
+
     public float speed = 5;
     public float jumpSpeed = 5;
     public float invincibilityTime = 1f;
+    private float prevVx = 0;
+    private float vx = 0;
 
     public Collider2D bottomCollider;
     public CompositeCollider2D terrainCollider;
 
     private Rigidbody2D rb;
-    private Player player;
 
-    private float prevVx = 0;
-    private float vx = 0;
+    public Image hpGauge;
+    
     private bool isGround;
     private bool goIdle;
 
     public bool isDie;
     [HideInInspector]
     public bool isAttack;
-    public bool isHit=false;
+    public bool isHit = false;
 
 
     private static PlayerController instance;
@@ -29,11 +35,18 @@ public class PlayerController : MonoBehaviour
     {
         get { return instance; }
     }
+
+    private void Awake()
+    {
+        stateMachine = new StateMachine(this);
+    }
     void Start()
     {
         instance = this;
         rb = GetComponent<Rigidbody2D>();
-        //player µ¥ÀÌÅÍ ÃÊ±âÈ­ (Hp, Damage, Exp)
+        stateMachine.Initialize(stateMachine.idleState);
+
+        //player ë°ì´í„° ì´ˆê¸°í™” (Hp, Damage, Exp)
         player = new Player(30, 5, 0);
     }
 
@@ -51,18 +64,18 @@ public class PlayerController : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = false;
         }
 
-        //¶¥¿¡ ´ê¾ÆÀÖ´Â°¡
+        //ë•…ì— ë‹¿ì•„ìˆëŠ”ê°€
         if (bottomCollider.IsTouching(terrainCollider))
         {
             if (!isGround)
             {
                 if (vx == 0)
                 {
-                    GetComponent<Animator>().SetTrigger("Idle");
+                    stateMachine.TransitionTo(stateMachine.idleState);
                 }
                 else
                 {
-                    GetComponent<Animator>().SetTrigger("Walk");
+                    stateMachine.TransitionTo(stateMachine.runState);
                 }
             }
             else
@@ -71,16 +84,16 @@ public class PlayerController : MonoBehaviour
                 {
                     if (vx == 0)
                     {
-                        GetComponent<Animator>().SetTrigger("Idle");
+                        stateMachine.TransitionTo(stateMachine.idleState);
                     }
                     else
                     {
-                        GetComponent<Animator>().SetTrigger("Walk");
+                        stateMachine.TransitionTo(stateMachine.runState);
                     }
                 }
                 else if (goIdle)
                 {
-                    GetComponent<Animator>().SetTrigger("Idle");
+                    stateMachine.TransitionTo(stateMachine.idleState);
                     goIdle = false;
                 }
 
@@ -90,11 +103,11 @@ public class PlayerController : MonoBehaviour
         {
             if (isGround)
             {
-                GetComponent<Animator>().SetTrigger("Jump");
+                stateMachine.TransitionTo(stateMachine.runState);
             }
         }
 
-        //ÇÃ·¹ÀÌ¾î ¹ßÀÌ ¹Ù´Ú Äİ¶óÀÌ´õ¿Í ´ê¾Ò´Ù¸é
+        //í”Œë ˆì´ì–´ ë°œì´ ë°”ë‹¥ ì½œë¼ì´ë”ì™€ ë‹¿ì•˜ë‹¤ë©´
         isGround = bottomCollider.IsTouching(terrainCollider);
 
         if (Input.GetButtonDown("Jump") && isGround == true)
@@ -108,34 +121,36 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            GetComponent<Animator>().SetTrigger("Attack1");
+            stateMachine.TransitionTo(stateMachine.attack1State);
         }
         if (Input.GetMouseButtonDown(1))
         {
-            GetComponent<Animator>().SetTrigger("Attack2");
+            stateMachine.TransitionTo(stateMachine.attack2State);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            GetComponent<Animator>().SetTrigger("BowAttack");
+            stateMachine.TransitionTo(stateMachine.bowAttackState);
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            GetComponent<Animator>().SetTrigger("RightAttack");
+            //stateMachine.TransitionTo(stateMachine.right -- );
         }
 
     }
 
-    //ÇÃ·¹ÀÌ¾î°¡ ¸Â´Â ÇàÀ§
+    //í”Œë ˆì´ì–´ê°€ ë§ëŠ” í–‰ìœ„
     public void DealDamage(int damage)
     {
         if (!isHit && !isDie)
         {
             isHit = true;
             player.PlayerDamage(damage);
-            Debug.Log("ÇÃ·¹ÀÌ¾î°¡ ¸ÂÀ½");
-            GetComponent<Animator>().SetTrigger("Hurt");
+            //hp ê²Œì´ì§€ ë‹³ê²Œ í•˜ê¸°
+            hpGauge.fillAmount = (float)player.Hp / player.MaxHp;
+            stateMachine.TransitionTo(stateMachine.hurtState);
             Invoke("Invincibility", invincibilityTime);
         }
+
         if (!player.IsAlive() && isDie == false)
         {
             Die();
@@ -147,21 +162,21 @@ public class PlayerController : MonoBehaviour
         isHit = false;
     }
 
-    //ÇÃ·¹ÀÌ¾î°¡ Á×À½
+    //í”Œë ˆì´ì–´ê°€ ì£½ìŒ
     void Die()
     {
-        GetComponent<Animator>().SetTrigger("Dead");
+        stateMachine.TransitionTo(stateMachine.deadState);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         enabled = false;
     }
 
-    //ÇÃ·¹ÀÌ¾î°¡ ¶§¸®´Â ÇàÀ§
+    //í”Œë ˆì´ì–´ê°€ ë•Œë¦¬ëŠ” í–‰ìœ„
     public void Attack(EnemyController enemy)
     {
         if (enemy != null)
         {
             enemy.TakeDamage(player.Damage);
-            Debug.Log($"{player.Damage}¸¸Å­ ÀûÀÌ ÇÇÇØ¸¦ ÀÔÀ½");
+            Debug.Log($"{player.Damage}ë§Œí¼ ì ì´ í”¼í•´ë¥¼ ì…ìŒ");
         }
         Invoke("IsAttackTrue", 1f);
     }
@@ -172,7 +187,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    //¾Ö´Ï¸ŞÀÌ¼Ç ½ºÇÁ¶óÀÌÆ® ¹®Á¦ ÇØ°á ÇÔ¼ö
+    //ì• ë‹ˆë©”ì´ì…˜ ìŠ¤í”„ë¼ì´íŠ¸ ë¬¸ì œ í•´ê²° í•¨ìˆ˜
     void UpY()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
