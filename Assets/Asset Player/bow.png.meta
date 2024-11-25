@@ -1,28 +1,43 @@
 fileFormatVersion: 2
-guid: cda82f028b776634f851bbf3d566c389
+guid: e41b065b21127b840bb37592e75ceff4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7320810298388350287
-    second: itch hurt 2 sheet-Sheet_0
+      213: -415446080585258355
+    second: bow_0
   - first:
-      213: 2760490868315971840
-    second: itch hurt 2 sheet-Sheet_1
+      213: 8952162787185664858
+    second: bow_1
   - first:
-      213: 4546042892816791458
-    second: itch hurt 2 sheet-Sheet_2
+      213: -434252183827366392
+    second: bow_2
   - first:
-      213: 6133235146095188253
-    second: itch hurt 2 sheet-Sheet_3
+      213: 1131549020000966294
+    second: bow_3
   - first:
-      213: -8853825974755322874
-    second: itch hurt 2 sheet-Sheet_4
+      213: -7999427661029459236
+    second: bow_4
   - first:
-      213: -3007589213488406314
-    second: itch hurt 2 sheet-Sheet_5
+      213: -4041009300170039426
+    second: bow_5
   - first:
-      213: 5701692524486732836
-    second: itch hurt 2 sheet-Sheet_6
+      213: -6373757434741629751
+    second: bow_6
+  - first:
+      213: 3769289473720460669
+    second: bow_7
+  - first:
+      213: 623387142360464666
+    second: bow_8
+  - first:
+      213: -3940083669894357640
+    second: bow_9
+  - first:
+      213: 8848821535025445876
+    second: bow_10
+  - first:
+      213: 7757520165533166751
+    second: bow_11
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -93,7 +108,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -131,13 +146,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: itch hurt 2 sheet-Sheet_0
+      name: bow_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 15
+        y: 33
         width: 58
-        height: 73
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1ba7a8822d1476a90800000000000000
-      internalID: -7320810298388350287
+      spriteID: d8a2367adf90c3af0800000000000000
+      internalID: -415446080585258355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itch hurt 2 sheet-Sheet_1
+      name: bow_1
       rect:
         serializedVersion: 2
-        x: 81
-        y: 0
+        x: 128
+        y: 33
         width: 58
-        height: 73
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,20 +183,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 001eeaba1db3f4620800000000000000
-      internalID: 2760490868315971840
+      spriteID: a532ca5df987c3c70800000000000000
+      internalID: 8952162787185664858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itch hurt 2 sheet-Sheet_2
+      name: bow_2
       rect:
         serializedVersion: 2
-        x: 160
-        y: 0
+        x: 241
+        y: 31
         width: 58
-        height: 73
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,20 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2a7b800dce9c61f30800000000000000
-      internalID: 4546042892816791458
+      spriteID: 80e380880f939f9f0800000000000000
+      internalID: -434252183827366392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itch hurt 2 sheet-Sheet_3
+      name: bow_3
       rect:
         serializedVersion: 2
-        x: 240
-        y: 0
+        x: 354
+        y: 31
         width: 58
-        height: 73
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,20 +227,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d19d1febed0ad1550800000000000000
-      internalID: 6133235146095188253
+      spriteID: 6965917a6d114bf00800000000000000
+      internalID: 1131549020000966294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itch hurt 2 sheet-Sheet_4
+      name: bow_4
       rect:
         serializedVersion: 2
-        x: 323
-        y: 0
+        x: 463
+        y: 31
         width: 58
-        height: 73
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +249,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 604159f7f24e02580800000000000000
-      internalID: -8853825974755322874
+      spriteID: cdab7e1dce25cf090800000000000000
+      internalID: -7999427661029459236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itch hurt 2 sheet-Sheet_5
+      name: bow_5
       rect:
         serializedVersion: 2
-        x: 404
-        y: 0
+        x: 575
+        y: 31
         width: 58
-        height: 73
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,20 +271,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6d02ab39b85e246d0800000000000000
-      internalID: -3007589213488406314
+      spriteID: e7f9051a3737be7c0800000000000000
+      internalID: -4041009300170039426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itch hurt 2 sheet-Sheet_6
+      name: bow_6
       rect:
         serializedVersion: 2
-        x: 480
-        y: 0
+        x: 686
+        y: 31
         width: 58
-        height: 73
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,8 +293,118 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 42c2884642b702f40800000000000000
-      internalID: 5701692524486732836
+      spriteID: 9cc58b9f16ddb87a0800000000000000
+      internalID: -6373757434741629751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bow_7
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 31
+        width: 58
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d752ab84ec43f4430800000000000000
+      internalID: 3769289473720460669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bow_8
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 31
+        width: 58
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1df0f99d47b6a800800000000000000
+      internalID: 623387142360464666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bow_9
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 31
+        width: 58
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87d11a617c20259c0800000000000000
+      internalID: -3940083669894357640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bow_10
+      rect:
+        serializedVersion: 2
+        x: 1138
+        y: 31
+        width: 58
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fbb4049d445dca70800000000000000
+      internalID: 8848821535025445876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bow_11
+      rect:
+        serializedVersion: 2
+        x: 1249
+        y: 31
+        width: 58
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9ca88c4d7f38ab60800000000000000
+      internalID: 7757520165533166751
       vertices: []
       indices: 
       edges: []
@@ -288,7 +413,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ad1156736e1b8424f9dfebed9ca36067
+    spriteID: 080870f7f1d9f7b4f9e23160e70c5977
     internalID: 0
     vertices: []
     indices: 
@@ -298,13 +423,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      itch hurt 2 sheet-Sheet_0: -7320810298388350287
-      itch hurt 2 sheet-Sheet_1: 2760490868315971840
-      itch hurt 2 sheet-Sheet_2: 4546042892816791458
-      itch hurt 2 sheet-Sheet_3: 6133235146095188253
-      itch hurt 2 sheet-Sheet_4: -8853825974755322874
-      itch hurt 2 sheet-Sheet_5: -3007589213488406314
-      itch hurt 2 sheet-Sheet_6: 5701692524486732836
+      bow_0: -415446080585258355
+      bow_1: 8952162787185664858
+      bow_10: 8848821535025445876
+      bow_11: 7757520165533166751
+      bow_2: -434252183827366392
+      bow_3: 1131549020000966294
+      bow_4: -7999427661029459236
+      bow_5: -4041009300170039426
+      bow_6: -6373757434741629751
+      bow_7: 3769289473720460669
+      bow_8: 623387142360464666
+      bow_9: -3940083669894357640
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

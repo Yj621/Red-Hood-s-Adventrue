@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: cda82f028b776634f851bbf3d566c389
+guid: ab1c802a748998a4b8eb23ae1b063b79
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7320810298388350287
-    second: itch hurt 2 sheet-Sheet_0
+      213: -6763730525672833165
+    second: red hood itch free Copy-Sheet - Hurt_0
   - first:
-      213: 2760490868315971840
-    second: itch hurt 2 sheet-Sheet_1
+      213: 2490723702407487152
+    second: red hood itch free Copy-Sheet - Hurt_1
   - first:
-      213: 4546042892816791458
-    second: itch hurt 2 sheet-Sheet_2
+      213: -6796744328040619940
+    second: red hood itch free Copy-Sheet - Hurt_2
   - first:
-      213: 6133235146095188253
-    second: itch hurt 2 sheet-Sheet_3
+      213: 5818133536000002857
+    second: red hood itch free Copy-Sheet - Hurt_3
   - first:
-      213: -8853825974755322874
-    second: itch hurt 2 sheet-Sheet_4
+      213: 5832415219678819819
+    second: red hood itch free Copy-Sheet - Hurt_4
   - first:
-      213: -3007589213488406314
-    second: itch hurt 2 sheet-Sheet_5
+      213: -8139891774342433545
+    second: red hood itch free Copy-Sheet - Hurt_5
   - first:
-      213: 5701692524486732836
-    second: itch hurt 2 sheet-Sheet_6
+      213: -3822244015691131960
+    second: red hood itch free Copy-Sheet - Hurt_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -93,7 +93,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -131,155 +131,155 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: itch hurt 2 sheet-Sheet_0
+      name: red hood itch free Copy-Sheet - Hurt_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 565
+        y: 4
         width: 58
-        height: 73
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1ba7a8822d1476a90800000000000000
-      internalID: -7320810298388350287
+      spriteID: 37ffdc43ce66222a0800000000000000
+      internalID: -6763730525672833165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itch hurt 2 sheet-Sheet_1
+      name: red hood itch free Copy-Sheet - Hurt_1
       rect:
         serializedVersion: 2
-        x: 81
-        y: 0
+        x: 674
+        y: 4
         width: 58
-        height: 73
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 001eeaba1db3f4620800000000000000
-      internalID: 2760490868315971840
+      spriteID: 0bed4abc204d09220800000000000000
+      internalID: 2490723702407487152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itch hurt 2 sheet-Sheet_2
+      name: red hood itch free Copy-Sheet - Hurt_2
       rect:
         serializedVersion: 2
-        x: 160
-        y: 0
+        x: 787
+        y: 4
         width: 58
-        height: 73
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2a7b800dce9c61f30800000000000000
-      internalID: 4546042892816791458
+      spriteID: c50ecf95b0d1da1a0800000000000000
+      internalID: -6796744328040619940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itch hurt 2 sheet-Sheet_3
+      name: red hood itch free Copy-Sheet - Hurt_3
       rect:
         serializedVersion: 2
-        x: 240
-        y: 0
+        x: 900
+        y: 4
         width: 58
-        height: 73
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d19d1febed0ad1550800000000000000
-      internalID: 6133235146095188253
+      spriteID: 92b411d00a92eb050800000000000000
+      internalID: 5818133536000002857
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itch hurt 2 sheet-Sheet_4
+      name: red hood itch free Copy-Sheet - Hurt_4
       rect:
         serializedVersion: 2
-        x: 323
-        y: 0
+        x: 1013
+        y: 4
         width: 58
-        height: 73
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 604159f7f24e02580800000000000000
-      internalID: -8853825974755322874
+      spriteID: be5b987adb6e0f050800000000000000
+      internalID: 5832415219678819819
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itch hurt 2 sheet-Sheet_5
+      name: red hood itch free Copy-Sheet - Hurt_5
       rect:
         serializedVersion: 2
-        x: 404
-        y: 0
+        x: 1123
+        y: 4
         width: 58
-        height: 73
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6d02ab39b85e246d0800000000000000
-      internalID: -3007589213488406314
+      spriteID: 7f4f138ee8b490f80800000000000000
+      internalID: -8139891774342433545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: itch hurt 2 sheet-Sheet_6
+      name: red hood itch free Copy-Sheet - Hurt_6
       rect:
         serializedVersion: 2
-        x: 480
-        y: 0
+        x: 1237
+        y: 4
         width: 58
-        height: 73
+        height: 80
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 42c2884642b702f40800000000000000
-      internalID: 5701692524486732836
+      spriteID: 8c31edf9159a4fac0800000000000000
+      internalID: -3822244015691131960
       vertices: []
       indices: 
       edges: []
@@ -288,7 +288,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ad1156736e1b8424f9dfebed9ca36067
+    spriteID: 9f138ef839e8d94448717ecaaf2780b4
     internalID: 0
     vertices: []
     indices: 
@@ -298,13 +298,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      itch hurt 2 sheet-Sheet_0: -7320810298388350287
-      itch hurt 2 sheet-Sheet_1: 2760490868315971840
-      itch hurt 2 sheet-Sheet_2: 4546042892816791458
-      itch hurt 2 sheet-Sheet_3: 6133235146095188253
-      itch hurt 2 sheet-Sheet_4: -8853825974755322874
-      itch hurt 2 sheet-Sheet_5: -3007589213488406314
-      itch hurt 2 sheet-Sheet_6: 5701692524486732836
+      red hood itch free Copy-Sheet - Hurt_0: -6763730525672833165
+      red hood itch free Copy-Sheet - Hurt_1: 2490723702407487152
+      red hood itch free Copy-Sheet - Hurt_2: -6796744328040619940
+      red hood itch free Copy-Sheet - Hurt_3: 5818133536000002857
+      red hood itch free Copy-Sheet - Hurt_4: 5832415219678819819
+      red hood itch free Copy-Sheet - Hurt_5: -8139891774342433545
+      red hood itch free Copy-Sheet - Hurt_6: -3822244015691131960
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
