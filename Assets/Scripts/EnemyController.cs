@@ -53,6 +53,7 @@ public class EnemyController : MonoBehaviour
         {
             GetComponent<Animator>().SetTrigger("Dead");
             Destroy(gameObject);
+            DropItems();
         }
     }
 
@@ -60,6 +61,11 @@ public class EnemyController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.75f); // Hurt 애니메이션 재생 후 대기 시간
         GetComponent<Animator>().SetTrigger("Idle"); // Idle 상태로 복귀
+    }
+
+    void DropItems()
+    {
+
     }
 
 }

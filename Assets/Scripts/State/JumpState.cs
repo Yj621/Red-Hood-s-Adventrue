@@ -4,7 +4,8 @@ public class JumpState: IState
 {
     PlayerController player;
 
-    public JumpState(PlayerController player){
+    public JumpState(PlayerController player)
+    {
         this.player = player;
     }
     public void Enter()

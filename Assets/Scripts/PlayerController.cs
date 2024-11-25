@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isGround)
             {
-                stateMachine.TransitionTo(stateMachine.runState);
+                stateMachine.TransitionTo(stateMachine.jumpState);
             }
         }
 
@@ -114,6 +114,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.gravityScale = 4f;
             vy = jumpSpeed;
+            Debug.Log("jump");
         }
         prevVx = vx;
 
@@ -188,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
 
     //애니메이션 스프라이트 문제 해결 함수
-    void UpY()
+/*    void UpY()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
         rb.gravityScale = 0;
@@ -198,7 +199,7 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.4f, transform.position.z);
         rb.gravityScale = 4;
         isGround = false;
-    }
+    }*/
 
     void SetGoIdle()
     {

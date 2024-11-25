@@ -25,9 +25,9 @@ public class Player
         }
     }
 
-    public void Heal(int damage) 
+    public void Heal(int hp) 
     { 
-        Hp += damage;   
+        Hp += hp;   
     }
 
     public void GetExperience(int exp)
