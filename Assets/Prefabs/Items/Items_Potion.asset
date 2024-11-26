@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05c24d7ce7829043a5ca0ce1b8040d7, type: 3}
   m_Name: Items_Potion
   m_EditorClassIdentifier: 
-  type: 2
-  icon: {fileID: -7061147952334802580, guid: 8b55a13a9973eb24b873bc2b06c2483f, type: 3}
+  itemType: 2
+  itemIcon: {fileID: -7061147952334802580, guid: 8b55a13a9973eb24b873bc2b06c2483f, type: 3}
   itemName: Potion
   itemPrefab: {fileID: 5876493833766509933, guid: 3bb130ede5f4d6744bd624a799570dc1, type: 3}
-  price: 10
+  itemPrice: 0

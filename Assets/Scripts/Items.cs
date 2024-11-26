@@ -7,15 +7,15 @@ public class Items : ScriptableObject
 {
     public enum ItemType
     {
-        Gold,
+        Coin,
         Exp,
         Potion
     }
 
-    public ItemType type;
-    public Sprite icon;
+    public ItemType itemType;
+    public Sprite itemIcon;
     public string itemName;
     public GameObject itemPrefab;
-    public int price;
+    public int itemPrice;
 
 }

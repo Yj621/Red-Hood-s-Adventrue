@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05c24d7ce7829043a5ca0ce1b8040d7, type: 3}
   m_Name: Items_Exp
   m_EditorClassIdentifier: 
-  type: 1
-  icon: {fileID: 1534590005300592919, guid: c123a33d1ff92684bad6e6b423c09955, type: 3}
+  itemType: 1
+  itemIcon: {fileID: 1534590005300592919, guid: c123a33d1ff92684bad6e6b423c09955, type: 3}
   itemName: Exp
   itemPrefab: {fileID: 5279608554560301605, guid: afad5da8c38ce3a40bf44a14eecc844a, type: 3}
-  price: 10
+  itemPrice: 0

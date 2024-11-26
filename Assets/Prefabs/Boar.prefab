@@ -105,6 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 835cd37c5f682429ba86e19fa24e44ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropsItems: []
+  dropItemPos: {fileID: 0}
   speed: 3
   hp: 0
   damage: 0

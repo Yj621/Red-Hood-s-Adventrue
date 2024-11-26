@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
 
     public Image hpGauge;
-    
+
     private bool isGround;
     private bool goIdle;
 
@@ -187,18 +187,43 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    //애니메이션 스프라이트 문제 해결 함수
-/*    void UpY()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
-        rb.gravityScale = 0;
+        ItemBehavior item = other.GetComponent<ItemBehavior>();
+
+        if (item != null)
+        {
+            Debug.Log($"아이템 획득: {item.GetItemName()}, 타입: {item.GetItemType()}");
+
+            switch(item.itemData.itemType)
+            {
+                case Items.ItemType.Coin:
+                    Debug.Log("Coin을 얻었습니다.");
+                    break;
+                case Items.ItemType.Exp:
+                    Debug.Log("Exp를 얻었습니다.");
+                    break;
+                case Items.ItemType.Potion:
+                    Debug.Log("Potion을 얻었습니다.");
+                    break;
+                default:
+                    Debug.LogError("알 수 없는 아이템 타입!");
+                    break;
+            }
+        }
     }
-    void DownY()
-    {
-        transform.position = new Vector3(transform.position.x, transform.position.y - 0.4f, transform.position.z);
-        rb.gravityScale = 4;
-        isGround = false;
-    }*/
+    //애니메이션 스프라이트 문제 해결 함수
+    /*    void UpY()
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+            rb.gravityScale = 0;
+        }
+        void DownY()
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y - 0.4f, transform.position.z);
+            rb.gravityScale = 4;
+            isGround = false;
+        }*/
 
     void SetGoIdle()
     {

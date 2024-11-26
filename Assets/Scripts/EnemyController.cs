@@ -1,9 +1,18 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyController : MonoBehaviour
 {
-    public Items[] dropsItems;
+    [System.Serializable]
+    public class ItemDrop
+    {
+        public Items item; //드롭될 아이템
+        public int amount; //드롭 개수
+        public float dropRate; //드롭 확률
+    }
+
+    public List<ItemDrop> dropItems;
     public Transform dropItemPos;
 
     public float speed = 1f;
@@ -68,15 +77,28 @@ public class EnemyController : MonoBehaviour
 
     void DropItems()
     {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.tag == "items")
+        float offset = 0.5f; // 아이템 간의 간격
+        float direction = 1; // 왼쪽(-1) 또는 오른쪽(1)으로 번갈아 가며 드롭
+        foreach (var drop in dropItems)
         {
+            float randomValue = Random.Range(0f, 1f);
+            if (randomValue <= drop.dropRate)
+            {
+                //설정된 개수만큼 드롭
+                for (int i = 0; i < drop.amount; i++)
+                {                
+                    // 아이템의 생성 위치를 계산
+                    Vector3 dropPosition = dropItemPos.position + new Vector3(offset * i * direction, 0, 0);
+                    GameObject droppedItem = Instantiate(drop.item.itemPrefab, dropPosition, Quaternion.identity);
 
+                    Debug.Log($"{drop.item.itemName}을(를) 드롭했습니다. 위치: {dropPosition}");
+
+                    // 방향을 번갈아 가면서 조정 (왼쪽-오른쪽)
+                    direction *= -0.55f;
+                }
+            }
         }
     }
+
 
 }

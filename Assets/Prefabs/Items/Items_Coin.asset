@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b05c24d7ce7829043a5ca0ce1b8040d7, type: 3}
-  m_Name: Items_Gold
+  m_Name: Items_Coin
   m_EditorClassIdentifier: 
-  type: 0
-  icon: {fileID: -6548248550459514729, guid: e616ba1b3cf8e734ebbb716007ff42d7, type: 3}
-  itemName: Gold
+  itemType: 0
+  itemIcon: {fileID: -6548248550459514729, guid: e616ba1b3cf8e734ebbb716007ff42d7, type: 3}
+  itemName: Coin
   itemPrefab: {fileID: 8510650261221398625, guid: 3e6d1cba5732b1046b6af41aee41f469, type: 3}
-  price: 10
+  itemPrice: 0
