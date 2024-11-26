@@ -114,7 +114,6 @@ public class PlayerController : MonoBehaviour
         {
             rb.gravityScale = 4f;
             vy = jumpSpeed;
-            Debug.Log("jump");
         }
         prevVx = vx;
 

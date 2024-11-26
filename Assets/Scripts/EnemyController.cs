@@ -3,6 +3,9 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
+    public Items[] dropsItems;
+    public Transform dropItemPos;
+
     public float speed = 1f;
     public int hp = 1;
     public int damage;
@@ -65,7 +68,15 @@ public class EnemyController : MonoBehaviour
 
     void DropItems()
     {
+        
+    }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "items")
+        {
+
+        }
     }
 
 }
