@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
         public Items item; //드롭될 아이템
         public int amount; //드롭 개수
         public float dropRate; //드롭 확률
+        public int itemPrice; //양
     }
 
     public List<ItemDrop> dropItems;
@@ -74,31 +75,40 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(0.75f); // Hurt 애니메이션 재생 후 대기 시간
         GetComponent<Animator>().SetTrigger("Idle"); // Idle 상태로 복귀
     }
-
     void DropItems()
     {
-        float offset = 0.5f; // 아이템 간의 간격
+        float baseOffset = 0.5f; // 아이템 간의 기본 간격
+        float randomOffsetRange = 0.2f; // 위치에 약간의 랜덤성을 추가하기 위한 범위
         float direction = 1; // 왼쪽(-1) 또는 오른쪽(1)으로 번갈아 가며 드롭
+        HashSet<Vector3> usedPositions = new HashSet<Vector3>(); // 겹침 방지를 위한 위치 기록
+
         foreach (var drop in dropItems)
         {
             float randomValue = Random.Range(0f, 1f);
             if (randomValue <= drop.dropRate)
             {
-                //설정된 개수만큼 드롭
                 for (int i = 0; i < drop.amount; i++)
-                {                
-                    // 아이템의 생성 위치를 계산
-                    Vector3 dropPosition = dropItemPos.position + new Vector3(offset * i * direction, 0, 0);
+                {
+                    Vector3 dropPosition;
+
+                    do
+                    {
+                        // 아이템 생성 위치 계산
+                        float offset = baseOffset * i + Random.Range(-randomOffsetRange, randomOffsetRange);
+                        dropPosition = dropItemPos.position + new Vector3(offset * direction, 0, 0);
+
+                    } while (usedPositions.Contains(dropPosition)); // 겹치는 위치인지 확인
+
+                    // 위치 추가
+                    usedPositions.Add(dropPosition);
+
+                    // 아이템 생성
                     GameObject droppedItem = Instantiate(drop.item.itemPrefab, dropPosition, Quaternion.identity);
-
-                    Debug.Log($"{drop.item.itemName}을(를) 드롭했습니다. 위치: {dropPosition}");
-
-                    // 방향을 번갈아 가면서 조정 (왼쪽-오른쪽)
-                    direction *= -0.55f;
+                    
+                    // 방향을 번갈아 가며 조정
+                    direction *= -1;
                 }
             }
         }
     }
-
-
 }

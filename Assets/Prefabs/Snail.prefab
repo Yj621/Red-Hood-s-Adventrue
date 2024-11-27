@@ -109,12 +109,15 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 523e66f9ccf66f142a7e871d2fd97434, type: 2}
     amount: 1
     dropRate: 0.7
+    itemPrice: 3
   - item: {fileID: 11400000, guid: dec0a823bd196244fa7ae46d457f39f4, type: 2}
-    amount: 2
+    amount: 1
     dropRate: 1
+    itemPrice: 5
   - item: {fileID: 11400000, guid: b3311862b1e39bf4c9fe2a48bc1a8be7, type: 2}
     amount: 3
     dropRate: 0.3
+    itemPrice: 2
   dropItemPos: {fileID: 2261901630421401892}
   speed: 1
   hp: 15

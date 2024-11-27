@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public StateMachine stateMachine;
     private Player player;
-
+    [SerializeField]
+    public EnemyController Enemy;
 
     public float speed = 5;
     public float jumpSpeed = 5;
@@ -46,8 +47,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         stateMachine.Initialize(stateMachine.idleState);
 
-        //player 데이터 초기화 (Hp, Damage, Exp)
-        player = new Player(30, 5, 0);
+        //player 데이터 초기화 (Hp, Damage, Exp, Coins)
+        player = new Player(100, 5, 0, 0);
     }
 
     void Update()
@@ -195,16 +196,21 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log($"아이템 획득: {item.GetItemName()}, 타입: {item.GetItemType()}");
 
-            switch(item.itemData.itemType)
+            switch (item.itemData.itemType)
             {
                 case Items.ItemType.Coin:
-                    Debug.Log("Coin을 얻었습니다.");
+                    player.GetCoins(Enemy.dropItems[0].itemPrice);
+                    Debug.Log("Coin을 얻었습니다. : " + Enemy.dropItems[0].itemPrice);
+                    Destroy(other.gameObject);
                     break;
                 case Items.ItemType.Exp:
-                    Debug.Log("Exp를 얻었습니다.");
+                    player.GetExperience(Enemy.dropItems[1].itemPrice);
+                    Destroy(other.gameObject);
+                    Debug.Log("Exp를 얻었습니다. : " + Enemy.dropItems[1].itemPrice);
                     break;
                 case Items.ItemType.Potion:
                     Debug.Log("Potion을 얻었습니다.");
+                    Destroy(other.gameObject);
                     break;
                 default:
                     Debug.LogError("알 수 없는 아이템 타입!");
