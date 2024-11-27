@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba91179619d6444b8b2fbd609a4af436, type: 3}
   m_Name: Skill_Bow_UpgradeButton
   m_EditorClassIdentifier: 
-  upgradeName: 
-  level: 0
-  maxLevel: 0
-  coinCost: 0
-  skillPointCost: 0
-  value: 0
+  upgradeName: "\uD65C \uC3D8\uAE30 \uC5C5\uADF8\uB808\uC774\uB4DC"
+  level: 1
+  maxLevel: 5
+  cost: 1

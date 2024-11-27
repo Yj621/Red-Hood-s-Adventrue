@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba91179619d6444b8b2fbd609a4af436, type: 3}
   m_Name: Char_Jump_Speed_UpgradeButton
   m_EditorClassIdentifier: 
-  upgradeName: 
-  level: 0
-  maxLevel: 0
-  coinCost: 0
-  skillPointCost: 0
+  upgradeName: "\uCE90\uB9AD\uD130 \uC810\uD504 \uC18D\uB3C4"
+  level: 1
+  maxLevel: 10
+  cost: 1

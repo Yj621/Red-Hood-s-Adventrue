@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         stateMachine = new StateMachine(this);
         //player 데이터 초기화 (Hp, Damage, Exp, Coins)
-        player = new Player(100, 5, 0, 0);
+        player = new Player(100, 5, 0, 100);
     }
     void Start()
     {
