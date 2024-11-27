@@ -4,10 +4,14 @@ public class Player
 {
     public int Hp { get; private set; }
     public int MaxHp { get; private set; }
-    public int Damage { get; private set; }
     public int Experience { get; private set; }
     public int Level{ get; private set; }   
     public int Coins { get; private set; }
+    public int SkillPoints { get; private set; }    
+
+    public int Damage { get; private set; }
+    public int AttackSpeed { get; private set; }   
+
     
     private int experienceForLevel;
 
@@ -37,6 +41,18 @@ public class Player
         Hp += hp;   
     }
 
+    public void GetCoins(int coins)
+    {
+        Coins += coins; 
+        // UI 업데이트 호출
+        UIController.Instance.UpdateCoinUI(Coins);
+    }
+
+    public void GetSkillPoints(int skillPoint)
+    {
+        SkillPoints += skillPoint;
+    }
+
     public void GetExperience(int exp)
     {
         Experience += exp; 
@@ -60,20 +76,31 @@ public class Player
         UIController.Instance.LevelUpButtonActive();
     }
 
+    public int CalculateExperienceNextLevel(int level)
+    {
+        return level * 10;
+    }
+    
     public bool IsAlive()
     {
         return Hp > 0;
     }
 
-    public void GetCoins(int coins)
-    {
-        Coins += coins; 
-        // UI 업데이트 호출
-        UIController.Instance.UpdateCoinUI(Coins);
-    }
     
-    public int CalculateExperienceNextLevel(int level)
-    {
-        return level * 10;
-    }
+
+    // public void PlayerReset()
+    // {
+    //     Hp = MaxHp;
+    //     Experience = 0;
+    //     Level = 1;
+    //     Coins = 0;
+    //     experienceForLevel = CalculateExperienceNextLevel(Level);
+
+        
+    //     PlayerController.Instance.hpGauge.fillAmount = Hp / MaxHp;
+    //     UIController.Instance.UpdateExpUI(Experience, experienceForLevel);
+    //     UIController.Instance.UpdateLevelUI(Level);
+    //     UIController.Instance.UpdateCoinUI(Coins);
+    //     UIController.Instance.ResetUpButton();
+    // }
 }

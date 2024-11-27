@@ -1,11 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public StateMachine stateMachine;
-    private Player player;
+    public Player player;
     [SerializeField]
     public EnemyController Enemy;
 
@@ -17,10 +18,10 @@ public class PlayerController : MonoBehaviour
 
     public Collider2D bottomCollider;
     public CompositeCollider2D terrainCollider;
-
     private Rigidbody2D rb;
-
     public Image hpGauge;
+
+    Vector2 originalPos;
 
     private bool isGround;
     private bool goIdle;
@@ -40,15 +41,16 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         stateMachine = new StateMachine(this);
+        //player 데이터 초기화 (Hp, Damage, Exp, Coins)
+        player = new Player(100, 5, 0, 0);
     }
     void Start()
     {
         instance = this;
+        originalPos = transform.position;   
         rb = GetComponent<Rigidbody2D>();
         stateMachine.Initialize(stateMachine.idleState);
 
-        //player 데이터 초기화 (Hp, Damage, Exp, Coins)
-        player = new Player(100, 5, 0, 0);
     }
 
     void Update()
@@ -139,6 +141,8 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+
     //플레이어가 맞는 행위
     public void DealDamage(int damage)
     {
@@ -152,8 +156,10 @@ public class PlayerController : MonoBehaviour
             Invoke("Invincibility", invincibilityTime);
         }
 
+        //플레이어 죽기
         if (!player.IsAlive() && isDie == false)
         {
+            Debug.Log("Die1");
             Die();
             isDie = true;
         }
@@ -164,11 +170,30 @@ public class PlayerController : MonoBehaviour
     }
 
     //플레이어가 죽음
-    void Die()
+    public void Die()
     {
         stateMachine.TransitionTo(stateMachine.deadState);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-        enabled = false;
+        //enabled = false;
+        GameManager.Instance.CameraOff();
+        Invoke("Restart", 2);
+    }
+
+    //재시작
+    public void Restart()
+    {
+        // transform.position = originalPos;
+        // GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+        // GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        // //player.PlayerReset();
+
+        // //애니메이션 복구
+        // stateMachine.TransitionTo(stateMachine.idleState);
+        // GameManager.Instance.Restart();
+
+        // 현재 씬 다시 불러오기
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     //플레이어가 때리는 행위
@@ -216,6 +241,13 @@ public class PlayerController : MonoBehaviour
                     Debug.LogError("알 수 없는 아이템 타입!");
                     break;
             }
+        }
+
+        if(other.gameObject.tag == "Player")
+        {
+            Die();
+            GameManager.Instance.CameraOff();
+            Debug.Log("Die");
         }
     }
     //애니메이션 스프라이트 문제 해결 함수

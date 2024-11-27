@@ -44,4 +44,11 @@ public class UIController : MonoBehaviour
     {
         upButton[1].SetActive(true);    
     }
+    // public void ResetUpButton()
+    // {
+    //     for(int i =0; i<upButton.Length;i++)
+    //     {
+    //         upButton[i].SetActive(false);
+    //     }
+    // }
 }
