@@ -9,7 +9,7 @@ public class Player
     public int Coins { get; private set; }
     public int SkillPoints { get; private set; }
 
-    public int Damage { get; private set; }
+    public float Damage { get; set; }
     public int AttackSpeed { get; private set; }
 
 
@@ -70,6 +70,9 @@ public class Player
         while (Experience >= experienceForLevel)
         {
             LevelUp();
+            SkillPoints += 1;
+            UIController.Instance.skillPoint.text = SkillPoints.ToString();
+            //스킬포인트 텍스트에 스킬포인트를 넣어줬는데 사용 가능한 만큼만 넣어주고 쓰면 0으로 바꿔줘야돼
         }
         //exp ui 업데이트
         UIController.Instance.UpdateExpUI(Experience, experienceForLevel);

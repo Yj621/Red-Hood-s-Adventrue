@@ -27,9 +27,28 @@ public class UpgradeBehavior : MonoBehaviour
             player.UsedCoins(upgradeData.cost);
             Debug.Log("upgradeData.cost : "+upgradeData.cost);
 
-            switch(upgradeData.upgradeTitle)
+
+            switch (upgradeData.upgradeTitle)
             {
-            }
+                case "캐릭터 이동 속도":
+                    PlayerController.Instance.speed += 0.1f;
+                    break;
+
+                case "캐릭터 점프 속도":
+                    PlayerController.Instance.jumpSpeed += 0.1f;
+                    break;
+
+                case "캐릭터 무적 시간":
+                    PlayerController.Instance.invincibilityTime += 0.1f;
+                    break;
+
+                case "기본 공격력":
+                    player.Damage += 0.1f;
+                    break;
+
+                default:
+                    break;
+            } 
         }
     }
 

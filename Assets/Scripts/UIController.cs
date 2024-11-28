@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class UIController : MonoBehaviour
 {
+    public TextMeshProUGUI skillPoint;
     public List<TextMeshProUGUI> stateText;
 
     public GameObject[] upButton;
@@ -51,4 +52,5 @@ public class UIController : MonoBehaviour
     //         upButton[i].SetActive(false);
     //     }
     // }
+
 }

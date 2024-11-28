@@ -55,9 +55,9 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        hp -= damage;
+        hp -= (int)damage;
         Debug.Log($"적({gameObject}) 체력 : {hp}");
         GetComponent<Animator>().SetTrigger("Hurt");
         StartCoroutine(ReturnToIdle()); // Idle로 복귀하는 코루틴 실행

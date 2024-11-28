@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeTitle: "\uCE90\uB9AD\uD130 \uC810\uD504 \uC18D\uB3C4"
   level: 1
-  maxLevel: 10
+  maxLevel: 5
   cost: 1
