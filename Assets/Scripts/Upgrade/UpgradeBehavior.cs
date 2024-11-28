@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class UpgradeBehavior : MonoBehaviour
 {
+    private Player player;
     public UpgradeButton upgradeData;
 
     [SerializeField] private TextMeshProUGUI upgradeTitleText; //업그레이드
@@ -13,16 +14,22 @@ public class UpgradeBehavior : MonoBehaviour
     {
         levelText.text = upgradeData.level.ToString();
         costText.text = upgradeData.cost.ToString();
-
+        player = PlayerController.Instance.player;
     }
 
-    public void OnUpgradeButtonClick()
+    public void OnCharUpgradeButtonClick()
     {
         if(upgradeData.level < upgradeData.maxLevel)
         {
             //레벨 / cost 올리기
             upgradeData.UpgradeLevel();
             UpdateUI();
+            player.UsedCoins(upgradeData.cost);
+            Debug.Log("upgradeData.cost : "+upgradeData.cost);
+
+            switch(upgradeData.upgradeTitle)
+            {
+            }
         }
     }
 

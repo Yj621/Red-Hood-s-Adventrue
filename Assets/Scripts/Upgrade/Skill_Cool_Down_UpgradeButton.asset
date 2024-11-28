@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba91179619d6444b8b2fbd609a4af436, type: 3}
   m_Name: Skill_Cool_Down_UpgradeButton
   m_EditorClassIdentifier: 
-  upgradeName: "\uCFE8\uD0C0\uC784 \uAC10\uC18C"
+  upgradeTitle: "\uCFE8\uD0C0\uC784 \uAC10\uC18C"
   level: 1
   maxLevel: 5
   cost: 1

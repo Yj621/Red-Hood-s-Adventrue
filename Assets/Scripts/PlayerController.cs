@@ -50,7 +50,8 @@ public class PlayerController : MonoBehaviour
         originalPos = transform.position;   
         rb = GetComponent<Rigidbody2D>();
         stateMachine.Initialize(stateMachine.idleState);
-
+        
+        UIController.Instance.UpdateCoinUI(player.Coins);
     }
 
     void Update()
