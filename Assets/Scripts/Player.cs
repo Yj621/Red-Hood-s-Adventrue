@@ -61,8 +61,18 @@ public class Player
     public void GetSkillPoints(int skillPoint)
     {
         SkillPoints += skillPoint;
+        UIController.Instance.UpdateSkillPointUI(SkillPoints);
     }
 
+    public void UsedSkillPoint(int skillPoint)
+    {
+        if (Coins > 0)
+        {
+            SkillPoints -= skillPoint;
+            // UI 업데이트 호출
+            UIController.Instance.UpdateSkillPointUI(SkillPoints);
+        }
+    }
     public void GetExperience(int exp)
     {
         Experience += exp;
@@ -70,8 +80,7 @@ public class Player
         while (Experience >= experienceForLevel)
         {
             LevelUp();
-            SkillPoints += 1;
-            UIController.Instance.skillPoint.text = SkillPoints.ToString();
+            Debug.Log(SkillPoints);
             //스킬포인트 텍스트에 스킬포인트를 넣어줬는데 사용 가능한 만큼만 넣어주고 쓰면 0으로 바꿔줘야돼
         }
         //exp ui 업데이트
@@ -87,6 +96,7 @@ public class Player
         //레벨업 후 필요 경험치 늘리기
         experienceForLevel = CalculateExperienceNextLevel(Level);
         UIController.Instance.LevelUpButtonActive();
+        GetSkillPoints(1);
     }
 
     public int CalculateExperienceNextLevel(int level)
