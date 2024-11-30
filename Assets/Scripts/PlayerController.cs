@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         stateMachine = new StateMachine(this);
         //player 데이터 초기화 (Hp, Damage, Exp, Coins)
-        player = new Player(100, 5, 0, 100);
+        player = new Player(100, 5, 0, 10);
     }
     void Start()
     {
@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
         if (!isHit && !isDie)
         {
             isHit = true;
-            player.PlayerDamage(damage);
+            player.GetDamage(damage);
             //hp 게이지 닳게 하기
             hpGauge.fillAmount = (float)player.Hp / player.MaxHp;
             stateMachine.TransitionTo(stateMachine.hurtState);
@@ -183,16 +183,6 @@ public class PlayerController : MonoBehaviour
     //재시작
     public void Restart()
     {
-        // transform.position = originalPos;
-        // GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-        // GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-
-        // //player.PlayerReset();
-
-        // //애니메이션 복구
-        // stateMachine.TransitionTo(stateMachine.idleState);
-        // GameManager.Instance.Restart();
-
         // 현재 씬 다시 불러오기
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -225,7 +215,7 @@ public class PlayerController : MonoBehaviour
             switch (item.itemData.itemType)
             {
                 case Items.ItemType.Coin:
-                    player.GetCoins(Enemy.dropItems[0].itemPrice);
+                    player.SetCoins(Enemy.dropItems[0].itemPrice, "Up");
                     Debug.Log("Coin을 얻었습니다. : " + Enemy.dropItems[0].itemPrice);
                     Destroy(other.gameObject);
                     break;
@@ -251,18 +241,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Die");
         }
     }
-    //애니메이션 스프라이트 문제 해결 함수
-    /*    void UpY()
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
-            rb.gravityScale = 0;
-        }
-        void DownY()
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.4f, transform.position.z);
-            rb.gravityScale = 4;
-            isGround = false;
-        }*/
 
     void SetGoIdle()
     {

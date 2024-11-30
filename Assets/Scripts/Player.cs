@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class Player
 {
     public int Hp { get; private set; }
@@ -27,7 +26,7 @@ public class Player
         experienceForLevel = CalculateExperienceNextLevel(Level);
     }
 
-    public void PlayerDamage(int damage)
+    public void GetDamage(int damage)
     {
         Hp -= damage;
         if (Hp < 0)
@@ -41,38 +40,38 @@ public class Player
         Hp += hp;
     }
 
-    public void GetCoins(int coins)
+
+    public void SetCoins(int coins, string type)
     {
-        Coins += coins;
-        // UI 업데이트 호출
+        if (type == "Up")
+        {
+            Coins += coins;
+        }
+        else if (type == "Down")
+        {
+            Coins -= coins;
+
+        }
         UIController.Instance.UpdateCoinUI(Coins);
     }
 
-    public void UsedCoins(int coins)
-    {
-        if (Coins > 0)
-        {
-            Coins -= coins;
-            // UI 업데이트 호출
-            UIController.Instance.UpdateCoinUI(Coins);
-        }
-    }
 
-    public void GetSkillPoints(int skillPoint)
+    public void SetSkillPoints(int skillPoint, string type)
     {
-        SkillPoints += skillPoint;
+        if (type == "Up")
+        {
+            SkillPoints += skillPoint;
+        }
+        else if (type == "Down")
+        {
+            if (skillPoint > 0)
+            {
+                SkillPoints -= skillPoint;
+            }
+        }
         UIController.Instance.UpdateSkillPointUI(SkillPoints);
     }
 
-    public void UsedSkillPoint(int skillPoint)
-    {
-        if (Coins > 0)
-        {
-            SkillPoints -= skillPoint;
-            // UI 업데이트 호출
-            UIController.Instance.UpdateSkillPointUI(SkillPoints);
-        }
-    }
     public void GetExperience(int exp)
     {
         Experience += exp;
@@ -96,7 +95,7 @@ public class Player
         //레벨업 후 필요 경험치 늘리기
         experienceForLevel = CalculateExperienceNextLevel(Level);
         UIController.Instance.LevelUpButtonActive();
-        GetSkillPoints(1);
+        SetSkillPoints(1, "Up");
     }
 
     public int CalculateExperienceNextLevel(int level)
@@ -109,21 +108,4 @@ public class Player
         return Hp > 0;
     }
 
-
-
-    // public void PlayerReset()
-    // {
-    //     Hp = MaxHp;
-    //     Experience = 0;
-    //     Level = 1;
-    //     Coins = 0;
-    //     experienceForLevel = CalculateExperienceNextLevel(Level);
-
-
-    //     PlayerController.Instance.hpGauge.fillAmount = Hp / MaxHp;
-    //     UIController.Instance.UpdateExpUI(Experience, experienceForLevel);
-    //     UIController.Instance.UpdateLevelUI(Level);
-    //     UIController.Instance.UpdateCoinUI(Coins);
-    //     UIController.Instance.ResetUpButton();
-    // }
 }

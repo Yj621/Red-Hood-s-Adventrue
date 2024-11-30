@@ -1674,9 +1674,9 @@ RectTransform:
   - {fileID: 581767399}
   m_Father: {fileID: 151787853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 283, y: -130}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &203162740
@@ -2295,8 +2295,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 311631903}
-        m_TargetAssemblyTypeName: UpgradeBehavior, Assembly-CSharp
-        m_MethodName: OnCharUpgradeButtonClick
+        m_TargetAssemblyTypeName: UpgradeAbilityBehavior, Assembly-CSharp
+        m_MethodName: OnUpgradeButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2356,10 +2356,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18dfb886b3e04b1887a71dd0545eb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeData: {fileID: 11400000, guid: a8a2bfbd4ec5f41d2af4aefbd9bcaed1, type: 2}
   upgradeTitleText: {fileID: 1777329320}
   levelText: {fileID: 1669362733}
   costText: {fileID: 510602669}
+  ability:
+    UpgradeTitle: "\uAE30\uBCF8 \uACF5\uACA9\uB825"
+    Level: 1
+    MaxLevel: 5
+    Cost: 10
 --- !u!1 &325555296
 GameObject:
   m_ObjectHideFlags: 0
@@ -2395,9 +2399,9 @@ RectTransform:
   - {fileID: 1636575590}
   m_Father: {fileID: 329273449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 283, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &325555298
@@ -3708,9 +3712,9 @@ RectTransform:
   - {fileID: 950658498}
   m_Father: {fileID: 151787853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 283, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &556825664
@@ -3911,8 +3915,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 581767403}
-        m_TargetAssemblyTypeName: UpgradeBehavior, Assembly-CSharp
-        m_MethodName: OnCharUpgradeButtonClick
+        m_TargetAssemblyTypeName: UpgradeAbilityBehavior, Assembly-CSharp
+        m_MethodName: OnUpgradeButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3972,10 +3976,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18dfb886b3e04b1887a71dd0545eb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeData: {fileID: 11400000, guid: cdb6a75a8837e4f4ba30dd045ca22d75, type: 2}
   upgradeTitleText: {fileID: 1226119415}
   levelText: {fileID: 283499425}
   costText: {fileID: 1658957236}
+  ability:
+    UpgradeTitle: "\uCE90\uB9AD\uD130 \uC810\uD504 \uC18D\uB3C4"
+    Level: 1
+    MaxLevel: 5
+    Cost: 10
 --- !u!1 &591462819
 GameObject:
   m_ObjectHideFlags: 0
@@ -5141,6 +5149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 698807225}
   - component: {fileID: 698807228}
+  - component: {fileID: 698807229}
   - component: {fileID: 698807227}
   - component: {fileID: 698807226}
   m_Layer: 5
@@ -5213,7 +5222,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 698807227}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 698807229}
+        m_TargetAssemblyTypeName: UpgradeSkillBehavior, Assembly-CSharp
+        m_MethodName: OnUpgradeButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &698807227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5252,6 +5273,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698807224}
   m_CullTransparentMesh: 1
+--- !u!114 &698807229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698807224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7253ddeffa5e94490559e68c5a2d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeTitleText: {fileID: 948892801}
+  skillPointLevelText: {fileID: 658014765}
+  EnhanceInfo:
+    UpgradeTitle: "\uC5F0\uC18D \uBCA0\uAE30"
+    Level: 1
+    MaxLevel: 5
 --- !u!1 &722042977
 GameObject:
   m_ObjectHideFlags: 0
@@ -5287,9 +5326,9 @@ RectTransform:
   - {fileID: 698807225}
   m_Father: {fileID: 329273449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 283, y: -260}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &722042979
@@ -5838,9 +5877,9 @@ RectTransform:
   - {fileID: 1449552080}
   m_Father: {fileID: 329273449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 283, y: -130}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &829082459
@@ -6612,8 +6651,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 950658502}
-        m_TargetAssemblyTypeName: UpgradeBehavior, Assembly-CSharp
-        m_MethodName: OnCharUpgradeButtonClick
+        m_TargetAssemblyTypeName: UpgradeAbilityBehavior, Assembly-CSharp
+        m_MethodName: OnUpgradeButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6673,10 +6712,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18dfb886b3e04b1887a71dd0545eb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeData: {fileID: 11400000, guid: b5dd1a02dda384e2ca5c8355dfed0334, type: 2}
   upgradeTitleText: {fileID: 2110015440}
   levelText: {fileID: 19085914}
   costText: {fileID: 15495629}
+  ability:
+    UpgradeTitle: "\uCE90\uB9AD\uD130 \uC774\uB3D9 \uC18D\uB3C4"
+    Level: 1
+    MaxLevel: 5
+    Cost: 10
 --- !u!1 &964095187
 GameObject:
   m_ObjectHideFlags: 0
@@ -7093,7 +7136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1063893516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8214,9 +8257,9 @@ RectTransform:
   - {fileID: 1661120913}
   m_Father: {fileID: 151787853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 283, y: -260}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1124568772
@@ -8381,9 +8424,9 @@ RectTransform:
   - {fileID: 1447238330}
   m_Father: {fileID: 329273449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 283, y: -390}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1177230859
@@ -8938,9 +8981,9 @@ RectTransform:
   - {fileID: 1354149018}
   m_Father: {fileID: 329273449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 283, y: -520}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1314026158
@@ -8991,6 +9034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1354149018}
   - component: {fileID: 1354149021}
+  - component: {fileID: 1354149022}
   - component: {fileID: 1354149020}
   - component: {fileID: 1354149019}
   m_Layer: 5
@@ -9063,7 +9107,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1354149020}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1354149022}
+        m_TargetAssemblyTypeName: UpgradeSkillBehavior, Assembly-CSharp
+        m_MethodName: OnUpgradeButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1354149020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9102,6 +9158,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354149017}
   m_CullTransparentMesh: 1
+--- !u!114 &1354149022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354149017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7253ddeffa5e94490559e68c5a2d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeTitleText: {fileID: 199679356}
+  skillPointLevelText: {fileID: 2051651044}
+  EnhanceInfo:
+    UpgradeTitle: "\uCFE8\uD0C0\uC784 \uAC10\uC18C"
+    Level: 1
+    MaxLevel: 5
 --- !u!1 &1356035355
 GameObject:
   m_ObjectHideFlags: 0
@@ -9279,7 +9353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1389661345
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9463,9 +9537,9 @@ RectTransform:
   - {fileID: 311631899}
   m_Father: {fileID: 151787853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 283, y: -390}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1411884755
@@ -12471,6 +12545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1447238330}
   - component: {fileID: 1447238333}
+  - component: {fileID: 1447238334}
   - component: {fileID: 1447238332}
   - component: {fileID: 1447238331}
   m_Layer: 5
@@ -12543,7 +12618,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1447238332}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1447238334}
+        m_TargetAssemblyTypeName: UpgradeSkillBehavior, Assembly-CSharp
+        m_MethodName: OnUpgradeButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1447238332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12582,6 +12669,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447238329}
   m_CullTransparentMesh: 1
+--- !u!114 &1447238334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447238329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7253ddeffa5e94490559e68c5a2d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeTitleText: {fileID: 948892801}
+  skillPointLevelText: {fileID: 378989655}
+  EnhanceInfo:
+    UpgradeTitle: "\uACF5\uACA9 \uC18D\uB3C4"
+    Level: 1
+    MaxLevel: 5
 --- !u!1 &1449552079
 GameObject:
   m_ObjectHideFlags: 0
@@ -12592,6 +12697,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1449552080}
   - component: {fileID: 1449552083}
+  - component: {fileID: 1449552084}
   - component: {fileID: 1449552082}
   - component: {fileID: 1449552081}
   m_Layer: 5
@@ -12664,7 +12770,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1449552082}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1449552084}
+        m_TargetAssemblyTypeName: UpgradeSkillBehavior, Assembly-CSharp
+        m_MethodName: OnUpgradeButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1449552082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12703,6 +12821,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449552079}
   m_CullTransparentMesh: 1
+--- !u!114 &1449552084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449552079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7253ddeffa5e94490559e68c5a2d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeTitleText: {fileID: 948892801}
+  skillPointLevelText: {fileID: 118902789}
+  EnhanceInfo:
+    UpgradeTitle: "\uD65C \uC3D8\uAE30"
+    Level: 1
+    MaxLevel: 5
 --- !u!1 &1463285402
 GameObject:
   m_ObjectHideFlags: 0
@@ -13943,6 +14079,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1636575590}
   - component: {fileID: 1636575593}
+  - component: {fileID: 1636575594}
   - component: {fileID: 1636575592}
   - component: {fileID: 1636575591}
   m_Layer: 5
@@ -14015,7 +14152,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1636575592}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1636575594}
+        m_TargetAssemblyTypeName: UpgradeSkillBehavior, Assembly-CSharp
+        m_MethodName: OnUpgradeButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1636575592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14054,6 +14203,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636575589}
   m_CullTransparentMesh: 1
+--- !u!114 &1636575594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636575589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7253ddeffa5e94490559e68c5a2d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeTitleText: {fileID: 948892801}
+  skillPointLevelText: {fileID: 1608109280}
+  EnhanceInfo:
+    UpgradeTitle: "\uBCA0\uAE30"
+    Level: 1
+    MaxLevel: 5
 --- !u!1 &1644669333
 GameObject:
   m_ObjectHideFlags: 0
@@ -14384,9 +14551,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1661120917}
-        m_TargetAssemblyTypeName: UpgradeBehavior, Assembly-CSharp
-        m_MethodName: OnCharUpgradeButtonClick
+      - m_Target: {fileID: 311631903}
+        m_TargetAssemblyTypeName: UpgradeAbilityBehavior, Assembly-CSharp
+        m_MethodName: OnUpgradeButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14446,10 +14613,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18dfb886b3e04b1887a71dd0545eb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeData: {fileID: 11400000, guid: 79625a3e699914ad092552de0e025ddc, type: 2}
   upgradeTitleText: {fileID: 643022796}
   levelText: {fileID: 1869886066}
   costText: {fileID: 192632037}
+  ability:
+    UpgradeTitle: "\uCE90\uB9AD\uD130 \uBB34\uC801 \uC2DC\uAC04"
+    Level: 1
+    MaxLevel: 5
+    Cost: 10
 --- !u!1 &1669362731
 GameObject:
   m_ObjectHideFlags: 0
