@@ -5,13 +5,13 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
 {
     private Player player;
 
-    [SerializeField] private TextMeshProUGUI upgradeTitleText; //¾÷±×·¹ÀÌµå
-    [SerializeField] private TextMeshProUGUI skillPointLevelText; //·¹º§
+    [SerializeField] private TextMeshProUGUI upgradeTitleText; //ì—…ê·¸ë ˆì´ë“œ
+    [SerializeField] private TextMeshProUGUI skillPointLevelText; //ë ˆë²¨
     public UpgradeLevel EnhanceInfo;
 
     private void Start()
     {
-        //½ºÅ³ Æ÷ÀÎÆ® ÅØ½ºÆ®¿¡ ³Ö¾îÁÖ±â
+        //ìŠ¤í‚¬ í¬ì¸íŠ¸ í…ìŠ¤íŠ¸ì— ë„£ì–´ì£¼ê¸°
         skillPointLevelText.text =  EnhanceInfo.Level.ToString();
         player = PlayerController.Instance.player;
     }
@@ -20,7 +20,7 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
     {
         if (!EnhanceInfo.IsMaxLevel())
         {
-            //·¹º§ / cost ¿Ã¸®±â
+            //ë ˆë²¨ / cost ì˜¬ë¦¬ê¸°
             EnhanceInfo.UpLevel();
             UpdateUI();
             player.SetSkillPoints(1, "Down");
@@ -28,29 +28,29 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
 
             switch (EnhanceInfo.UpgradeTitle)
             {
-                case "º£±â":
-                    //º£±â ½ºÅ³ ++
-                    Debug.Log("º£±â ½ºÅ³ ¾÷±×·¹ÀÌµå");
+                case "ë² ê¸°":
+                    //ë² ê¸° ìŠ¤í‚¬ ++
+                    Debug.Log("ë² ê¸° ìŠ¤í‚¬ ì—…ê·¸ë ˆì´ë“œ");
                     break;
 
-                case "È° ½î±â":
-                    //È°½î±â ++
-                    Debug.Log("È°½î±â ½ºÅ³ ¾÷±×·¹ÀÌµå");
+                case "í™œ ì˜ê¸°":
+                    //í™œì˜ê¸° ++
+                    Debug.Log("í™œì˜ê¸° ìŠ¤í‚¬ ì—…ê·¸ë ˆì´ë“œ");
                     break;
 
-                case "¿¬¼Ó º£±â":
-                    //¿¬¼Ó º£±â ++ 
-                    Debug.Log("¿¬¼Ó º£±â ½ºÅ³ ¾÷±×·¹ÀÌµå");
+                case "ì—°ì† ë² ê¸°":
+                    //ì—°ì† ë² ê¸° ++ 
+                    Debug.Log("ì—°ì† ë² ê¸° ìŠ¤í‚¬ ì—…ê·¸ë ˆì´ë“œ");
                     break;
 
-                case "°ø°İ ¼Óµµ":
-                    //¸ğµç ½ºÅ³ °ø°İ ¼Óµµ
-                    Debug.Log("°ø°İ¼Óµµ ¾÷±×·¹ÀÌµå");
+                case "ê³µê²© ì†ë„":
+                    //ëª¨ë“  ìŠ¤í‚¬ ê³µê²© ì†ë„
+                    Debug.Log("ê³µê²©ì†ë„ ì—…ê·¸ë ˆì´ë“œ");
                     break;
 
-                case "ÄğÅ¸ÀÓ °¨¼Ò":
-                    //¸ğµç ½ºÅ³ ÄğÅ¸ÀÓ °¨¼Ò
-                    Debug.Log("ÄğÅ¸ÀÓ °¨¼Ò ¾÷±×·¹ÀÌµå");
+                case "ì¿¨íƒ€ì„ ê°ì†Œ":
+                    //ëª¨ë“  ìŠ¤í‚¬ ì¿¨íƒ€ì„ ê°ì†Œ
+                    Debug.Log("ì¿¨íƒ€ì„ ê°ì†Œ ì—…ê·¸ë ˆì´ë“œ");
                     break;
 
                 default:
@@ -60,7 +60,7 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
         else
         {
             //UIController.Instance.SetActiveNoticePopUp();
-            Debug.Log("ÄÚÀÎ ºÎÁ·");
+            Debug.Log("ì½”ì¸ ë¶€ì¡±");
         }
     }
 

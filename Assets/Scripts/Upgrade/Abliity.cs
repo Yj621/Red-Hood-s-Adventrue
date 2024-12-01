@@ -8,6 +8,6 @@ public class Abliity : UpgradeLevel
 
     public void SetCost()
     {
-        Cost = 10 * Level;
+        Cost = 10 * (Level+1);
     }
 }

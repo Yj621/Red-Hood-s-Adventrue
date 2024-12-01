@@ -47,11 +47,12 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         instance = this;
-        originalPos = transform.position;   
+        originalPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
         stateMachine.Initialize(stateMachine.idleState);
-        
+
         UIController.Instance.UpdateCoinUI(player.Coins);
+        Debug.Log(player.Hp);
     }
 
     void Update()
@@ -152,7 +153,7 @@ public class PlayerController : MonoBehaviour
             isHit = true;
             player.GetDamage(damage);
             //hp 게이지 닳게 하기
-            hpGauge.fillAmount = (float)player.Hp / player.MaxHp;
+            UpdateHp();
             stateMachine.TransitionTo(stateMachine.hurtState);
             Invoke("Invincibility", invincibilityTime);
         }
@@ -160,7 +161,6 @@ public class PlayerController : MonoBehaviour
         //플레이어 죽기
         if (!player.IsAlive() && isDie == false)
         {
-            Debug.Log("Die1");
             Die();
             isDie = true;
         }
@@ -225,7 +225,9 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("Exp를 얻었습니다. : " + Enemy.dropItems[1].itemPrice);
                     break;
                 case Items.ItemType.Potion:
+                    player.Heal(5);
                     Debug.Log("Potion을 얻었습니다.");
+                    UpdateHp();
                     Destroy(other.gameObject);
                     break;
                 default:
@@ -234,7 +236,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             Die();
             GameManager.Instance.CameraOff();
@@ -245,5 +247,11 @@ public class PlayerController : MonoBehaviour
     void SetGoIdle()
     {
         goIdle = true;
+    }
+
+    void UpdateHp()
+    {
+        hpGauge.fillAmount = (float)player.Hp / player.MaxHp;
+        Debug.Log(player.Hp);
     }
 }

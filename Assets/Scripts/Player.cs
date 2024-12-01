@@ -37,7 +37,15 @@ public class Player
 
     public void Heal(int hp)
     {
-        Hp += hp;
+        if (Hp > 100)
+        {
+            Hp = 100;
+        }
+        else
+        {
+            Hp += hp;
+        }
+
     }
 
 

@@ -16,10 +16,12 @@ public class EnemyController : MonoBehaviour
     public List<ItemDrop> dropItems;
     public Transform dropItemPos;
 
-    public float speed = 1f;
-    public int hp = 1;
-    public int damage;
+    [SerializeField] private float speed = 1f;
+    [SerializeField] private int hp = 1;
+    [SerializeField] private int damage;
     Vector2 vx;
+
+    [SerializeField] private bool isHurt = false;
 
     public Collider2D FrontCollider;
     public Collider2D FrontBottomCollider;
@@ -38,14 +40,15 @@ public class EnemyController : MonoBehaviour
         {
             vx = -vx; //좌우반전
             transform.localScale = new Vector2(-transform.localScale.x, 1);
-
         }
     }
-
     private void FixedUpdate()
     {
-        transform.Translate(vx * Time.fixedDeltaTime);
+        //맞았을때 가만히 있도록 하기
+        if (isHurt == false)
+            transform.Translate(vx * Time.fixedDeltaTime);
     }
+
 
     private void OnCollisionStay2D(Collision2D other)
     {
@@ -57,10 +60,12 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        isHurt = true;
         hp -= (int)damage;
         Debug.Log($"적({gameObject}) 체력 : {hp}");
         GetComponent<Animator>().SetTrigger("Hurt");
-        StartCoroutine(ReturnToIdle()); // Idle로 복귀하는 코루틴 실행
+        Invoke("ReturnToIdle", 1.5f);
+        GetComponent<Animator>().SetTrigger("Idle"); // Idle 상태로 복귀
 
         if (hp <= 0)
         {
@@ -70,11 +75,11 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    IEnumerator ReturnToIdle()
+    void ReturnToIdle()
     {
-        yield return new WaitForSeconds(0.75f); // Hurt 애니메이션 재생 후 대기 시간
-        GetComponent<Animator>().SetTrigger("Idle"); // Idle 상태로 복귀
+        isHurt = false;
     }
+
     void DropItems()
     {
         float baseOffset = 0.5f; // 아이템 간의 기본 간격
@@ -104,7 +109,7 @@ public class EnemyController : MonoBehaviour
 
                     // 아이템 생성
                     GameObject droppedItem = Instantiate(drop.item.itemPrefab, dropPosition, Quaternion.identity);
-                    
+
                     // 방향을 번갈아 가며 조정
                     direction *= -1;
                 }

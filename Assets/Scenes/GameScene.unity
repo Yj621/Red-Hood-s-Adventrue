@@ -1674,9 +1674,9 @@ RectTransform:
   - {fileID: 581767399}
   m_Father: {fileID: 151787853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 283, y: -130}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &203162740
@@ -1945,7 +1945,7 @@ RectTransform:
   m_Father: {fileID: 1008701790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0.9999999}
   m_AnchoredPosition: {x: 0, y: 39.562412}
   m_SizeDelta: {x: 20, y: -59.1248}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2361,7 +2361,7 @@ MonoBehaviour:
   costText: {fileID: 510602669}
   ability:
     UpgradeTitle: "\uAE30\uBCF8 \uACF5\uACA9\uB825"
-    Level: 1
+    Level: 0
     MaxLevel: 5
     Cost: 10
 --- !u!1 &325555296
@@ -2399,9 +2399,9 @@ RectTransform:
   - {fileID: 1636575590}
   m_Father: {fileID: 329273449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 283, y: 0}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &325555298
@@ -3712,9 +3712,9 @@ RectTransform:
   - {fileID: 950658498}
   m_Father: {fileID: 151787853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 283, y: 0}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &556825664
@@ -3981,7 +3981,7 @@ MonoBehaviour:
   costText: {fileID: 1658957236}
   ability:
     UpgradeTitle: "\uCE90\uB9AD\uD130 \uC810\uD504 \uC18D\uB3C4"
-    Level: 1
+    Level: 0
     MaxLevel: 5
     Cost: 10
 --- !u!1 &591462819
@@ -4215,7 +4215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &615382522
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5289,7 +5289,7 @@ MonoBehaviour:
   skillPointLevelText: {fileID: 658014765}
   EnhanceInfo:
     UpgradeTitle: "\uC5F0\uC18D \uBCA0\uAE30"
-    Level: 1
+    Level: 0
     MaxLevel: 5
 --- !u!1 &722042977
 GameObject:
@@ -5326,9 +5326,9 @@ RectTransform:
   - {fileID: 698807225}
   m_Father: {fileID: 329273449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 283, y: -260}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &722042979
@@ -5522,7 +5522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &763384369
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5755,7 +5755,7 @@ RectTransform:
   m_Father: {fileID: 1839533391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0.9999999}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5877,9 +5877,9 @@ RectTransform:
   - {fileID: 1449552080}
   m_Father: {fileID: 329273449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 283, y: -130}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &829082459
@@ -6717,7 +6717,7 @@ MonoBehaviour:
   costText: {fileID: 15495629}
   ability:
     UpgradeTitle: "\uCE90\uB9AD\uD130 \uC774\uB3D9 \uC18D\uB3C4"
-    Level: 1
+    Level: 0
     MaxLevel: 5
     Cost: 10
 --- !u!1 &964095187
@@ -7063,9 +7063,9 @@ RectTransform:
   m_Father: {fileID: 227141245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1014848190
 MonoBehaviour:
@@ -8257,9 +8257,9 @@ RectTransform:
   - {fileID: 1661120913}
   m_Father: {fileID: 151787853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 283, y: -260}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1124568772
@@ -8424,9 +8424,9 @@ RectTransform:
   - {fileID: 1447238330}
   m_Father: {fileID: 329273449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 283, y: -390}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1177230859
@@ -8981,9 +8981,9 @@ RectTransform:
   - {fileID: 1354149018}
   m_Father: {fileID: 329273449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 283, y: -520}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1314026158
@@ -9174,7 +9174,7 @@ MonoBehaviour:
   skillPointLevelText: {fileID: 2051651044}
   EnhanceInfo:
     UpgradeTitle: "\uCFE8\uD0C0\uC784 \uAC10\uC18C"
-    Level: 1
+    Level: 0
     MaxLevel: 5
 --- !u!1 &1356035355
 GameObject:
@@ -9537,9 +9537,9 @@ RectTransform:
   - {fileID: 311631899}
   m_Father: {fileID: 151787853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 283, y: -390}
   m_SizeDelta: {x: 270, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1411884755
@@ -12685,7 +12685,7 @@ MonoBehaviour:
   skillPointLevelText: {fileID: 378989655}
   EnhanceInfo:
     UpgradeTitle: "\uACF5\uACA9 \uC18D\uB3C4"
-    Level: 1
+    Level: 0
     MaxLevel: 5
 --- !u!1 &1449552079
 GameObject:
@@ -12837,7 +12837,7 @@ MonoBehaviour:
   skillPointLevelText: {fileID: 118902789}
   EnhanceInfo:
     UpgradeTitle: "\uD65C \uC3D8\uAE30"
-    Level: 1
+    Level: 0
     MaxLevel: 5
 --- !u!1 &1463285402
 GameObject:
@@ -14219,7 +14219,7 @@ MonoBehaviour:
   skillPointLevelText: {fileID: 1608109280}
   EnhanceInfo:
     UpgradeTitle: "\uBCA0\uAE30"
-    Level: 1
+    Level: 0
     MaxLevel: 5
 --- !u!1 &1644669333
 GameObject:
@@ -14618,7 +14618,7 @@ MonoBehaviour:
   costText: {fileID: 192632037}
   ability:
     UpgradeTitle: "\uCE90\uB9AD\uD130 \uBB34\uC801 \uC2DC\uAC04"
-    Level: 1
+    Level: 0
     MaxLevel: 5
     Cost: 10
 --- !u!1 &1669362731
@@ -17617,6 +17617,10 @@ PrefabInstance:
     - target: {fileID: 3407847422436454654, guid: 57b4b6004cc231944b8d56b367a63eb7, type: 3}
       propertyPath: m_Name
       value: Snail
+      objectReference: {fileID: 0}
+    - target: {fileID: 3427316574198587060, guid: 57b4b6004cc231944b8d56b367a63eb7, type: 3}
+      propertyPath: hp
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3427316574198587060, guid: 57b4b6004cc231944b8d56b367a63eb7, type: 3}
       propertyPath: TerrainCollider

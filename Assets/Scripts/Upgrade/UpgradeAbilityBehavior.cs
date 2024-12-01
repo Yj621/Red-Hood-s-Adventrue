@@ -7,16 +7,17 @@ public class UpgradeAbilityBehavior : MonoBehaviour, IUpgrade
 {
     private Player player;
 
-    [SerializeField] private TextMeshProUGUI upgradeTitleText; //¾÷±×·¹ÀÌµå
-    [SerializeField] private TextMeshProUGUI levelText; //·¹º§
-    [SerializeField] private TextMeshProUGUI costText; //ºñ¿ë
+    [SerializeField] private TextMeshProUGUI upgradeTitleText; //ì—…ê·¸ë ˆì´ë“œ
+    [SerializeField] private TextMeshProUGUI levelText; //ë ˆë²¨
+    [SerializeField] private TextMeshProUGUI costText; //ë¹„ìš©
     public Abliity ability;
 
     private void Start()
     {
-        //½ºÅ³ Æ÷ÀÎÆ® ÅØ½ºÆ®¿¡ ³Ö¾îÁÖ±â
+        Debug.Log("ability.Cost : "+ability.Cost);
+        //ìŠ¤í‚¬ í¬ì¸íŠ¸ í…ìŠ¤íŠ¸ì— ë„£ì–´ì£¼ê¸°
         levelText.text = ability.Level.ToString();
-        //½ºÅ³ Æ÷ÀÎÆ® ÅØ½ºÆ®¿¡ ³Ö¾îÁÖ±â
+        //ìŠ¤í‚¬ í¬ì¸íŠ¸ í…ìŠ¤íŠ¸ì— ë„£ì–´ì£¼ê¸°
         costText.text = ability.Cost.ToString();
         player = PlayerController.Instance.player;
     }
@@ -25,28 +26,33 @@ public class UpgradeAbilityBehavior : MonoBehaviour, IUpgrade
     {
         if (!ability.IsMaxLevel() && player.Coins - ability.Cost >= 0)
         {
-            //·¹º§ / cost ¿Ã¸®±â
+            //ë ˆë²¨ / cost ì˜¬ë¦¬ê¸°
             ability.UpLevel();
-            UpdateUI();
+            Debug.Log("ability.Cost1 : "+ability.Cost);
+            //ëˆ ì“°ê¸°
             player.SetCoins(ability.Cost, "Down");
+            //ì—…ê·¸ë ˆì´ë“œ ë¹„ìš© ì¦ê°€
             ability.SetCost();
+            Debug.Log("ability.Cost2 : "+ability.Cost);
+            //ì—…ê·¸ë ˆì´ë“œ ui ì—…ë°ì´íŠ¸
+            UpdateUI();
 
 
             switch (ability.UpgradeTitle)
             {
-                case "Ä³¸¯ÅÍ ÀÌµ¿ ¼Óµµ":
+                case "ìºë¦­í„° ì´ë™ ì†ë„":
                     PlayerController.Instance.speed += 0.1f;
                     break;
 
-                case "Ä³¸¯ÅÍ Á¡ÇÁ ¼Óµµ":
+                case "ìºë¦­í„° ì í”„ ì†ë„":
                     PlayerController.Instance.jumpSpeed += 0.1f;
                     break;
 
-                case "Ä³¸¯ÅÍ ¹«Àû ½Ã°£":
+                case "ìºë¦­í„° ë¬´ì  ì‹œê°„":
                     PlayerController.Instance.invincibilityTime += 0.1f;
                     break;
 
-                case "±âº» °ø°İ·Â":
+                case "ê¸°ë³¸ ê³µê²©ë ¥":
                     player.Damage += 0.1f;
                     break;
 
@@ -57,7 +63,7 @@ public class UpgradeAbilityBehavior : MonoBehaviour, IUpgrade
         else
         {
             //UIController.Instance.SetActiveNoticePopUp();
-            Debug.Log("ÄÚÀÎ ºÎÁ·");
+            Debug.Log("ì½”ì¸ ë¶€ì¡±");
         }
     }
    
