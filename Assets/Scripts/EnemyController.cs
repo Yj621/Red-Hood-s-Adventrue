@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
     Vector2 vx;
 
     [SerializeField] private bool isHurt = false;
+    [SerializeField] private bool isTouchEnemy = false;
 
     public Collider2D FrontCollider;
     public Collider2D FrontBottomCollider;
@@ -35,7 +36,7 @@ public class EnemyController : MonoBehaviour
     }
     void Update()
     {
-        if (FrontCollider.IsTouching(TerrainCollider) || !FrontBottomCollider.IsTouching(TerrainCollider))
+        if (FrontCollider.IsTouching(TerrainCollider) || !FrontBottomCollider.IsTouching(TerrainCollider) || isTouchEnemy == true)
         //벽이 있거나 || (절벽이 있는 경우) 바닥이 없는 경우
         {
             vx = -vx; //좌우반전
@@ -70,14 +71,19 @@ public class EnemyController : MonoBehaviour
         if (hp <= 0)
         {
             GetComponent<Animator>().SetTrigger("Dead");
-            Destroy(gameObject);
-            DropItems();
+            Invoke("EnemyDie", 1.2f);
         }
     }
 
     void ReturnToIdle()
     {
         isHurt = false;
+    }
+
+    void EnemyDie()
+    {
+        Destroy(gameObject);
+        DropItems();
     }
 
     void DropItems()
@@ -113,6 +119,25 @@ public class EnemyController : MonoBehaviour
                     // 방향을 번갈아 가며 조정
                     direction *= -1;
                 }
+            }
+        }
+    }
+
+    //적끼리 부딪히면 좌우반전하기 위해서
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            isTouchEnemy = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        {
+            if (other.gameObject.tag == "Enemy")
+            {
+                isTouchEnemy = false;
             }
         }
     }

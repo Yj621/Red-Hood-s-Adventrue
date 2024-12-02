@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
 
     private bool isGround;
     private bool goIdle;
-
     public bool isDie;
     [HideInInspector]
     public bool isAttack;
@@ -141,8 +140,16 @@ public class PlayerController : MonoBehaviour
             //stateMachine.TransitionTo(stateMachine.right -- );
         }
 
+        if (player.Coins >= 10)
+        {
+            Debug.Log(player.Coins);
+            UIController.Instance.AbilityUpButtonActive();
+        }
+        else
+        {
+            UIController.Instance.AbilityUpButtonDeactive();
+        }
     }
-
 
 
     //플레이어가 맞는 행위
@@ -252,6 +259,5 @@ public class PlayerController : MonoBehaviour
     void UpdateHp()
     {
         hpGauge.fillAmount = (float)player.Hp / player.MaxHp;
-        Debug.Log(player.Hp);
     }
 }

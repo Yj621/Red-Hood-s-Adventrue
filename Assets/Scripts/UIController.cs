@@ -51,6 +51,10 @@ public class UIController : MonoBehaviour
     {
         upButton[1].SetActive(true);    
     }
+    public void AbilityUpButtonDeactive()
+    {
+        upButton[1].SetActive(false);    
+    }
 
     public void SetActiveNoticePopUp()
     {
