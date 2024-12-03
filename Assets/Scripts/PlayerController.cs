@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -7,8 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public StateMachine stateMachine;
     public Player player;
-    [SerializeField]
-    public EnemyController Enemy;
+    [SerializeField] public EnemyController Enemy;
 
     public float speed = 5;
     public float jumpSpeed = 5;
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         stateMachine = new StateMachine(this);
         //player 데이터 초기화 (Hp, Damage, Exp, Coins)
-        player = new Player(100, 5, 0, 10);
+        player = new Player(100, 10, 0, 10);
     }
     void Start()
     {
@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
         GetComponent<Rigidbody2D>().linearVelocity = new Vector2(vx, vy);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             stateMachine.TransitionTo(stateMachine.attack1State);
         }
@@ -142,7 +142,6 @@ public class PlayerController : MonoBehaviour
 
         if (player.Coins >= 10)
         {
-            Debug.Log(player.Coins);
             UIController.Instance.AbilityUpButtonActive();
         }
         else

@@ -28,12 +28,10 @@ public class UpgradeAbilityBehavior : MonoBehaviour, IUpgrade
         {
             //레벨 / cost 올리기
             ability.UpLevel();
-            Debug.Log("ability.Cost1 : "+ability.Cost);
             //돈 쓰기
             player.SetCoins(ability.Cost, "Down");
             //업그레이드 비용 증가
             ability.SetCost();
-            Debug.Log("ability.Cost2 : "+ability.Cost);
             //업그레이드 ui 업데이트
             UpdateUI();
 
@@ -62,7 +60,8 @@ public class UpgradeAbilityBehavior : MonoBehaviour, IUpgrade
         }
         else
         {
-            //UIController.Instance.SetActiveNoticePopUp();
+            UIController.Instance.SetActiveNoticePopUp();
+            UIController.Instance.noticeText.text = "코인이 부족합니다.";
             Debug.Log("코인 부족");
         }
     }

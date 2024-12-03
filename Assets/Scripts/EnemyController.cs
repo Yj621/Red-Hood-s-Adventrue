@@ -21,8 +21,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int damage;
     Vector2 vx;
 
-    [SerializeField] private bool isHurt = false;
-    [SerializeField] private bool isTouchEnemy = false;
+    private bool isHurt = false;
+    //적끼리 부딪혀도 좌우반전되도록
+    private bool isTouchEnemy = false;
+    [SerializeField] private bool isDie = false;
 
     public Collider2D FrontCollider;
     public Collider2D FrontBottomCollider;
@@ -40,7 +42,7 @@ public class EnemyController : MonoBehaviour
         //벽이 있거나 || (절벽이 있는 경우) 바닥이 없는 경우
         {
             vx = -vx; //좌우반전
-            transform.localScale = new Vector2(-transform.localScale.x, 1);
+            transform.localScale = new Vector2(-transform.localScale.x, 0.8f);
         }
     }
     private void FixedUpdate()
@@ -70,6 +72,7 @@ public class EnemyController : MonoBehaviour
 
         if (hp <= 0)
         {
+            isDie = true;
             GetComponent<Animator>().SetTrigger("Dead");
             Invoke("EnemyDie", 1.2f);
         }
@@ -135,7 +138,7 @@ public class EnemyController : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other)
     {
         {
-            if (other.gameObject.tag == "Enemy")
+            if (other.gameObject.tag == "Enemy" && isDie == false)
             {
                 isTouchEnemy = false;
             }

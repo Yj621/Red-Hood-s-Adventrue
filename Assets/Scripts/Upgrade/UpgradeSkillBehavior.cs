@@ -18,7 +18,7 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
 
     public void OnUpgradeButtonClick()
     {
-        if (!EnhanceInfo.IsMaxLevel())
+        if (!EnhanceInfo.IsMaxLevel()&& player.SkillPoints > 0)
         {
             //레벨 / cost 올리기
             EnhanceInfo.UpLevel();
@@ -59,8 +59,9 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
         }
         else
         {
-            //UIController.Instance.SetActiveNoticePopUp();
-            Debug.Log("코인 부족");
+            UIController.Instance.SetActiveNoticePopUp();
+            UIController.Instance.noticeText.text = "스킬포인트가 부족합니다.";
+            Debug.Log("스킬포인트 부족");
         }
     }
 

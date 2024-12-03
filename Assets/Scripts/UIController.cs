@@ -7,6 +7,7 @@ public class UIController : MonoBehaviour
 {
     public GameObject noticePopUp;
     public TextMeshProUGUI skillPoint;
+    public TextMeshProUGUI noticeText;
     public List<TextMeshProUGUI> stateText;
 
     public GameObject[] upButton;
