@@ -14,7 +14,11 @@ public class EnemyController : MonoBehaviour
     }
 
     public List<ItemDrop> dropItems;
+
     public Transform dropItemPos;
+    public Transform damagePos;
+    
+    public GameObject damageText;
 
     [SerializeField] private float speed = 1f;
     [SerializeField] private int hp = 1;
@@ -66,6 +70,11 @@ public class EnemyController : MonoBehaviour
         isHurt = true;
         hp -= (int)damage;
         Debug.Log($"적({gameObject}) 체력 : {hp}");
+        //데미지 텍스트
+        GameObject damageTxt = Instantiate(damageText);
+        damageTxt.transform.position = damagePos.position;
+        damageTxt.GetComponent<DamageText>().damage = damage;
+
         GetComponent<Animator>().SetTrigger("Hurt");
         Invoke("ReturnToIdle", 1.5f);
         GetComponent<Animator>().SetTrigger("Idle"); // Idle 상태로 복귀

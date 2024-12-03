@@ -8,13 +8,16 @@ public class PlayerController : MonoBehaviour
 {
     public StateMachine stateMachine;
     public Player player;
-    [SerializeField] public EnemyController Enemy;
+    public Weapon weapon;
+    [SerializeField] private EnemyController Enemy;
 
     public float speed = 5;
     public float jumpSpeed = 5;
     public float invincibilityTime = 1f;
+    public float bowDamage = 2f;
     private float prevVx = 0;
     private float vx = 0;
+   
 
     public GameObject ArrowPos;
     public Collider2D bottomCollider;
@@ -24,12 +27,15 @@ public class PlayerController : MonoBehaviour
 
     Vector2 originalPos;
 
+    public bool isDie;
     private bool isGround;
     private bool goIdle;
-    public bool isDie;
+    public bool isCut = false;
+    public bool isSeriesCut = false;
     [HideInInspector]
     public bool isAttack;
     public bool isHit = false;
+
 
 
     private static PlayerController instance;
@@ -43,6 +49,7 @@ public class PlayerController : MonoBehaviour
         stateMachine = new StateMachine(this);
         //player 데이터 초기화 (Hp, Damage, Exp, Coins)
         player = new Player(100, 5, 0, 10);
+        weapon = new Weapon();
     }
     void Start()
     {
@@ -53,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
         UIController.Instance.UpdateCoinUI(player.Coins);
         Debug.Log(player.Hp);
+        Debug.Log("weapon.cutDamage" + weapon.cutDamage);
     }
 
     void Update()
@@ -128,10 +136,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             stateMachine.TransitionTo(stateMachine.attack1State);
+            isCut = true;
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
             stateMachine.TransitionTo(stateMachine.attack2State);
+            isSeriesCut = true;
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -208,13 +218,22 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    //플레이어가 때리는 행위
-    public void Attack(EnemyController enemy)
+    //기본 공격
+    public void CutAttack(EnemyController enemy)
     {
         if (enemy != null)
         {
-            enemy.TakeDamage(player.Damage);
-            Debug.Log($"{player.Damage}만큼 적이 피해를 입음");
+            enemy.TakeDamage(weapon.cutDamage);
+        }
+        Invoke("IsAttackTrue", 1f);
+    }
+
+    //연속 베기
+    public void SeriesCutAttack(EnemyController enemy)
+    {
+        if (enemy != null)
+        {
+            enemy.TakeDamage(weapon.seriesCutDamage);
         }
         Invoke("IsAttackTrue", 1f);
     }
@@ -268,6 +287,8 @@ public class PlayerController : MonoBehaviour
     void SetGoIdle()
     {
         goIdle = true;
+        isSeriesCut = false;
+        isCut = false;
     }
 
     void UpdateHp()

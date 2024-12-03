@@ -8,10 +8,11 @@ public class DamageText : MonoBehaviour
     public float destroyTime;
     TextMeshPro text;
     Color alpha;
-    public int damage;
+    public float damage;
+
     void Start()
     {
-        text = GetComponent<TextMeshPro>(); 
+        text = GetComponent<TextMeshPro>();
         text.text =  damage.ToString();
         alpha = text.color;
         Invoke("DestroyObject", destroyTime);
@@ -24,6 +25,6 @@ public class DamageText : MonoBehaviour
     }
     private void DestroyObject()
     {
-
+        Destroy(gameObject);    
     }
 }

@@ -8,7 +8,7 @@ public class UpgradeLevel
     public int Level;
     public int MaxLevel;
 
-    public bool IsMaxLevel()
+    public bool IsMaxLevel()    
     {
         return Level == MaxLevel;
     }

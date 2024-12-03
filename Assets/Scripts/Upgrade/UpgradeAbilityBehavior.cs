@@ -51,7 +51,9 @@ public class UpgradeAbilityBehavior : MonoBehaviour, IUpgrade
                     break;
 
                 case "기본 공격력":
-                    player.Damage += 0.1f;
+                    PlayerController.Instance.weapon.cutDamage += 1f;
+                    Debug.Log(PlayerController.Instance.weapon.cutDamage);
+                    Debug.Log("베기 스킬 업그레이드");
                     break;
 
                 default:

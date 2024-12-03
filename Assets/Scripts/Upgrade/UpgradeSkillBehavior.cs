@@ -28,18 +28,15 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
 
             switch (EnhanceInfo.UpgradeTitle)
             {
-                case "베기":
-                    //베기 스킬 ++
-                    Debug.Log("베기 스킬 업그레이드");
-                    break;
-
                 case "활 쏘기":
                     //활쏘기 ++
-                    Debug.Log("활쏘기 스킬 업그레이드");
+                    PlayerController.Instance.weapon.bowDamage += 1f;
+                    Debug.Log(PlayerController.Instance.weapon.bowDamage);
                     break;
-
                 case "연속 베기":
                     //연속 베기 ++ 
+                    PlayerController.Instance.weapon.seriesCutDamage += 1f;
+                    Debug.Log(PlayerController.Instance.weapon.seriesCutDamage);
                     Debug.Log("연속 베기 스킬 업그레이드");
                     break;
 

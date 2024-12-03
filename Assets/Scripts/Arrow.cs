@@ -3,10 +3,16 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {   
     public Vector2 Velocity = new Vector2(10, 0);
-    private float Damage = 2f;
+    private float Damage;
+    private static Arrow instance;
+    public static Arrow Instance
+    {
+        get { return instance; }
+    }
     void Start()
     {
-        
+        Damage = PlayerController.Instance.weapon.bowDamage;
+        instance = this;
     }
 
     private void FixedUpdate()
@@ -19,7 +25,14 @@ public class Arrow : MonoBehaviour
     {
         if(!GetComponent<SpriteRenderer>().isVisible)
         {
-            gameObject.SetActive(false);    
+            gameObject.SetActive(false);
+        }    
+        
+        // bowDamage와 Damage가 다르면 업데이트
+        if (Damage != PlayerController.Instance.weapon.bowDamage)
+        {
+            Damage = PlayerController.Instance.weapon.bowDamage;
+            Debug.Log($"Damage updated: {Damage}");
         }
     }
 
