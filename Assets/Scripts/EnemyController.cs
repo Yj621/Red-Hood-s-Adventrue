@@ -76,15 +76,20 @@ public class EnemyController : MonoBehaviour
         damageTxt.GetComponent<DamageText>().damage = damage;
 
         GetComponent<Animator>().SetTrigger("Hurt");
-        Invoke("ReturnToIdle", 1.5f);
-        GetComponent<Animator>().SetTrigger("Idle"); // Idle 상태로 복귀
-
         if (hp <= 0)
         {
             isDie = true;
             GetComponent<Animator>().SetTrigger("Dead");
+            GetComponent<Rigidbody2D>().simulated = false;
+            GetComponent<Collider2D>().enabled = false;
             Invoke("EnemyDie", 1.2f);
         }
+        else
+        {
+            Invoke("ReturnToIdle", 1.5f);
+        }
+        GetComponent<Animator>().SetTrigger("Idle"); // Idle 상태로 복귀
+
     }
 
     void ReturnToIdle()

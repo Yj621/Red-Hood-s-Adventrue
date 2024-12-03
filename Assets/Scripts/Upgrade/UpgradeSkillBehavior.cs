@@ -43,6 +43,7 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
                 case "공격 속도":
                     //모든 스킬 공격 속도
                     Debug.Log("공격속도 업그레이드");
+                    AnimationSpeed.Instance.PlusAnimationSpeed();
                     break;
 
                 case "쿨타임 감소":
