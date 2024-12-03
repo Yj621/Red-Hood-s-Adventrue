@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public CompositeCollider2D terrainCollider;
     private Rigidbody2D rb;
     public Image hpGauge;
+    public Image skillImage;
 
     Vector2 originalPos;
 
@@ -138,10 +139,11 @@ public class PlayerController : MonoBehaviour
             stateMachine.TransitionTo(stateMachine.attack1State);
             isCut = true;
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && FillAmount.Instance.isCooltime==false)
         {
             stateMachine.TransitionTo(stateMachine.attack2State);
-            isSeriesCut = true;
+            //쿨타임 시작
+            FillAmount.Instance.CoolTimeStart();
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -162,6 +164,7 @@ public class PlayerController : MonoBehaviour
             UIController.Instance.AbilityUpButtonDeactive();
         }
     }
+
 
     public void BowAttack()
     {
