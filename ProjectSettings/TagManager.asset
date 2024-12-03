@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Items
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 
@@ -45,6 +46,9 @@ TagManager:
     locked: 0
   - name: Props
     uniqueID: 979948979
+    locked: 0
+  - name: Terrain
+    uniqueID: 3041242541
     locked: 0
   - name: Player
     uniqueID: 2685703789

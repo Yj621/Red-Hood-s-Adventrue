@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         stateMachine = new StateMachine(this);
         //player 데이터 초기화 (Hp, Damage, Exp, Coins)
-        player = new Player(100, 10, 0, 10);
+        player = new Player(100, 5, 0, 10);
     }
     void Start()
     {
@@ -68,8 +68,8 @@ public class PlayerController : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = false;
         }
 
-        //땅에 닿아있는가
-        if (bottomCollider.IsTouching(terrainCollider))
+        // 땅에 닿아있는가
+        if (IsGrounded())
         {
             if (!isGround)
             {
@@ -100,7 +100,6 @@ public class PlayerController : MonoBehaviour
                     stateMachine.TransitionTo(stateMachine.idleState);
                     goIdle = false;
                 }
-
             }
         }
         else
@@ -111,15 +110,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //플레이어 발이 바닥 콜라이더와 닿았다면
-        isGround = bottomCollider.IsTouching(terrainCollider);
+        isGround = IsGrounded();
 
-        if (Input.GetButtonDown("Jump") && isGround == true)
+        if (Input.GetButtonDown("Jump") && isGround)
         {
             rb.gravityScale = 4f;
             vy = jumpSpeed;
         }
         prevVx = vx;
+
+        GetComponent<Rigidbody2D>().linearVelocity = new Vector2(vx, vy);
+
 
         GetComponent<Rigidbody2D>().linearVelocity = new Vector2(vx, vy);
 
@@ -231,7 +232,7 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("Exp를 얻었습니다. : " + Enemy.dropItems[1].itemPrice);
                     break;
                 case Items.ItemType.Potion:
-                    player.Heal(5);
+                    player.Heal(Enemy.dropItems[2].itemPrice);
                     Debug.Log("Potion을 얻었습니다.");
                     UpdateHp();
                     Destroy(other.gameObject);
@@ -258,5 +259,17 @@ public class PlayerController : MonoBehaviour
     void UpdateHp()
     {
         hpGauge.fillAmount = (float)player.Hp / player.MaxHp;
+    }
+    private bool IsGrounded()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(bottomCollider.bounds.center, bottomCollider.bounds.extents.y + 0.1f);
+        foreach (var collider in colliders)
+        {
+            if (collider.CompareTag("Ground"))  // Ground 태그 확인
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

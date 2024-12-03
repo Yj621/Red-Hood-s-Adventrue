@@ -16,7 +16,6 @@ public class Attack : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" && !PlayerController.Instance.isAttack)
         {
-            Debug.Log("Trigger");
             EnemyController enemy = other.GetComponent<EnemyController>();
             if (enemy != null)
             {

@@ -125,7 +125,7 @@ MonoBehaviour:
   isDie: 0
   FrontCollider: {fileID: 7536315538919319659}
   FrontBottomCollider: {fileID: 8318889021208299140}
-  TerrainCollider: {fileID: 0}
+  TerrainCollider: {fileID: 5183806085963006968, guid: e67fbe632a26048afb229b88b9574ba7, type: 3}
 --- !u!61 &8581999833829165204
 BoxCollider2D:
   m_ObjectHideFlags: 0
