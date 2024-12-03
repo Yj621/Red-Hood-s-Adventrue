@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private float prevVx = 0;
     private float vx = 0;
 
+    public GameObject ArrowPos;
     public Collider2D bottomCollider;
     public CompositeCollider2D terrainCollider;
     private Rigidbody2D rb;
@@ -128,14 +129,15 @@ public class PlayerController : MonoBehaviour
         {
             stateMachine.TransitionTo(stateMachine.attack1State);
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             stateMachine.TransitionTo(stateMachine.attack2State);
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetMouseButtonDown(1))
         {
             stateMachine.TransitionTo(stateMachine.bowAttackState);
         }
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             //stateMachine.TransitionTo(stateMachine.right -- );
@@ -149,6 +151,18 @@ public class PlayerController : MonoBehaviour
         {
             UIController.Instance.AbilityUpButtonDeactive();
         }
+    }
+
+    public void BowAttack()
+    {
+        Vector2 arrowV = new Vector2(10, 0);
+        if (GetComponent<SpriteRenderer>().flipX)
+        {
+            arrowV.x = -arrowV.x;
+        }
+        GameObject arrow = GameManager.Instance.ArrowPool.GetObject();
+        arrow.transform.position = ArrowPos.transform.position;
+        arrow.GetComponent<Arrow>().Velocity = arrowV;
     }
 
 

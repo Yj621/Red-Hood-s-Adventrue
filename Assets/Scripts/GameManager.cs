@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {    
     private Player player;
+    public ObjectPool ArrowPool;
     public GameObject CinemachineCamera;
     private static GameManager instance;
     public static GameManager Instance
