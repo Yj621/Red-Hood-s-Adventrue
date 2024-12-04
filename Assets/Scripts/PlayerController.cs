@@ -275,7 +275,7 @@ public class PlayerController : MonoBehaviour
 
                 case Items.ItemType.Potion:
                     player.Heal(Enemy.dropItems[2].itemPrice);
-                    logMessage = $"Potion을 {Enemy.dropItems[2].itemPrice}개 얻었습니다.";
+                    logMessage = $"Potion을 얻어 {Enemy.dropItems[2].itemPrice}만큼 회복했습니다.";
                     UpdateHp();
                     break;
 
