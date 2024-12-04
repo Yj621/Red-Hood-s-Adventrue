@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     public Weapon weapon;
     [SerializeField] private EnemyController Enemy;
 
+    public float slideSpeed = 10f;
+    public float slideDuration = 0.5f;
+    private float slideTimer = 0f;
     public float speed = 5;
     public float jumpSpeed = 5;
     public float invincibilityTime = 1f;
@@ -29,6 +32,7 @@ public class PlayerController : MonoBehaviour
     Vector2 originalPos;
 
     public bool isDie;
+    private bool isSliding = false;
     private bool isGround;
     private bool goIdle;
     public bool isCut = false;
@@ -142,17 +146,18 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && FillAmount.Instance.isCooltime==false)
         {
             stateMachine.TransitionTo(stateMachine.attack2State);
+            isSeriesCut = true;
             //쿨타임 시작
             FillAmount.Instance.CoolTimeStart();
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1)&& stateMachine.CurrentState != stateMachine.runState)
         {
             stateMachine.TransitionTo(stateMachine.bowAttackState);
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Mathf.Abs(vx) > 0 && isGround && !isSliding)
         {
-            //stateMachine.TransitionTo(stateMachine.right -- );
+            StartSlide();
         }
 
         if (player.Coins >= 10)
@@ -188,7 +193,7 @@ public class PlayerController : MonoBehaviour
             player.GetDamage(damage);
             //hp 게이지 닳게 하기
             UpdateHp();
-            stateMachine.TransitionTo(stateMachine.hurtState);
+            StartCoroutine(HurtColor(0.5f));
             Invoke("Invincibility", invincibilityTime);
         }
 
@@ -237,6 +242,7 @@ public class PlayerController : MonoBehaviour
         if (enemy != null)
         {
             enemy.TakeDamage(weapon.seriesCutDamage);
+            Debug.Log("Attack2");
         }
         Invoke("IsAttackTrue", 1f);
     }
@@ -253,30 +259,33 @@ public class PlayerController : MonoBehaviour
 
         if (item != null)
         {
-            Debug.Log($"아이템 획득: {item.GetItemName()}, 타입: {item.GetItemType()}");
+            string logMessage = "";
 
             switch (item.itemData.itemType)
             {
                 case Items.ItemType.Coin:
                     player.SetCoins(Enemy.dropItems[0].itemPrice, "Up");
-                    Debug.Log("Coin을 얻었습니다. : " + Enemy.dropItems[0].itemPrice);
-                    Destroy(other.gameObject);
+                    logMessage = $"Coin을 {Enemy.dropItems[0].itemPrice}개 얻었습니다.";
                     break;
+
                 case Items.ItemType.Exp:
                     player.GetExperience(Enemy.dropItems[1].itemPrice);
-                    Destroy(other.gameObject);
-                    Debug.Log("Exp를 얻었습니다. : " + Enemy.dropItems[1].itemPrice);
+                    logMessage = $"Exp을 {Enemy.dropItems[1].itemPrice}개 얻었습니다.";
                     break;
+
                 case Items.ItemType.Potion:
                     player.Heal(Enemy.dropItems[2].itemPrice);
-                    Debug.Log("Potion을 얻었습니다.");
+                    logMessage = $"Potion을 {Enemy.dropItems[2].itemPrice}개 얻었습니다.";
                     UpdateHp();
-                    Destroy(other.gameObject);
                     break;
+
                 default:
                     Debug.LogError("알 수 없는 아이템 타입!");
                     break;
             }
+            ChatManager.Instance.AddMessage(logMessage);
+            Destroy(other.gameObject);
+
         }
 
         if (other.gameObject.tag == "Player")
@@ -287,17 +296,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void SetGoIdle()
-    {
-        goIdle = true;
-        isSeriesCut = false;
-        isCut = false;
-    }
-
     void UpdateHp()
     {
         hpGauge.fillAmount = (float)player.Hp / player.MaxHp;
     }
+    //땅 위에 있는지 확인
     private bool IsGrounded()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(bottomCollider.bounds.center, bottomCollider.bounds.extents.y + 0.1f);
@@ -310,4 +313,80 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+
+    void SetGoIdle()
+    {
+        goIdle = true;
+        isSeriesCut = false;
+        isCut = false;
+    }
+
+
+    //Hurt
+    IEnumerator HurtColor(float cool)
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        Color orignalColor = spriteRenderer.color;
+
+        int flashCount = 4;
+        for(int i =0; i<flashCount; i++)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1, 0, 0,0.8f);
+
+            yield return new WaitForSeconds(cool / (flashCount * 2));
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1,0);
+            yield return new WaitForSeconds(cool / (flashCount * 2));
+        }
+        spriteRenderer.color = orignalColor;
+    }
+
+    //슬라이딩
+    void StartSlide()
+    {
+        isSliding = true;
+        slideTimer = 0f;
+
+        // 슬라이드 방향 설정
+        float slideDirection = vx > 0 ? 1 : -1; // vx가 양수면 오른쪽, 음수면 왼쪽
+
+        // 슬라이드 속도 적용
+        rb.linearVelocity = new Vector2(slideDirection * slideSpeed, rb.linearVelocity.y);
+
+        // 슬라이드 애니메이션 전환
+        stateMachine.TransitionTo(stateMachine.slideState);
+
+        // 슬라이드 종료를 위한 코루틴 시작
+        StartCoroutine(SlideCoroutine());
+    }
+
+    IEnumerator SlideCoroutine()
+    {
+        while (slideTimer < slideDuration)
+        {
+            slideTimer += Time.deltaTime;
+            yield return null;
+        }
+
+        EndSlide();
+    }
+
+    void EndSlide()
+    {
+        isSliding = false;
+
+        // 슬라이드 종료 후 정지
+        rb.linearVelocity = Vector2.zero;
+
+        // 슬라이드 애니메이션 종료 후 상태 전환
+        if (vx == 0)
+        {
+            stateMachine.TransitionTo(stateMachine.idleState);
+        }
+        else
+        {
+            stateMachine.TransitionTo(stateMachine.runState);
+        }
+    }
+
+  
 }

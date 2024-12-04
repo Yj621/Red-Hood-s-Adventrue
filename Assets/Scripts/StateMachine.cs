@@ -13,6 +13,7 @@ public class StateMachine : MonoBehaviour
     public BowAttackState bowAttackState;
     public JumpState jumpState;
     public RunState runState;
+    public SlideState slideState;
 
     public StateMachine(PlayerController player)
     {
@@ -25,6 +26,7 @@ public class StateMachine : MonoBehaviour
         bowAttackState = new BowAttackState(player);
         jumpState = new JumpState(player);
         runState = new RunState(player);
+        slideState = new SlideState(player);
     }
 
     //초기 State를 받아 CurrentState에 넣고 Enter(state 진입)

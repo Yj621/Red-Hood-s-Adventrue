@@ -87,7 +87,6 @@ public class Player
         while (Experience >= experienceForLevel)
         {
             LevelUp();
-            Debug.Log(SkillPoints);
             //스킬포인트 텍스트에 스킬포인트를 넣어줬는데 사용 가능한 만큼만 넣어주고 쓰면 0으로 바꿔줘야돼
         }
         //exp ui 업데이트
