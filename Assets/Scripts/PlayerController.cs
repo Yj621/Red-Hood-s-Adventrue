@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
 
     public GameObject ArrowPos;
     public Collider2D bottomCollider;
-    public CompositeCollider2D terrainCollider;
     private Rigidbody2D rb;
     public Image hpGauge;
     public Image skillImage;
