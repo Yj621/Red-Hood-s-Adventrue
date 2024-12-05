@@ -16,7 +16,19 @@ public class ChatManager : MonoBehaviour
     {
         get { return instance; }
     }
-
+    void Awake()
+    {
+/*        if (Instance != this && Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }*/
+    }
     void Start()
     {
         instance = this;

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
-{   
+{
     public Vector2 Velocity = new Vector2(10, 0);
     private float Damage;
     private static Arrow instance;
@@ -19,15 +19,15 @@ public class Arrow : MonoBehaviour
     {
         transform.Translate(Velocity * Time.fixedDeltaTime);
         GetComponent<Rigidbody2D>().MovePosition(
-            GetComponent<Rigidbody2D>().position + Velocity * Time.fixedDeltaTime);
+        GetComponent<Rigidbody2D>().position + Velocity * Time.fixedDeltaTime);
     }
     void Update()
     {
-        if(!GetComponent<SpriteRenderer>().isVisible)
+        if (!GetComponent<SpriteRenderer>().isVisible)
         {
             gameObject.SetActive(false);
-        }    
-        
+        }
+
         // bowDamage와 Damage가 다르면 업데이트
         if (Damage != PlayerController.Instance.weapon.bowDamage)
         {
@@ -38,22 +38,20 @@ public class Arrow : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Ground")
+        if (other.gameObject.tag == "Ground")
         {
             gameObject.SetActive(false);
         }
-        else if(other.gameObject.tag == "Enemy")
+        else if (other.gameObject.tag == "Enemy")
         {
             gameObject.SetActive(false);
-            if(GetComponent<EnemyController>() != null)
-            {
-                other.GetComponent<EnemyController>().TakeDamage(Damage);
-            }
-            else
-            {
-                other.GetComponent<BossController>().TakeDamage(Damage);
-            }
-            
+            other.GetComponent<EnemyController>().TakeDamage(Damage);
+
+        }
+        else if (other.gameObject.tag == "Boss")
+        {
+            gameObject.SetActive(false);
+            other.GetComponent<BossController>().TakeDamage(Damage);
         }
     }
 }

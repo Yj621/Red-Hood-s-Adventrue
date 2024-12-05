@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class BossController : MonoBehaviour, IEnemy
 {
     Transform player;
-    private float moveSpeed = 1f;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     public GameObject damageText;
@@ -14,9 +13,13 @@ public class BossController : MonoBehaviour, IEnemy
     private bool isWalking = false; // 걷기 상태 플래그
 
     [SerializeField] private float speed = 1f;
-    [SerializeField] private float hp = 100;
-    [SerializeField] private float maxHp = 100;
+    [SerializeField] private float hp = 200;
+    [SerializeField] private float maxHp = 200;
     [SerializeField] private int damage;
+    [SerializeField] private float playerDistance = 8f;
+    private float moveSpeed = 1f;
+    private float nextHurtHp;
+
     Vector2 vx;
     public Transform damagePos;
 
@@ -30,7 +33,8 @@ public class BossController : MonoBehaviour, IEnemy
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        animator =GetComponent<Animator>();
+        nextHurtHp = hp - 10;
     }
 
     void Update()
@@ -39,7 +43,7 @@ public class BossController : MonoBehaviour, IEnemy
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         // 일정 거리 이내일 때만 이동
-        if (distanceToPlayer <= 8f && isHurt==false) // 5f는 이동을 시작하는 거리로 필요에 따라 조정
+        if (distanceToPlayer <= playerDistance && isHurt==false && !isDie)
         {
             Vector2 direction = new Vector2(
                 transform.position.x - player.position.x,
@@ -52,10 +56,11 @@ public class BossController : MonoBehaviour, IEnemy
             Vector3 dir = new Vector3(-direction.normalized.x, 0, 0);
 
             // 움직임 처리
-            if (!isHurt && dir.magnitude > 0)
+            if (!isHurt && dir.magnitude > 0 && !isDie)
             {
                 if (!isWalking)
                 {
+                    Debug.Log("Walk1");
                     animator.ResetTrigger("Idle");
                     animator.SetTrigger("Walk"); // 걷기 애니메이션
                     isWalking = true; // 걷기 상태 활성화
@@ -67,6 +72,7 @@ public class BossController : MonoBehaviour, IEnemy
         {
             if (isWalking)
             {
+                Debug.Log("Idle");
                 animator.ResetTrigger("Walk");
                 animator.SetTrigger("Idle"); // Idle 애니메이션
                 isWalking = false; // 걷기 상태 비활성화
@@ -86,32 +92,41 @@ public class BossController : MonoBehaviour, IEnemy
 
     public void TakeDamage(float damage)
     {
-        isHurt = true;
         hp -= (int)damage;
         UpdateHp();
         Debug.Log($"적({gameObject}) 체력 : {hp}");
+
+        if(hp <= nextHurtHp)
+        {
+            isHurt = true;
+           animator.SetTrigger("Hurt");
+            nextHurtHp -= 10;
+        }
+        else
+        {
+           animator.SetTrigger("Walk");
+        }
+
         //데미지 텍스트
         GameObject damageTxt = Instantiate(damageText);
         damageTxt.transform.position = damagePos.position;
         damageTxt.GetComponent<DamageText>().damage = damage;
 
-        GetComponent<Animator>().SetTrigger("Hurt");
         if (hp <= 0)
         {
             Debug.Log("Dead");
             isDie = true;
-            GetComponent<Animator>().SetTrigger("Dead");
-            GetComponent<Rigidbody2D>().simulated = false;
-            GetComponent<EdgeCollider2D>().enabled = false;
-            Invoke("EnemyDie", 1.2f);
+            animator.SetTrigger("Dead");
+
         }
         else
         {
             Debug.Log("ReturnToIdle");
             Invoke("ReturnToIdle", 1.0f);
         }
-        Debug.Log("Idle3");
-        GetComponent<Animator>().SetTrigger("Idle"); // Idle 상태로 복귀
+/*        Debug.Log("Idle3");
+        animator.ResetTrigger("Walk");
+        animator.SetTrigger("Idle"); // Idle 상태로 복귀*/
 
     }
 
@@ -120,8 +135,11 @@ public class BossController : MonoBehaviour, IEnemy
         isHurt = false;
     }
 
-    void EnemyDie()
+    public void EnemyDie()
     {
+        GetComponent<Rigidbody2D>().simulated = false;
+        GetComponent<EdgeCollider2D>().enabled = false;
+        Invoke("EnemyDie", 1.2f);
         Destroy(gameObject);
     }
 
@@ -129,7 +147,8 @@ public class BossController : MonoBehaviour, IEnemy
     {
         hpGauge.fillAmount = hp / maxHp;
     }
-    private void OnCollisionEnter2D(Collision2D other)
+
+    private void OnCollisionStay(Collision other)
     {
         if (other.gameObject.tag == "Player")
         {

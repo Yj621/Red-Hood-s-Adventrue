@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class DeadZone : MonoBehaviour
 {
-   private void OnTriggerEnter2D(Collider2D other) {
-    if(other.gameObject.tag == "Player")
+   private void OnTriggerEnter2D(Collider2D other) 
     {
-        Debug.Log("Die2");
-        PlayerController.Instance.Die();
-    }
+        if(other.gameObject.tag == "Player")
+        {
+            PlayerController.Instance.Die();
+        }
    }
 }

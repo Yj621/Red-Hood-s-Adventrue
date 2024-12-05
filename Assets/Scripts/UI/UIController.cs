@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI; 
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -16,15 +17,32 @@ public class UIController : MonoBehaviour
     public static UIController Instance
     { get { return instance; }}
 
+    private void Awake()
+    {
+/*        if(Instance != this && Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }*/
+    }
+
     void Start()
     {
         instance = this;
+ 
     }
+
 
     void Update()
     {
         
     }
+
 
     public void UpdateCoinUI(int coins)
     {
@@ -50,7 +68,7 @@ public class UIController : MonoBehaviour
     }
     public void AbilityUpButtonActive()
     {
-        upButton[1].SetActive(true);    
+        upButton[1].SetActive(true);
     }
     public void AbilityUpButtonDeactive()
     {

@@ -11,6 +11,16 @@ public class AnimationSpeed : MonoBehaviour
     }
     void Awake()
     {
+        if (Instance != this && Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         instance = this;
     }
 

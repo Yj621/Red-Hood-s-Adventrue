@@ -242,7 +242,6 @@ MonoBehaviour:
   bowDamage: 2
   ArrowPos: {fileID: 1130501565447168314}
   bottomCollider: {fileID: 6850018752767998076}
-  terrainCollider: {fileID: 0}
   hpGauge: {fileID: 0}
   skillImage: {fileID: 0}
   isDie: 0

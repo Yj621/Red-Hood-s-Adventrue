@@ -17,10 +17,9 @@ public class PlayerController : MonoBehaviour
     public float speed = 5;
     public float jumpSpeed = 5;
     public float invincibilityTime = 1f;
-    public float bowDamage = 2f;
     private float prevVx = 0;
     private float vx = 0;
-   
+
 
     public GameObject ArrowPos;
     public Collider2D bottomCollider;
@@ -51,12 +50,25 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         stateMachine = new StateMachine(this);
-        //player 데이터 초기화 (Hp, Damage, Exp, Coins)
-        player = new Player(100, 5, 0, 10);
-        weapon = new Weapon();
+/*        if (Instance != this && Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            instance = this;
+            stateMachine = new StateMachine(this);
+            DontDestroyOnLoad(gameObject);
+        }*/
+
     }
     void Start()
     {
+        //player 데이터 초기화 (Hp, Damage, Exp, Coins)
+        player = new Player(100, 5, 0, 10);
+        weapon = new Weapon();
+
         instance = this;
         originalPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
@@ -64,7 +76,6 @@ public class PlayerController : MonoBehaviour
 
         UIController.Instance.UpdateCoinUI(player.Coins);
         Debug.Log(player.Hp);
-        Debug.Log("weapon.cutDamage" + weapon.cutDamage);
     }
 
     void Update()
@@ -142,14 +153,14 @@ public class PlayerController : MonoBehaviour
             stateMachine.TransitionTo(stateMachine.attack1State);
             isCut = true;
         }
-        if (Input.GetKeyDown(KeyCode.R) && FillAmount.Instance.isCooltime==false)
+        if (Input.GetKeyDown(KeyCode.R) && FillAmount.Instance.isCooltime == false)
         {
             stateMachine.TransitionTo(stateMachine.attack2State);
             isSeriesCut = true;
             //쿨타임 시작
             FillAmount.Instance.CoolTimeStart();
         }
-        if (Input.GetMouseButtonDown(1)&& stateMachine.CurrentState != stateMachine.runState)
+        if (Input.GetMouseButtonDown(1) && stateMachine.CurrentState != stateMachine.runState)
         {
             stateMachine.TransitionTo(stateMachine.bowAttackState);
         }
@@ -211,6 +222,7 @@ public class PlayerController : MonoBehaviour
     //플레이어가 죽음
     public void Die()
     {
+        Debug.Log("Player Dead");
         stateMachine.TransitionTo(stateMachine.deadState);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         //enabled = false;
@@ -222,7 +234,7 @@ public class PlayerController : MonoBehaviour
     public void Restart()
     {
         // 현재 씬 다시 불러오기
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("GameScene");
     }
 
     //기본 공격
@@ -294,6 +306,11 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.CameraOff();
             Debug.Log("Die");
         }
+
+        if (other.gameObject.tag == "BossPortal")
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 
     void UpdateHp()
@@ -329,12 +346,12 @@ public class PlayerController : MonoBehaviour
         Color orignalColor = spriteRenderer.color;
 
         int flashCount = 4;
-        for(int i =0; i<flashCount; i++)
+        for (int i = 0; i < flashCount; i++)
         {
-            GetComponent<SpriteRenderer>().color = new Color(1, 0, 0,0.8f);
+            GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.8f);
 
             yield return new WaitForSeconds(cool / (flashCount * 2));
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1,0);
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
             yield return new WaitForSeconds(cool / (flashCount * 2));
         }
         spriteRenderer.color = orignalColor;
@@ -388,5 +405,5 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-  
+
 }
