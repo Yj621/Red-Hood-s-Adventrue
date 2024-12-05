@@ -226,7 +226,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //기본 공격
-    public void CutAttack(EnemyController enemy)
+    public void CutAttack(IEnemy enemy)
     {
         if (enemy != null)
         {
@@ -236,7 +236,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //연속 베기
-    public void SeriesCutAttack(EnemyController enemy)
+    public void SeriesCutAttack(IEnemy enemy)
     {
         if (enemy != null)
         {
@@ -245,6 +245,7 @@ public class PlayerController : MonoBehaviour
         }
         Invoke("IsAttackTrue", 1f);
     }
+
 
     void IsAttackTrue()
     {

@@ -45,7 +45,15 @@ public class Arrow : MonoBehaviour
         else if(other.gameObject.tag == "Enemy")
         {
             gameObject.SetActive(false);
-            other.GetComponent<EnemyController>().TakeDamage(Damage);
+            if(GetComponent<EnemyController>() != null)
+            {
+                other.GetComponent<EnemyController>().TakeDamage(Damage);
+            }
+            else
+            {
+                other.GetComponent<BossController>().TakeDamage(Damage);
+            }
+            
         }
     }
 }

@@ -21,6 +21,11 @@ public class Attack : MonoBehaviour
             {
                 PlayerController.Instance.CutAttack(enemy);
             }
+            else
+            {
+                BossController boss = other.GetComponent<BossController>();
+                PlayerController.Instance.CutAttack(boss);
+            }
         }
 
         if (other.gameObject.tag == "Enemy" && !PlayerController.Instance.isAttack && PlayerController.Instance.isSeriesCut)
@@ -29,6 +34,11 @@ public class Attack : MonoBehaviour
             if (enemy != null)
             {
                 PlayerController.Instance.SeriesCutAttack(enemy);
+            }
+            else
+            {
+                BossController boss = other.GetComponent<BossController>();
+                PlayerController.Instance.SeriesCutAttack(boss);
             }
         }
     }

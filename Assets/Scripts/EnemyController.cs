@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IEnemy
 {
     [System.Serializable]
     public class ItemDrop
@@ -158,4 +158,5 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
+
 }
