@@ -11,6 +11,8 @@ public class BossController : MonoBehaviour, IEnemy
     public GameObject damageText;
     public Image hpGauge;
 
+    private bool isWalking = false; // ê±·ê¸° ìƒíƒœ í”Œë˜ê·¸
+
     [SerializeField] private float speed = 1f;
     [SerializeField] private float hp = 100;
     [SerializeField] private float maxHp = 100;
@@ -33,56 +35,45 @@ public class BossController : MonoBehaviour, IEnemy
 
     void Update()
     {
-        // ÇÃ·¹ÀÌ¾î¿ÍÀÇ °Å¸® °è»ê
+        // í”Œë ˆì´ì–´ì™€ì˜ ê±°ë¦¬ ê³„ì‚°
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        // ÀÏÁ¤ °Å¸® ÀÌ³»ÀÏ ¶§¸¸ ÀÌµ¿
-        if (distanceToPlayer <= 5f) // 5f´Â ÀÌµ¿À» ½ÃÀÛÇÏ´Â °Å¸®·Î ÇÊ¿ä¿¡ µû¶ó Á¶Á¤
+        // ì¼ì • ê±°ë¦¬ ì´ë‚´ì¼ ë•Œë§Œ ì´ë™
+        if (distanceToPlayer <= 8f && isHurt==false) // 5fëŠ” ì´ë™ì„ ì‹œì‘í•˜ëŠ” ê±°ë¦¬ë¡œ í•„ìš”ì— ë”°ë¼ ì¡°ì •
         {
             Vector2 direction = new Vector2(
                 transform.position.x - player.position.x,
                 transform.position.y - player.position.y
             );
 
-            // º¸½º°¡ ¿À¸¥ÂÊ ¶Ç´Â ¿ŞÂÊÀ» ÇâÇÏµµ·Ï FlipX ¼³Á¤
-            if (direction.x < 0)
-            {
-                spriteRenderer.flipX = true; // ¿À¸¥ÂÊÀ¸·Î ¿òÁ÷ÀÏ ¶§ FlipX ¼³Á¤
-            }
-            else if (direction.x > 0)
-            {
-                spriteRenderer.flipX = false; // ¿ŞÂÊÀ¸·Î ¿òÁ÷ÀÏ ¶§ FlipX ÇØÁ¦
-            }
+            // ë³´ìŠ¤ê°€ ì˜¤ë¥¸ìª½ ë˜ëŠ” ì™¼ìª½ì„ í–¥í•˜ë„ë¡ FlipX ì„¤ì •
+            spriteRenderer.flipX = direction.x < 0;
 
             Vector3 dir = new Vector3(-direction.normalized.x, 0, 0);
 
-            // ¿òÁ÷ÀÓ Ã³¸®
+            // ì›€ì§ì„ ì²˜ë¦¬
             if (!isHurt && dir.magnitude > 0)
             {
-                Debug.Log("Walk");
-                animator.SetTrigger("Walk"); // °È±â ¾Ö´Ï¸ŞÀÌ¼Ç
+                if (!isWalking)
+                {
+                    animator.ResetTrigger("Idle");
+                    animator.SetTrigger("Walk"); // ê±·ê¸° ì• ë‹ˆë©”ì´ì…˜
+                    isWalking = true; // ê±·ê¸° ìƒíƒœ í™œì„±í™”
+                }
                 transform.position += dir.normalized * moveSpeed * Time.deltaTime;
-            }
-            else
-            {
-                animator.SetTrigger("Idle"); // Idle »óÅÂ·Î º¹±Í
             }
         }
         else
         {
-            // ÇÃ·¹ÀÌ¾î°¡ ÀÏÁ¤ °Å¸® ¹Û¿¡ ÀÖÀ» ¶§´Â Idle »óÅÂ·Î ÀüÈ¯
-            animator.SetTrigger("Idle");
+            if (isWalking)
+            {
+                animator.ResetTrigger("Walk");
+                animator.SetTrigger("Idle"); // Idle ì• ë‹ˆë©”ì´ì…˜
+                isWalking = false; // ê±·ê¸° ìƒíƒœ ë¹„í™œì„±í™”
+            }
         }
     }
 
-
-
-    private void FixedUpdate()
-    {
-        //¸Â¾ÒÀ»¶§ °¡¸¸È÷ ÀÖµµ·Ï ÇÏ±â
-        if (isHurt == false)
-            transform.Translate(vx * Time.fixedDeltaTime);
-    }
 
 
     private void OnCollisionStay2D(Collision2D other)
@@ -97,8 +88,9 @@ public class BossController : MonoBehaviour, IEnemy
     {
         isHurt = true;
         hp -= (int)damage;
-        Debug.Log($"Àû({gameObject}) Ã¼·Â : {hp}");
-        //µ¥¹ÌÁö ÅØ½ºÆ®
+        UpdateHp();
+        Debug.Log($"ì ({gameObject}) ì²´ë ¥ : {hp}");
+        //ë°ë¯¸ì§€ í…ìŠ¤íŠ¸
         GameObject damageTxt = Instantiate(damageText);
         damageTxt.transform.position = damagePos.position;
         damageTxt.GetComponent<DamageText>().damage = damage;
@@ -106,17 +98,20 @@ public class BossController : MonoBehaviour, IEnemy
         GetComponent<Animator>().SetTrigger("Hurt");
         if (hp <= 0)
         {
+            Debug.Log("Dead");
             isDie = true;
             GetComponent<Animator>().SetTrigger("Dead");
             GetComponent<Rigidbody2D>().simulated = false;
-            GetComponent<Collider2D>().enabled = false;
+            GetComponent<EdgeCollider2D>().enabled = false;
             Invoke("EnemyDie", 1.2f);
         }
         else
         {
-            Invoke("ReturnToIdle", 0.75f);
+            Debug.Log("ReturnToIdle");
+            Invoke("ReturnToIdle", 1.0f);
         }
-        GetComponent<Animator>().SetTrigger("Idle"); // Idle »óÅÂ·Î º¹±Í
+        Debug.Log("Idle3");
+        GetComponent<Animator>().SetTrigger("Idle"); // Idle ìƒíƒœë¡œ ë³µê·€
 
     }
 
@@ -133,5 +128,12 @@ public class BossController : MonoBehaviour, IEnemy
     void UpdateHp()
     {
         hpGauge.fillAmount = hp / maxHp;
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            PlayerController.Instance.DealDamage(damage);
+        }
     }
 }
