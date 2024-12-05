@@ -33,36 +33,50 @@ public class BossController : MonoBehaviour, IEnemy
 
     void Update()
     {
-        Vector2 direction = new Vector2(
-            transform.position.x - player.position.x,
-            transform.position.y - player.position.y
+        // 플레이어와의 거리 계산
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        // 일정 거리 이내일 때만 이동
+        if (distanceToPlayer <= 5f) // 5f는 이동을 시작하는 거리로 필요에 따라 조정
+        {
+            Vector2 direction = new Vector2(
+                transform.position.x - player.position.x,
+                transform.position.y - player.position.y
             );
 
-        // 보스가 오른쪽 또는 왼쪽을 향하도록 FlipX 설정
-        if (direction.x < 0)
-        {
-            spriteRenderer.flipX = true; // 오른쪽으로 움직일 때 FlipX 설정
-        }
-        else if (direction.x > 0)
-        {
-            spriteRenderer.flipX = false; // 왼쪽으로 움직일 때 FlipX 해제
-        }
+            // 보스가 오른쪽 또는 왼쪽을 향하도록 FlipX 설정
+            if (direction.x < 0)
+            {
+                spriteRenderer.flipX = true; // 오른쪽으로 움직일 때 FlipX 설정
+            }
+            else if (direction.x > 0)
+            {
+                spriteRenderer.flipX = false; // 왼쪽으로 움직일 때 FlipX 해제
+            }
 
-        Vector3 dir = new Vector3(-direction.normalized.x, 0, 0);
+            Vector3 dir = new Vector3(-direction.normalized.x, 0, 0);
 
-        // 움직임 처리
-        if (!isHurt && dir.magnitude > 0)
-        {
-            animator.SetTrigger("Walk"); // 걷기 애니메이션
-            transform.position += dir.normalized * moveSpeed * Time.deltaTime;
+            // 움직임 처리
+            if (!isHurt && dir.magnitude > 0)
+            {
+                Debug.Log("Walk");
+                animator.SetTrigger("Walk"); // 걷기 애니메이션
+                transform.position += dir.normalized * moveSpeed * Time.deltaTime;
+            }
+            else
+            {
+                animator.SetTrigger("Idle"); // Idle 상태로 복귀
+            }
         }
         else
         {
-            animator.SetTrigger("Idle"); // Idle 상태로 복귀
+            // 플레이어가 일정 거리 밖에 있을 때는 Idle 상태로 전환
+            animator.SetTrigger("Idle");
         }
     }
 
- 
+
+
     private void FixedUpdate()
     {
         //맞았을때 가만히 있도록 하기
@@ -100,7 +114,7 @@ public class BossController : MonoBehaviour, IEnemy
         }
         else
         {
-            Invoke("ReturnToIdle", 1.5f);
+            Invoke("ReturnToIdle", 0.75f);
         }
         GetComponent<Animator>().SetTrigger("Idle"); // Idle 상태로 복귀
 
