@@ -6,7 +6,7 @@ public class DeadZone : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            PlayerController.Instance.Die();
+            GameManager.Instance.playerController.Die();
         }
    }
 }

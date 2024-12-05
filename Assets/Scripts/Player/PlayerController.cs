@@ -6,20 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public StateMachine stateMachine;
-    public Player player;
-    public Weapon weapon;
+    StateMachine stateMachine;
+    GameManager gm;
+    Weapon weapon;
     [SerializeField] private EnemyController Enemy;
-
-    public float slideSpeed = 10f;
-    public float slideDuration = 0.5f;
-    private float slideTimer = 0f;
-    public float speed = 5;
-    public float jumpSpeed = 5;
-    public float invincibilityTime = 1f;
-    private float prevVx = 0;
-    private float vx = 0;
-
 
     public GameObject ArrowPos;
     public Collider2D bottomCollider;
@@ -41,53 +31,33 @@ public class PlayerController : MonoBehaviour
 
 
 
-    private static PlayerController instance;
-    public static PlayerController Instance
-    {
-        get { return instance; }
-    }
-
     private void Awake()
     {
         stateMachine = new StateMachine(this);
-/*        if (Instance != this && Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        else
-        {
-            instance = this;
-            stateMachine = new StateMachine(this);
-            DontDestroyOnLoad(gameObject);
-        }*/
-
     }
     void Start()
     {
-        //player 데이터 초기화 (Hp, Damage, Exp, Coins)
-        player = new Player(100, 5, 0, 10);
-        weapon = new Weapon();
+     //   gm = GameManager.Instance;
+        weapon = GameManager.Instance.player.weapon;
 
-        instance = this;
         originalPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
         stateMachine.Initialize(stateMachine.idleState);
 
-        UIController.Instance.UpdateCoinUI(player.Coins);
-        Debug.Log(player.Hp);
+        UIController.Instance.UpdateCoinUI(GameManager.Instance.player.Coins);
+        Debug.Log(GameManager.Instance.player.Hp);
     }
 
     void Update()
     {
-        vx = Input.GetAxisRaw("Horizontal") * speed;
+        GameManager.Instance.player.Vx = Input.GetAxisRaw("Horizontal") * GameManager.Instance.player.Speed;
         float vy = GetComponent<Rigidbody2D>().linearVelocityY;
 
-        if (vx < 0)
+        if (GameManager.Instance.player.Vx < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
-        if (vx > 0)
+        if (GameManager.Instance.player.Vx > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
@@ -97,7 +67,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!isGround)
             {
-                if (vx == 0)
+                if (GameManager.Instance.player.Vx == 0)
                 {
                     stateMachine.TransitionTo(stateMachine.idleState);
                 }
@@ -108,9 +78,9 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if (vx != prevVx)
+                if (GameManager.Instance.player.Vx != GameManager.Instance.player.PrevVx)
                 {
-                    if (vx == 0)
+                    if (GameManager.Instance.player.Vx == 0)
                     {
                         stateMachine.TransitionTo(stateMachine.idleState);
                     }
@@ -139,14 +109,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGround)
         {
             rb.gravityScale = 4f;
-            vy = jumpSpeed;
+            vy = GameManager.Instance.player.JumpSpeed;
         }
-        prevVx = vx;
+        GameManager.Instance.player.PrevVx = GameManager.Instance.player.Vx;
 
-        GetComponent<Rigidbody2D>().linearVelocity = new Vector2(vx, vy);
+        GetComponent<Rigidbody2D>().linearVelocity = new Vector2(GameManager.Instance.player.Vx, vy);
 
 
-        GetComponent<Rigidbody2D>().linearVelocity = new Vector2(vx, vy);
+        GetComponent<Rigidbody2D>().linearVelocity = new Vector2(GameManager.Instance.player.Vx, vy);
 
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
@@ -165,12 +135,12 @@ public class PlayerController : MonoBehaviour
             stateMachine.TransitionTo(stateMachine.bowAttackState);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && Mathf.Abs(vx) > 0 && isGround && !isSliding)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Mathf.Abs(GameManager.Instance.player.Vx) > 0 && isGround && !isSliding)
         {
             StartSlide();
         }
 
-        if (player.Coins >= 10)
+        if (GameManager.Instance.player.Coins >= 10)
         {
             UIController.Instance.AbilityUpButtonActive();
         }
@@ -200,15 +170,15 @@ public class PlayerController : MonoBehaviour
         if (!isHit && !isDie)
         {
             isHit = true;
-            player.GetDamage(damage);
+            GameManager.Instance.player.GetDamage(damage);
             //hp 게이지 닳게 하기
             UpdateHp();
             StartCoroutine(HurtColor(0.5f));
-            Invoke("Invincibility", invincibilityTime);
+            Invoke("Invincibility", GameManager.Instance.player.InvincibilityTime);
         }
 
         //플레이어 죽기
-        if (!player.IsAlive() && isDie == false)
+        if (!GameManager.Instance.player.IsAlive() && isDie == false)
         {
             Die();
             isDie = true;
@@ -276,17 +246,17 @@ public class PlayerController : MonoBehaviour
             switch (item.itemData.itemType)
             {
                 case Items.ItemType.Coin:
-                    player.SetCoins(Enemy.dropItems[0].itemPrice, "Up");
+                    GameManager.Instance.player.SetCoins(Enemy.dropItems[0].itemPrice, "Up");
                     logMessage = $"Coin을 {Enemy.dropItems[0].itemPrice}개 얻었습니다.";
                     break;
 
                 case Items.ItemType.Exp:
-                    player.GetExperience(Enemy.dropItems[1].itemPrice);
+                    GameManager.Instance.player.GetExperience(Enemy.dropItems[1].itemPrice);
                     logMessage = $"Exp을 {Enemy.dropItems[1].itemPrice}개 얻었습니다.";
                     break;
 
                 case Items.ItemType.Potion:
-                    player.Heal(Enemy.dropItems[2].itemPrice);
+                    GameManager.Instance.player.Heal(Enemy.dropItems[2].itemPrice);
                     logMessage = $"Potion을 얻어 {Enemy.dropItems[2].itemPrice}만큼 회복했습니다.";
                     UpdateHp();
                     break;
@@ -300,7 +270,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "GameManager.Instance.player")
         {
             Die();
             GameManager.Instance.CameraOff();
@@ -312,11 +282,11 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(1);
         }
     }
-
     void UpdateHp()
     {
-        hpGauge.fillAmount = (float)player.Hp / player.MaxHp;
+        hpGauge.fillAmount = (float)GameManager.Instance.player.Hp / GameManager.Instance.player.MaxHp;
     }
+
     //땅 위에 있는지 확인
     private bool IsGrounded()
     {
@@ -361,13 +331,13 @@ public class PlayerController : MonoBehaviour
     void StartSlide()
     {
         isSliding = true;
-        slideTimer = 0f;
+        GameManager.Instance.player.SlideTimer = 0f;
 
         // 슬라이드 방향 설정
-        float slideDirection = vx > 0 ? 1 : -1; // vx가 양수면 오른쪽, 음수면 왼쪽
+        float slideDirection = GameManager.Instance.player.Vx > 0 ? 1 : -1; // vx가 양수면 오른쪽, 음수면 왼쪽
 
         // 슬라이드 속도 적용
-        rb.linearVelocity = new Vector2(slideDirection * slideSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(slideDirection * GameManager.Instance.player.SlideSpeed, rb.linearVelocity.y);
 
         // 슬라이드 애니메이션 전환
         stateMachine.TransitionTo(stateMachine.slideState);
@@ -378,9 +348,9 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator SlideCoroutine()
     {
-        while (slideTimer < slideDuration)
+        while (GameManager.Instance.player.SlideTimer < GameManager.Instance.player.SlideDuration)
         {
-            slideTimer += Time.deltaTime;
+            GameManager.Instance.player.SlideTimer += Time.deltaTime;
             yield return null;
         }
 
@@ -395,7 +365,7 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
 
         // 슬라이드 애니메이션 종료 후 상태 전환
-        if (vx == 0)
+        if (GameManager.Instance.player.Vx == 0)
         {
             stateMachine.TransitionTo(stateMachine.idleState);
         }

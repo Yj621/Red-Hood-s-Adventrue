@@ -19,7 +19,7 @@ public class UIController : MonoBehaviour
 
     private void Awake()
     {
-/*        if(Instance != this && Instance != null)
+        if (Instance != this && Instance != null)
         {
             Destroy(gameObject);
             return;
@@ -28,7 +28,7 @@ public class UIController : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-        }*/
+        }
     }
 
     void Start()

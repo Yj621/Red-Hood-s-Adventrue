@@ -4,6 +4,8 @@ public class Arrow : MonoBehaviour
 {
     public Vector2 Velocity = new Vector2(10, 0);
     private float Damage;
+    Weapon weapon;
+
     private static Arrow instance;
     public static Arrow Instance
     {
@@ -11,7 +13,8 @@ public class Arrow : MonoBehaviour
     }
     void Start()
     {
-        Damage = PlayerController.Instance.weapon.bowDamage;
+        weapon = GameManager.Instance.player.weapon;
+        Damage = weapon.bowDamage;
         instance = this;
     }
 
@@ -29,9 +32,9 @@ public class Arrow : MonoBehaviour
         }
 
         // bowDamage와 Damage가 다르면 업데이트
-        if (Damage != PlayerController.Instance.weapon.bowDamage)
+        if (Damage != weapon.bowDamage)
         {
-            Damage = PlayerController.Instance.weapon.bowDamage;
+            Damage = weapon.bowDamage;
             Debug.Log($"Damage updated: {Damage}");
         }
     }

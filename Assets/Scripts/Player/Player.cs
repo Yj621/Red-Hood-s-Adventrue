@@ -11,11 +11,31 @@ public class Player
     public float Damage { get; set; }
     public int AttackSpeed { get; private set; }
 
+    public float SlideSpeed { get; set; }
+    public float SlideDuration { get; set; }
+    public float SlideTimer { get; set; }
+    public float Speed { get; set; }
+    public float JumpSpeed { get; set; }
+    public float InvincibilityTime { get; set; }
+    public float PrevVx { get; set; }
+    public float Vx { get; set; }
 
     private int experienceForLevel;
 
+    public Weapon weapon;
+
     public Player(int hp, int damage, int experience, int coins)
     {
+        weapon = new Weapon();
+        SlideSpeed = 10f;
+        SlideDuration = 0.5f;
+        SlideTimer = 0f;
+        Speed = 5;
+        JumpSpeed = 10;
+        InvincibilityTime = 1f;
+        PrevVx = 0;
+        Vx = 0;
+
         MaxHp = hp;
         Hp = hp;
         Damage = damage;

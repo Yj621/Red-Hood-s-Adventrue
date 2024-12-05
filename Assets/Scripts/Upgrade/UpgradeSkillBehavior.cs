@@ -13,7 +13,7 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
     {
         //스킬 포인트 텍스트에 넣어주기
         skillPointLevelText.text =  EnhanceInfo.Level.ToString();
-        player = PlayerController.Instance.player;
+        player = GameManager.Instance.player;
     }
 
     public void OnUpgradeButtonClick()
@@ -30,14 +30,13 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
             {
                 case "활 쏘기":
                     //활쏘기 ++
-                    PlayerController.Instance.weapon.bowDamage += 1f;
-                    Debug.Log(PlayerController.Instance.weapon.bowDamage);
+                    player.weapon.bowDamage += 1f;
+                    Debug.Log(player.weapon.bowDamage);
                     break;
+
                 case "연속 베기":
                     //연속 베기 ++ 
-                    PlayerController.Instance.weapon.seriesCutDamage += 1f;
-                    Debug.Log(PlayerController.Instance.weapon.seriesCutDamage);
-                    Debug.Log("연속 베기 스킬 업그레이드");
+                    player.weapon.seriesCutDamage += 1f;
                     break;
 
                 case "공격 속도":

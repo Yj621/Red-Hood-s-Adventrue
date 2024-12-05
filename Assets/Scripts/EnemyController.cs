@@ -61,7 +61,7 @@ public class EnemyController : MonoBehaviour, IEnemy
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerController.Instance.DealDamage(damage);
+            GameManager.Instance.playerController.DealDamage(damage);
         }
     }
 

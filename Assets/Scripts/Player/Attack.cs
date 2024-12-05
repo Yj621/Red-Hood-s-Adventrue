@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    PlayerController player;
     void Start()
     {
-
+        player = GameManager.Instance.playerController;
     }
 
     void Update()
@@ -13,7 +14,7 @@ public class Attack : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (PlayerController.Instance.isAttack)
+        if (player.isAttack)
             return;
 
         if (other.CompareTag("Enemy"))
@@ -31,13 +32,13 @@ public class Attack : MonoBehaviour
         if (target == null)
             return;
 
-        if (PlayerController.Instance.isCut)
+        if (player.isCut)
         {
-            PlayerController.Instance.CutAttack(target);
+            player.CutAttack(target);
         }
-        else if (PlayerController.Instance.isSeriesCut)
+        else if (player.isSeriesCut)
         {
-            PlayerController.Instance.SeriesCutAttack(target);
+            player.SeriesCutAttack(target);
         }
     }   
 }

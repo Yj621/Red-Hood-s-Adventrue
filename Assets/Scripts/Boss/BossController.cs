@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class BossController : MonoBehaviour, IEnemy
 {
-    Transform player;
+    Player player;
+    Transform playerTransform;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     public GameObject damageText;
@@ -31,7 +32,7 @@ public class BossController : MonoBehaviour, IEnemy
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator =GetComponent<Animator>();
         nextHurtHp = hp - 10;
@@ -40,14 +41,14 @@ public class BossController : MonoBehaviour, IEnemy
     void Update()
     {
         // 플레이어와의 거리 계산
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
         // 일정 거리 이내일 때만 이동
         if (distanceToPlayer <= playerDistance && isHurt==false && !isDie)
         {
             Vector2 direction = new Vector2(
-                transform.position.x - player.position.x,
-                transform.position.y - player.position.y
+                transform.position.x - playerTransform.position.x,
+                transform.position.y - playerTransform.position.y
             );
 
             // 보스가 오른쪽 또는 왼쪽을 향하도록 FlipX 설정
@@ -70,7 +71,7 @@ public class BossController : MonoBehaviour, IEnemy
         }
         else
         {
-            if (isWalking)
+            if (isWalking && !isDie)
             {
                 Debug.Log("Idle");
                 animator.ResetTrigger("Walk");
@@ -86,7 +87,7 @@ public class BossController : MonoBehaviour, IEnemy
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerController.Instance.DealDamage(damage);
+            GameManager.Instance.playerController.DealDamage(damage);
         }
     }
 
@@ -96,7 +97,7 @@ public class BossController : MonoBehaviour, IEnemy
         UpdateHp();
         Debug.Log($"적({gameObject}) 체력 : {hp}");
 
-        if(hp <= nextHurtHp)
+        if(hp <= nextHurtHp &&!isDie)
         {
             isHurt = true;
            animator.SetTrigger("Hurt");
@@ -116,8 +117,8 @@ public class BossController : MonoBehaviour, IEnemy
         {
             Debug.Log("Dead");
             isDie = true;
+            animator.ResetTrigger("Hurt");
             animator.SetTrigger("Dead");
-
         }
         else
         {
@@ -139,7 +140,6 @@ public class BossController : MonoBehaviour, IEnemy
     {
         GetComponent<Rigidbody2D>().simulated = false;
         GetComponent<EdgeCollider2D>().enabled = false;
-        Invoke("EnemyDie", 1.2f);
         Destroy(gameObject);
     }
 
@@ -152,7 +152,7 @@ public class BossController : MonoBehaviour, IEnemy
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerController.Instance.DealDamage(damage);
+            GameManager.Instance.playerController.DealDamage(damage);
         }
     }
 }
