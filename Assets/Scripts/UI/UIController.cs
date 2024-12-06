@@ -3,15 +3,21 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class UIController : MonoBehaviour
 {
     public GameObject noticePopUp;
+    public GameObject GameResultPopUp;
+
+    public TextMeshProUGUI gameResultText;
     public TextMeshProUGUI skillPoint;
     public TextMeshProUGUI noticeText;
     public List<TextMeshProUGUI> stateText;
 
     public GameObject[] upButton;
+
+    public bool isClear = false;
 
     private static UIController instance;
     public static UIController Instance
@@ -78,6 +84,35 @@ public class UIController : MonoBehaviour
     public void SetActiveNoticePopUp()
     {
         noticePopUp.SetActive(true);
+    }
+
+    public void OnClickCloseGameResultPanel()
+    {
+        GameResultPopUp.SetActive(false);
+    }
+
+    public void OnGameResultPopUp()
+    {
+        GameResultPopUp.SetActive(true);
+        if (isClear)
+        {
+            gameResultText.text = "GAME CLEAR";
+        }
+        else
+        {
+            gameResultText.text = "GAME OVER";
+        }
+    }
+
+    public void OnClickRestart()
+    {
+        GameManager.Instance.playerController.Restart();
+    }
+
+    public void OnClickQuit()
+    {
+        Application.Quit();
+
     }
 
     // public void ResetUpButton()

@@ -27,13 +27,13 @@ public class Player
     public Player(int hp, int damage, int experience, int coins)
     {
         weapon = new Weapon();
-        SlideSpeed = 10f;
+        SlideSpeed = 20f;
         SlideDuration = 0.5f;
         SlideTimer = 0f;
 
         // 기본값 설정
-        Speed = 5f;
-        JumpSpeed = 10f;
+        Speed = 4f;
+        JumpSpeed = 12f;
         InvincibilityTime = 1f;
 
         PrevVx = 0;

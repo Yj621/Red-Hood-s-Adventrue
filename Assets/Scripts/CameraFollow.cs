@@ -1,7 +1,7 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class BossCamera : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
     public CinemachineCamera Camera;
     GameObject player;

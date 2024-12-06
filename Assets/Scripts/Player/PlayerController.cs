@@ -219,12 +219,14 @@ public class PlayerController : MonoBehaviour
     //플레이어가 죽음
     public void Die()
     {
+        UIController.Instance.isClear = false;
         Debug.Log("Player Dead");
         stateMachine.TransitionTo(stateMachine.deadState);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         //enabled = false;
         GameManager.Instance.CameraOff();
-        Invoke("Restart", 2);
+        UIController.Instance.OnGameResultPopUp();
+        Time.timeScale = 0f;
     }
 
     public void Restart()
@@ -240,6 +242,7 @@ public class PlayerController : MonoBehaviour
 
         // GameScene 씬을 로드
         SceneManager.LoadScene("GameScene");  // 0번째 GameScene 씬을 로드
+        Time.timeScale = 1f;
     }
 
 
@@ -259,7 +262,6 @@ public class PlayerController : MonoBehaviour
         if (enemy != null)
         {
             enemy.TakeDamage(weapon.seriesCutDamage);
-            Debug.Log("Attack2");
         }
         Invoke("IsAttackTrue", 1f);
     }
