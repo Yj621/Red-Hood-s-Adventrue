@@ -96,10 +96,11 @@ public class UIController : MonoBehaviour
         GameResultPopUp.SetActive(true);
         if (isClear)
         {
-            gameResultText.text = "GAME CLEAR";
+            gameResultText.text = "GAME CLEAR!!";
         }
         else
         {
+            gameResultText.GetComponent<TextMeshPro>().color = Color.red;
             gameResultText.text = "GAME OVER";
         }
     }

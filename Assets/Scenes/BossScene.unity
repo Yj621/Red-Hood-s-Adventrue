@@ -1321,6 +1321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 623648224}
+  - component: {fileID: 623648226}
   - component: {fileID: 623648225}
   m_Layer: 0
   m_Name: AttackRange
@@ -1390,6 +1391,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.300037, y: 1.6352489}
   m_EdgeRadius: 0
+--- !u!114 &623648226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623648223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a40f950bb7b28314ab32fb74ea4c62a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: {fileID: 623648225}
 --- !u!1 &679460084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,9 +1695,11 @@ MonoBehaviour:
   speed: 8
   hp: 10
   maxHp: 200
+  attackCooldownDuration: 3
   damage: 20
   damagePos: {fileID: 2092787222}
   isDie: 0
+  isAttackCoolDown: 0
 --- !u!68 &813687675
 EdgeCollider2D:
   m_ObjectHideFlags: 0

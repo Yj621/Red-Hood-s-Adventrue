@@ -18,7 +18,7 @@ public class BossController : MonoBehaviour, IEnemy
     [SerializeField] private float speed = 1f;
     [SerializeField] private float hp = 200;
     [SerializeField] private float maxHp = 200;
-    [SerializeField] private float attackCooldownDuration = 3f; // 공격 쿨타임 시간 (초)
+    [SerializeField] private float attackCooldownDuration = 1.5f; // 공격 쿨타임 시간 (초)
     private float moveSpeed = 1f;
     private float nextHurtHp;
 
@@ -49,19 +49,9 @@ public class BossController : MonoBehaviour, IEnemy
 
         Vector2 direction = playerTransform.position - transform.position;
 
-        Debug.Log("playerRange.isWalking: " + playerRange.isWalking);
-        Debug.Log("attackRange.isAttack: " + attackRange.isAttack);
 
-
-
-        // 공격 범위 안에 있을 때
-        if (attackRange.isAttack && !isHurt && !isAttackCoolDown && playerRange.isWalking)
-        {
-            Debug.Log("Attack");
-            Attack();
-        }
         // 공격 범위 밖에 있고 플레이어가 이동 중이라면 따라가기
-        else if (!isHurt && playerRange.isWalking)
+        if (!isHurt && playerRange.isWalking)
         {
             //보스 방향 설정
             if (direction.x > 0)
@@ -79,7 +69,12 @@ public class BossController : MonoBehaviour, IEnemy
             animator.ResetTrigger("Idle");
             animator.SetTrigger("Walk"); // 걷기 애니메이션
             transform.position += dir * moveSpeed * Time.deltaTime;
-            Debug.Log("Moving towards player");
+
+            // 공격 범위 안에 있을 때
+            if (attackRange.isAttack && !isAttackCoolDown)
+            {
+                Attack();
+            }
         }
         // 아무 조건에도 해당하지 않으면 Idle
         else
@@ -87,7 +82,6 @@ public class BossController : MonoBehaviour, IEnemy
             animator.ResetTrigger("Attack");
             animator.ResetTrigger("Walk");
             animator.SetTrigger("Idle");
-            Debug.Log("Idle");
         }
     }
 
