@@ -15,7 +15,6 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
         skillPointLevelText.text =  EnhanceInfo.Level.ToString();
         player = GameManager.Instance.player;
     }
-
     public void OnUpgradeButtonClick()
     {
         if (!EnhanceInfo.IsMaxLevel()&& player.SkillPoints > 0)
@@ -44,11 +43,11 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
                     Debug.Log("공격속도 업그레이드");
                     AnimationSpeed.Instance.PlusAnimationSpeed();
                     break;
-
+/*
                 case "쿨타임 감소":
                     //모든 스킬 쿨타임 감소
                     Debug.Log("쿨타임 감소 업그레이드");
-                    break;
+                    break;*/
 
                 default:
                     break;

@@ -13,11 +13,35 @@ public class FillAmount : MonoBehaviour
     }
     void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // 첫 번째 인스턴스만 유지
+        }
+        else
+        {
+            Destroy(gameObject); // 중복 생성된 오브젝트 삭제
+            return;
+        }
     }
 
     public void CoolTimeStart()
     {
+        if (skillImage == null)
+        {
+            // "Hp_Fill"이라는 이름의 GameObject를 찾아 Image 컴포넌트를 가져옴
+            GameObject SkillFillObject = GameObject.Find("Skill_Fill");
+            if (SkillFillObject != null)
+            {
+                skillImage = SkillFillObject.GetComponent<Image>();
+                Debug.Log("찾음");
+            }
+            else
+            {
+                Debug.LogError("Skill_Fill GameObject를 찾을 수 없습니다.");
+                return;
+            }
+        }
         StartCoroutine(CoolTime(3f));
     }
     //쿨타임

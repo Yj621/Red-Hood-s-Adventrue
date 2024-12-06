@@ -22,6 +22,11 @@ public class UpgradeAbilityBehavior : MonoBehaviour, IUpgrade
         player = GameManager.Instance.player;
     }
 
+    private void Update()
+    {
+        Debug.Log(player.Speed);
+    }
+
     public void OnUpgradeButtonClick()
     {
         if (!ability.IsMaxLevel() && player.Coins - ability.Cost >= 0)
@@ -66,7 +71,6 @@ public class UpgradeAbilityBehavior : MonoBehaviour, IUpgrade
         }
     }
    
-
     private void UpdateUI()
     {
         levelText.text = ability.Level.ToString();

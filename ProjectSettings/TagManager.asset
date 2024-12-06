@@ -9,6 +9,8 @@ TagManager:
   - Ground
   - Boss
   - BossPortal
+  - CinemachineCamera
+  - DontDestroy
   layers:
   - Default
   - TransparentFX

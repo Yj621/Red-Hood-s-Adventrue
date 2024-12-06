@@ -30,9 +30,12 @@ public class Player
         SlideSpeed = 10f;
         SlideDuration = 0.5f;
         SlideTimer = 0f;
-        Speed = 5;
-        JumpSpeed = 10;
+
+        // 기본값 설정
+        Speed = 5f;
+        JumpSpeed = 10f;
         InvincibilityTime = 1f;
+
         PrevVx = 0;
         Vx = 0;
 
@@ -42,7 +45,6 @@ public class Player
         Coins = coins;
         Experience = experience;
         Level = 1;
-        //경험치 필요량
         experienceForLevel = CalculateExperienceNextLevel(Level);
     }
 

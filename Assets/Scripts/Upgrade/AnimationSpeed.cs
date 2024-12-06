@@ -11,6 +11,7 @@ public class AnimationSpeed : MonoBehaviour
     }
     void Awake()
     {
+
         if (Instance != this && Instance != null)
         {
             Destroy(gameObject);
@@ -23,6 +24,9 @@ public class AnimationSpeed : MonoBehaviour
         }
         instance = this;
     }
+    private void Start()
+    {
+    }
 
     public void PlusAnimationSpeed()
     {
@@ -31,6 +35,23 @@ public class AnimationSpeed : MonoBehaviour
     
     void Update()
     {
-        animator.SetFloat("AttackSpeed", animSpeed);
+        if (animator == null)
+        {
+            GameObject player = GameObject.Find("Player");
+            if (player != null)
+            {
+                animator = player.GetComponent<Animator>();
+                Debug.Log("찾음");
+            }
+            else
+            {
+                Debug.LogError("player GameObject를 찾을 수 없습니다.");
+                return;
+            }
+        }
+        else
+        {
+            animator.SetFloat("AttackSpeed", animSpeed);
+        }
     }
 }

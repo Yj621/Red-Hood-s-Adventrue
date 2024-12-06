@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,9 +16,8 @@ public class PlayerController : MonoBehaviour
     public Collider2D bottomCollider;
     private Rigidbody2D rb;
     public Image hpGauge;
-    public Image skillImage;
 
-    Vector2 originalPos;
+    Vector3 originalPos;
 
     public bool isDie;
     private bool isSliding = false;
@@ -29,23 +29,50 @@ public class PlayerController : MonoBehaviour
     public bool isAttack;
     public bool isHit = false;
 
+    private static PlayerController instance;
 
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // 첫 번째 인스턴스만 유지
+        }
+        else
+        {
+            Destroy(gameObject); // 중복 생성된 오브젝트 삭제
+            return;
+        }
         stateMachine = new StateMachine(this);
     }
     void Start()
     {
-     //   gm = GameManager.Instance;
+        //   gm = GameManager.Instance;
         weapon = GameManager.Instance.player.weapon;
 
-        originalPos = transform.position;
+        originalPos = new Vector3(-6, 0, 0);
         rb = GetComponent<Rigidbody2D>();
         stateMachine.Initialize(stateMachine.idleState);
 
         UIController.Instance.UpdateCoinUI(GameManager.Instance.player.Coins);
         Debug.Log(GameManager.Instance.player.Hp);
+
+        if (hpGauge == null)
+        {
+            // "Hp_Fill"이라는 이름의 GameObject를 찾아 Image 컴포넌트를 가져옴
+            GameObject hpFillObject = GameObject.Find("Hp_Fill");
+            if (hpFillObject != null)
+            {
+                hpGauge = hpFillObject.GetComponent<Image>();
+                Debug.Log("찾음");
+            }
+            else
+            {
+                Debug.LogError("Hp_Fill GameObject를 찾을 수 없습니다.");
+                return;
+            }
+        }
     }
 
     void Update()
@@ -200,12 +227,21 @@ public class PlayerController : MonoBehaviour
         Invoke("Restart", 2);
     }
 
-    //재시작
     public void Restart()
     {
-        // 현재 씬 다시 불러오기
-        SceneManager.LoadScene("GameScene");
+        // DontDestroyOnLoad로 설정된 모든 객체를 찾아서 삭제
+        foreach (var obj in FindObjectsOfType<GameObject>())
+        {
+            if (obj.CompareTag("DontDestroy"))  // 'DontDestroy' 태그가 설정된 객체만 삭제
+            {
+                Destroy(obj);  // 해당 객체 삭제
+            }
+        }
+
+        // GameScene 씬을 로드
+        SceneManager.LoadScene("GameScene");  // 0번째 GameScene 씬을 로드
     }
+
 
     //기본 공격
     public void CutAttack(IEnemy enemy)
@@ -279,11 +315,12 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "BossPortal")
         {
-            SceneManager.LoadScene(1);
+            FindObjectOfType<FadeController>().FadeOutAndLoadScene(1); // 전환할 씬의 인덱스
         }
     }
     void UpdateHp()
     {
+        // Hp 게이지 업데이트
         hpGauge.fillAmount = (float)GameManager.Instance.player.Hp / GameManager.Instance.player.MaxHp;
     }
 
@@ -356,6 +393,8 @@ public class PlayerController : MonoBehaviour
 
         EndSlide();
     }
+
+
 
     void EndSlide()
     {

@@ -26,6 +26,7 @@ public class Arrow : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log("Damage : " + Damage);
         if (!GetComponent<SpriteRenderer>().isVisible)
         {
             gameObject.SetActive(false);
