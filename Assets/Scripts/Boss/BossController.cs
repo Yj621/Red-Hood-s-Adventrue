@@ -50,10 +50,14 @@ public class BossController : MonoBehaviour, IEnemy
         Vector2 direction = playerTransform.position - transform.position;
 
         Debug.Log("playerRange.isWalking: " + playerRange.isWalking);
+        Debug.Log("attackRange.isAttack: " + attackRange.isAttack);
+
+
 
         // 공격 범위 안에 있을 때
-        if (attackRange.isAttack && !isHurt && !isAttackCoolDown)
+        if (attackRange.isAttack && !isHurt && !isAttackCoolDown && playerRange.isWalking)
         {
+            Debug.Log("Attack");
             Attack();
         }
         // 공격 범위 밖에 있고 플레이어가 이동 중이라면 따라가기
@@ -89,11 +93,10 @@ public class BossController : MonoBehaviour, IEnemy
 
     public void Attack()
     {
-        isAttackCoolDown = true;
         animator.ResetTrigger("Idle");
         animator.ResetTrigger("Walk");
         animator.SetTrigger("Attack"); // 공격 애니메이션
-        Debug.Log("Attack1");
+        isAttackCoolDown = true;
         // 일정 시간 후 쿨타임 해제
         Invoke(nameof(ResetAttackCooldown), attackCooldownDuration);
     }
@@ -141,10 +144,7 @@ public class BossController : MonoBehaviour, IEnemy
         {
             Debug.Log("Dead");
             isDie = true;
-            animator.ResetTrigger("Idle");
-            animator.ResetTrigger("Attack");
-            animator.ResetTrigger("Hurt");
-            animator.SetTrigger("Dead");
+            Die();
         }
         else
         {
@@ -155,6 +155,16 @@ public class BossController : MonoBehaviour, IEnemy
                 animator.ResetTrigger("Walk");
                 animator.SetTrigger("Idle"); // Idle 상태로 복귀*/
 
+    }
+
+    void Die()
+    {
+        UIController.Instance.isClear = true; 
+        animator.ResetTrigger("Idle");
+        animator.ResetTrigger("Attack");
+        animator.ResetTrigger("Hurt");
+        animator.SetTrigger("Dead");
+        UIController.Instance.OnGameResultPopUp();
     }
 
     void ReturnToIdle()
