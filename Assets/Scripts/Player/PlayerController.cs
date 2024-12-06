@@ -135,6 +135,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGround)
         {
+            SoundManager.Instance.jump.Play();
             rb.gravityScale = 4f;
             vy = GameManager.Instance.player.JumpSpeed;
         }
@@ -148,11 +149,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             stateMachine.TransitionTo(stateMachine.attack1State);
+
+            SoundManager.Instance.cut.Play();
             isCut = true;
         }
         if (Input.GetKeyDown(KeyCode.R) && FillAmount.Instance.isCooltime == false)
         {
             stateMachine.TransitionTo(stateMachine.attack2State);
+
+            SoundManager.Instance.seriesCut.Play();
             isSeriesCut = true;
             //쿨타임 시작
             FillAmount.Instance.CoolTimeStart();
@@ -332,7 +337,7 @@ public class PlayerController : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(bottomCollider.bounds.center, bottomCollider.bounds.extents.y + 0.1f);
         foreach (var collider in colliders)
         {
-            if (collider.CompareTag("Ground"))  // Ground 태그 확인
+            if (collider.CompareTag("Ground") || collider.CompareTag("Enemy"))  // Ground 태그 확인
             {
                 return true;
             }

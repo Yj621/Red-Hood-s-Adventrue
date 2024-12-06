@@ -1693,7 +1693,7 @@ MonoBehaviour:
   damageText: {fileID: 6129923568083836419, guid: b59b04ea82256714584b851f291513a1, type: 3}
   hpGauge: {fileID: 1171599368}
   speed: 8
-  hp: 10
+  hp: 200
   maxHp: 200
   attackCooldownDuration: 3
   damage: 20
