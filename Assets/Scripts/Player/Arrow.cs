@@ -57,5 +57,6 @@ public class Arrow : MonoBehaviour
             gameObject.SetActive(false);
             other.GetComponent<BossController>().TakeDamage(Damage);
         }
+
     }
 }

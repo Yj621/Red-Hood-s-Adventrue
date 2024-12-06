@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4547433672129930258}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DamagePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 5879700315067179513}
   - component: {fileID: 1323848117274550608}
   - component: {fileID: 2924024093884899241}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boar
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropItems:
   - item: {fileID: 11400000, guid: 523e66f9ccf66f142a7e871d2fd97434, type: 2}
-    amount: 1
+    amount: 2
     dropRate: 0.8
     itemPrice: 5
   - item: {fileID: 11400000, guid: dec0a823bd196244fa7ae46d457f39f4, type: 2}
@@ -149,7 +149,7 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: b3311862b1e39bf4c9fe2a48bc1a8be7, type: 2}
     amount: 1
     dropRate: 0.5
-    itemPrice: 20
+    itemPrice: 10
   dropItemPos: {fileID: 5304183890217372724}
   damagePos: {fileID: 4547433672129930258}
   damageText: {fileID: 6129923568083836419, guid: b59b04ea82256714584b851f291513a1, type: 3}
@@ -265,7 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5229716269179338129}
   - component: {fileID: 3321469370944228079}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3639613128933268374}
   - component: {fileID: 1908763414443115320}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}

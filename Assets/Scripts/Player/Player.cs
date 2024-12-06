@@ -16,6 +16,7 @@ public class Player
     public float SlideTimer { get; set; }
     public float Speed { get; set; }
     public float JumpSpeed { get; set; }
+    public float AnimationSpeed { get; set; }
     public float InvincibilityTime { get; set; }
     public float PrevVx { get; set; }
     public float Vx { get; set; }
@@ -35,6 +36,7 @@ public class Player
         Speed = 4f;
         JumpSpeed = 12f;
         InvincibilityTime = 1f;
+        AnimationSpeed = 0.5f;
 
         PrevVx = 0;
         Vx = 0;

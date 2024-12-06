@@ -97,13 +97,13 @@ public class UIController : MonoBehaviour
         if (isClear)
         {
             gameResultText.text = "GAME CLEAR!!";
-            SoundManager.Instance.gameClear.Play();
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.GameClear);
         }
         else
         {
             gameResultText.color = Color.red;
             gameResultText.text = "GAME OVER";
-            SoundManager.Instance.gameOver.Play();
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.GameOver);
         }
     }
 

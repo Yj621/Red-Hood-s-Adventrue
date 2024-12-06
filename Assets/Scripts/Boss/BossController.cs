@@ -91,6 +91,7 @@ public class BossController : MonoBehaviour, IEnemy
         animator.ResetTrigger("Walk");
         animator.SetTrigger("Attack"); // 공격 애니메이션
         isAttackCoolDown = true;
+        SoundManager.Instance.PlaySound(SoundManager.SoundType.BossAttack);
         // 일정 시간 후 쿨타임 해제
         Invoke(nameof(ResetAttackCooldown), attackCooldownDuration);
     }
@@ -124,6 +125,7 @@ public class BossController : MonoBehaviour, IEnemy
         }
         else
         {
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.BossWalk);
             animator.ResetTrigger("Attack");
             animator.ResetTrigger("Hurt");
             animator.SetTrigger("Walk");

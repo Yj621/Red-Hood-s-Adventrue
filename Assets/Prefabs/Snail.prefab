@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8581999833829165204}
   - component: {fileID: 600861331844911218}
   - component: {fileID: 2259730612265835411}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Snail
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -110,11 +110,11 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 523e66f9ccf66f142a7e871d2fd97434, type: 2}
     amount: 1
     dropRate: 0.7
-    itemPrice: 1
+    itemPrice: 3
   - item: {fileID: 11400000, guid: dec0a823bd196244fa7ae46d457f39f4, type: 2}
     amount: 1
     dropRate: 1
-    itemPrice: 2
+    itemPrice: 4
   - item: {fileID: 11400000, guid: b3311862b1e39bf4c9fe2a48bc1a8be7, type: 2}
     amount: 1
     dropRate: 0.3
@@ -234,7 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7873884396341677143}
   - component: {fileID: 8318889021208299140}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 170639830209662238}
   - component: {fileID: 7536315538919319659}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8184800782072223535}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DamagePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

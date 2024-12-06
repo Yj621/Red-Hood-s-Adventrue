@@ -31,6 +31,8 @@ public class AnimationSpeed : MonoBehaviour
     public void PlusAnimationSpeed()
     {
         animSpeed += 0.05f;
+        GameManager.Instance.player.AnimationSpeed -= 0.05f;
+        Debug.Log( GameManager.Instance.player.AnimationSpeed);
     }
     
     void Update()

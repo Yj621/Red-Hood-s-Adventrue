@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public bool isSeriesCut = false;
     [HideInInspector]
     public bool isAttack;
+    public bool isAttackClick;
     public bool isHit = false;
 
     private static PlayerController instance;
@@ -133,9 +134,9 @@ public class PlayerController : MonoBehaviour
 
         isGround = IsGrounded();
 
-        if (Input.GetButtonDown("Jump") && isGround)
+        if (Input.GetButtonDown("Jump")  && isGround || Input.GetKey(KeyCode.W) && isGround)
         {
-            SoundManager.Instance.jump.Play();
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.Jump);
             rb.gravityScale = 4f;
             vy = GameManager.Instance.player.JumpSpeed;
         }
@@ -146,25 +147,32 @@ public class PlayerController : MonoBehaviour
 
         GetComponent<Rigidbody2D>().linearVelocity = new Vector2(GameManager.Instance.player.Vx, vy);
 
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonDown(0) && stateMachine.CurrentState != stateMachine.runState && !EventSystem.current.IsPointerOverGameObject() && !isAttackClick)
         {
+            isAttackClick = true;
             stateMachine.TransitionTo(stateMachine.attack1State);
 
-            SoundManager.Instance.cut.Play();
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.Cut);
             isCut = true;
+            Invoke(nameof(ResetAttack), GameManager.Instance.player.AnimationSpeed); // 0.5초 후 공격 가능
         }
+
         if (Input.GetKeyDown(KeyCode.R) && FillAmount.Instance.isCooltime == false)
         {
             stateMachine.TransitionTo(stateMachine.attack2State);
 
-            SoundManager.Instance.seriesCut.Play();
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.SerierCut);
             isSeriesCut = true;
             //쿨타임 시작
             FillAmount.Instance.CoolTimeStart();
         }
-        if (Input.GetMouseButtonDown(1) && stateMachine.CurrentState != stateMachine.runState)
+
+        if (Input.GetMouseButtonDown(1) && stateMachine.CurrentState != stateMachine.runState && !isAttackClick)
         {
+            isAttackClick = true;
             stateMachine.TransitionTo(stateMachine.bowAttackState);
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.Bow);
+            Invoke(nameof(ResetAttack), GameManager.Instance.player.AnimationSpeed); // 0.5초 후 공격 가능
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && Mathf.Abs(GameManager.Instance.player.Vx) > 0 && isGround && !isSliding)
@@ -180,6 +188,12 @@ public class PlayerController : MonoBehaviour
         {
             UIController.Instance.AbilityUpButtonDeactive();
         }
+    }
+
+    // 공격 완료 후 isAttack 플래그 초기화
+    private void ResetAttack()
+    {
+        isAttackClick = false;
     }
 
 
@@ -205,6 +219,7 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.player.GetDamage(damage);
             //hp 게이지 닳게 하기
             UpdateHp();
+            this.gameObject.layer = 6;
             StartCoroutine(HurtColor(0.5f));
             Invoke("Invincibility", GameManager.Instance.player.InvincibilityTime);
         }
@@ -219,6 +234,7 @@ public class PlayerController : MonoBehaviour
     void Invincibility()
     {
         isHit = false;
+        this.gameObject.layer = 0;
     }
 
     //플레이어가 죽음
