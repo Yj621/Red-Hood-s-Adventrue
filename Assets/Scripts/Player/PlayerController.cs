@@ -313,16 +313,19 @@ public class PlayerController : MonoBehaviour
             {
                 case Items.ItemType.Coin:
                     GameManager.Instance.player.SetCoins(Enemy.dropItems[0].itemPrice, "Up");
+                    SoundManager.Instance.PlaySound(SoundManager.SoundType.Coin);
                     logMessage = $"Coin을 {Enemy.dropItems[0].itemPrice}개 얻었습니다.";
                     break;
 
                 case Items.ItemType.Exp:
                     GameManager.Instance.player.GetExperience(Enemy.dropItems[1].itemPrice);
+                    SoundManager.Instance.PlaySound(SoundManager.SoundType.Exp);
                     logMessage = $"Exp을 {Enemy.dropItems[1].itemPrice}개 얻었습니다.";
                     break;
 
                 case Items.ItemType.Potion:
                     GameManager.Instance.player.Heal(Enemy.dropItems[2].itemPrice);
+                    SoundManager.Instance.PlaySound(SoundManager.SoundType.Potion);
                     logMessage = $"Potion을 얻어 {Enemy.dropItems[2].itemPrice}만큼 회복했습니다.";
                     UpdateHp();
                     break;

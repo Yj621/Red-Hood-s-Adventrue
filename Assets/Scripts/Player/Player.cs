@@ -120,6 +120,7 @@ public class Player
 
     private void LevelUp()
     {
+        SoundManager.Instance.PlaySound(SoundManager.SoundType.LevelUp);
         //현재 경험치 초기화
         Experience -= experienceForLevel;
         Level++;

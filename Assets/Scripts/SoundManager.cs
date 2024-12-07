@@ -7,7 +7,10 @@ public class SoundManager : MonoBehaviour
     BossAttack, BossWalk, BossHurt, BossDead, 
     PlayerWalk, PlayerSlide,
     BoarDead, SnailDead,
-    PortalIn , PortalOut }
+    PortalIn , PortalOut ,
+    Coin, Exp, Potion, LevelUp}
+
+    public AudioSource clickSound;
     
     [System.Serializable]
     public struct Sound
@@ -34,6 +37,11 @@ public class SoundManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         InitializeSoundDictionary();
+    }
+
+    public void ButtonSound()
+    {
+        clickSound.Play();
     }
 
     private void InitializeSoundDictionary()
