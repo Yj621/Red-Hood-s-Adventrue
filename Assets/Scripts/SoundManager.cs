@@ -3,7 +3,12 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public enum SoundType { GameOver, GameClear, Jump, SerierCut, Cut, Bow, BossAttack, BossWalk }
+    public enum SoundType { GameOver, GameClear, Jump, SerierCut, Cut, Bow, 
+    BossAttack, BossWalk, BossHurt, BossDead, 
+    PlayerWalk, PlayerSlide,
+    BoarDead, SnailDead,
+    PortalIn , PortalOut }
+    
     [System.Serializable]
     public struct Sound
     {
@@ -44,6 +49,18 @@ public class SoundManager : MonoBehaviour
         if(soundDictionary.TryGetValue(soundType, out AudioSource audioSource))
         {
             audioSource.Play();
+        }
+        else
+        {
+            Debug.Log($"Sound {soundType} not found");
+        }
+    }
+
+    public void StopSound(SoundType soundType)
+    {
+        if(soundDictionary.TryGetValue(soundType, out AudioSource audioSource))
+        {
+            audioSource.Stop();
         }
         else
         {

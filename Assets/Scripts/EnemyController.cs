@@ -80,6 +80,16 @@ public class EnemyController : MonoBehaviour, IEnemy
         {
             isDie = true;
             GetComponent<Animator>().SetTrigger("Dead");
+            if(gameObject.name == "Boar")
+            {
+                Debug.Log("BoarDeadSound");
+                SoundManager.Instance.PlaySound(SoundManager.SoundType.BoarDead);
+            }
+            else if(gameObject.name == "Snail")
+            {
+                Debug.Log("SnailDeadSound");
+                SoundManager.Instance.PlaySound(SoundManager.SoundType.SnailDead);
+            }
             GetComponent<Rigidbody2D>().simulated = false;
             GetComponent<Collider2D>().enabled = false;
             Invoke("EnemyDie", 1.2f);

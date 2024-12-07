@@ -17,6 +17,7 @@ public class Portal : MonoBehaviour
     {
         if(other.CompareTag("Player") && !isOnCooldown)
         {
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.PortalIn);
             //연결된 포탈로 이동
             TeleportPlayer(other.transform);
             //쿨타임 활성화
@@ -26,6 +27,7 @@ public class Portal : MonoBehaviour
 
     private void TeleportPlayer(Transform player)
     {
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.PortalOut);
          player.position = likedPortal.position;
     }
 

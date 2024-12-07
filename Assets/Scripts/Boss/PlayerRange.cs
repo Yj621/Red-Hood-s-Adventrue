@@ -14,9 +14,8 @@ public class PlayerRange : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("isWalking Player");
+            Debug.Log("isWalking Boss To Player");
             isWalking = true;
-            //Boss Attack 애니메이션 실행
         }
     }
 

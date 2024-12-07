@@ -28,7 +28,7 @@ public class Player
     public Player(int hp, int damage, int experience, int coins)
     {
         weapon = new Weapon();
-        SlideSpeed = 20f;
+        SlideSpeed = 50f;
         SlideDuration = 0.5f;
         SlideTimer = 0f;
 

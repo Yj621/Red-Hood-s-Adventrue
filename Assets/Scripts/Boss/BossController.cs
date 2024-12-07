@@ -65,6 +65,7 @@ public class BossController : MonoBehaviour, IEnemy
 
             Vector3 dir = new Vector3(direction.normalized.x, 0, 0);
 
+
             animator.ResetTrigger("Attack");
             animator.ResetTrigger("Idle");
             animator.SetTrigger("Walk"); // 걷기 애니메이션
@@ -81,6 +82,8 @@ public class BossController : MonoBehaviour, IEnemy
         {
             animator.ResetTrigger("Attack");
             animator.ResetTrigger("Walk");
+
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.BossWalk);
             animator.SetTrigger("Idle");
         }
     }
@@ -118,6 +121,7 @@ public class BossController : MonoBehaviour, IEnemy
         if (hp <= nextHurtHp && !isDie)
         {
             isHurt = true;
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.BossHurt);
             animator.ResetTrigger("Attack");
             animator.ResetTrigger("Walk");
             animator.SetTrigger("Hurt");
@@ -125,7 +129,6 @@ public class BossController : MonoBehaviour, IEnemy
         }
         else
         {
-            SoundManager.Instance.PlaySound(SoundManager.SoundType.BossWalk);
             animator.ResetTrigger("Attack");
             animator.ResetTrigger("Hurt");
             animator.SetTrigger("Walk");
@@ -155,7 +158,8 @@ public class BossController : MonoBehaviour, IEnemy
 
     void Die()
     {
-        UIController.Instance.isClear = true; 
+        SoundManager.Instance.PlaySound(SoundManager.SoundType.BossDead);
+        UIController.Instance.isClear = true;
         animator.ResetTrigger("Idle");
         animator.ResetTrigger("Attack");
         animator.ResetTrigger("Hurt");

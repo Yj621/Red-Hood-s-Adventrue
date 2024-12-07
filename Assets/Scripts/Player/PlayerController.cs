@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public bool isHit = false;
 
     private static PlayerController instance;
+    private Coroutine walkSoundCoroutine; // Coroutine 참조 변수 추가
 
 
     private void Awake()
@@ -98,10 +99,12 @@ public class PlayerController : MonoBehaviour
                 if (GameManager.Instance.player.Vx == 0)
                 {
                     stateMachine.TransitionTo(stateMachine.idleState);
+                    StopWalkSound(); // 멈춘 상태이므로 사운드 중지
                 }
                 else
                 {
                     stateMachine.TransitionTo(stateMachine.runState);
+                    StartWalkSound(); // 걸음 사운드 시작
                 }
             }
             else
@@ -111,15 +114,18 @@ public class PlayerController : MonoBehaviour
                     if (GameManager.Instance.player.Vx == 0)
                     {
                         stateMachine.TransitionTo(stateMachine.idleState);
+                        StopWalkSound(); // 멈춘 상태이므로 사운드 중지
                     }
                     else
                     {
                         stateMachine.TransitionTo(stateMachine.runState);
+                        StartWalkSound(); // 걸음 사운드 시작
                     }
                 }
                 else if (goIdle)
                 {
                     stateMachine.TransitionTo(stateMachine.idleState);
+                    StopWalkSound(); // 멈춘 상태이므로 사운드 중지
                     goIdle = false;
                 }
             }
@@ -129,12 +135,13 @@ public class PlayerController : MonoBehaviour
             if (isGround)
             {
                 stateMachine.TransitionTo(stateMachine.jumpState);
+                StopWalkSound(); // 점프 상태이므로 사운드 중지
             }
         }
 
         isGround = IsGrounded();
 
-        if (Input.GetButtonDown("Jump")  && isGround || Input.GetKey(KeyCode.W) && isGround)
+        if (Input.GetButtonDown("Jump") && isGround || Input.GetKey(KeyCode.W) && isGround)
         {
             SoundManager.Instance.PlaySound(SoundManager.SoundType.Jump);
             rb.gravityScale = 4f;
@@ -338,6 +345,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "BossPortal")
         {
+            SoundManager.Instance.PlaySound(SoundManager.SoundType.PortalIn);
             FindObjectOfType<FadeController>().FadeOutAndLoadScene(1); // 전환할 씬의 인덱스
         }
     }
@@ -401,6 +409,7 @@ public class PlayerController : MonoBehaviour
 
         // 슬라이드 애니메이션 전환
         stateMachine.TransitionTo(stateMachine.slideState);
+        SoundManager.Instance.PlaySound(SoundManager.SoundType.PlayerSlide);
 
         // 슬라이드 종료를 위한 코루틴 시작
         StartCoroutine(SlideCoroutine());
@@ -434,8 +443,44 @@ public class PlayerController : MonoBehaviour
         else
         {
             stateMachine.TransitionTo(stateMachine.runState);
+            if (stateMachine.CurrentState == stateMachine.runState)
+            {
+                Debug.Log("Slide After WalkSound");
+                PlayerWalkSound();
+            }
+        }
+    }
+    // 걷는 사운드를 주기적으로 재생하는 Coroutine
+    private IEnumerator WalkSoundRoutine()
+    {
+        while (stateMachine.CurrentState == stateMachine.runState) // runState일 동안
+        {
+            PlayerWalkSound();
+            yield return new WaitForSeconds(0.5f); // 사운드 재생 주기 (조정 가능)
         }
     }
 
+    // 걷는 사운드를 시작하는 함수
+    private void StartWalkSound()
+    {
+        if (walkSoundCoroutine == null) // 이미 실행 중인 Coroutine이 없다면 시작
+        {
+            walkSoundCoroutine = StartCoroutine(WalkSoundRoutine());
+        }
+    }
 
+    // 걷는 사운드를 멈추는 함수
+    private void StopWalkSound()
+    {
+        if (walkSoundCoroutine != null) // 실행 중인 Coroutine이 있다면 중지
+        {
+            StopCoroutine(walkSoundCoroutine);
+            walkSoundCoroutine = null;
+        }
+    }
+
+    void PlayerWalkSound()
+    {
+        SoundManager.Instance.PlaySound(SoundManager.SoundType.PlayerWalk);
+    }
 }
