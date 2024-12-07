@@ -26,7 +26,6 @@ public class Arrow : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log("Damage : " + Damage);
         if (!GetComponent<SpriteRenderer>().isVisible)
         {
             gameObject.SetActive(false);
@@ -36,7 +35,6 @@ public class Arrow : MonoBehaviour
         if (Damage != weapon.bowDamage)
         {
             Damage = weapon.bowDamage;
-            Debug.Log($"Damage updated: {Damage}");
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChatManager : MonoBehaviour
@@ -18,16 +19,16 @@ public class ChatManager : MonoBehaviour
     }
     void Awake()
     {
-/*        if (Instance != this && Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }*/
+        /*        if (Instance != this && Instance != null)
+                {
+                    Destroy(gameObject);
+                    return;
+                }
+                else
+                {
+                    instance = this;
+                    DontDestroyOnLoad(gameObject);
+                }*/
     }
     void Start()
     {
@@ -71,6 +72,17 @@ public class ChatManager : MonoBehaviour
 
     private IEnumerator FadeOutPanel()
     {
+        // canvasGroup이 null인 경우 동적으로 할당
+        if (canvasGroup == null)
+        {
+            GameObject canvasGroupObject = GameObject.Find("Chatting_Panel"); // CanvasGroup이 붙어 있는 GameObject 이름
+            if (canvasGroupObject != null)
+            {
+                canvasGroup = canvasGroupObject.GetComponent<CanvasGroup>();
+            }
+        }
+
+        // canvasGroup을 찾지 못했다면 종료
         if (canvasGroup == null) yield break;
 
         canvasGroup.alpha = 1;

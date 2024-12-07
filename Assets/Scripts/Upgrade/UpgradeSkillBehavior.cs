@@ -30,7 +30,6 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
                 case "활 쏘기":
                     //활쏘기 ++
                     player.weapon.bowDamage += 1f;
-                    Debug.Log(player.weapon.bowDamage);
                     break;
 
                 case "연속 베기":
@@ -40,7 +39,6 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
 
                 case "공격 속도":
                     //모든 스킬 공격 속도
-                    Debug.Log("공격속도 업그레이드");
                     AnimationSpeed.Instance.PlusAnimationSpeed();
                     break;
 /*
@@ -57,7 +55,6 @@ public class UpgradeSkillBehavior : MonoBehaviour, IUpgrade
         {
             UIController.Instance.SetActiveNoticePopUp();
             UIController.Instance.noticeText.text = "스킬포인트가 부족합니다.";
-            Debug.Log("스킬포인트 부족");
         }
     }
 

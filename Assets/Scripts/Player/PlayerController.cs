@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
         stateMachine.Initialize(stateMachine.idleState);
 
         UIController.Instance.UpdateCoinUI(GameManager.Instance.player.Coins);
-        Debug.Log(GameManager.Instance.player.Hp);
 
         if (hpGauge == null)
         {
@@ -67,7 +66,6 @@ public class PlayerController : MonoBehaviour
             if (hpFillObject != null)
             {
                 hpGauge = hpFillObject.GetComponent<Image>();
-                Debug.Log("찾음");
             }
             else
             {
@@ -195,6 +193,7 @@ public class PlayerController : MonoBehaviour
         {
             UIController.Instance.AbilityUpButtonDeactive();
         }
+
     }
 
     // 공격 완료 후 isAttack 플래그 초기화
@@ -248,7 +247,6 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         UIController.Instance.isClear = false;
-        Debug.Log("Player Dead");
         stateMachine.TransitionTo(stateMachine.deadState);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         //enabled = false;
@@ -343,7 +341,6 @@ public class PlayerController : MonoBehaviour
         {
             Die();
             GameManager.Instance.CameraOff();
-            Debug.Log("Die");
         }
 
         if (other.gameObject.tag == "BossPortal")
@@ -445,14 +442,13 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            StopWalkSound();
             stateMachine.TransitionTo(stateMachine.runState);
-            if (stateMachine.CurrentState == stateMachine.runState)
-            {
-                Debug.Log("Slide After WalkSound");
-                PlayerWalkSound();
-            }
+
+            StartWalkSound(); // 걸음 사운드 시작
         }
     }
+     
     // 걷는 사운드를 주기적으로 재생하는 Coroutine
     private IEnumerator WalkSoundRoutine()
     {

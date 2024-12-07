@@ -14,7 +14,6 @@ public class UpgradeAbilityBehavior : MonoBehaviour, IUpgrade
 
     private void Start()
     {
-        Debug.Log("ability.Cost : "+ability.Cost);
         //스킬 포인트 텍스트에 넣어주기
         levelText.text = ability.Level.ToString();
         //스킬 포인트 텍스트에 넣어주기
@@ -24,7 +23,6 @@ public class UpgradeAbilityBehavior : MonoBehaviour, IUpgrade
 
     private void Update()
     {
-        Debug.Log(player.Speed);
     }
 
     public void OnUpgradeButtonClick()
@@ -67,7 +65,6 @@ public class UpgradeAbilityBehavior : MonoBehaviour, IUpgrade
         {
             UIController.Instance.SetActiveNoticePopUp();
             UIController.Instance.noticeText.text = "코인이 부족합니다.";
-            Debug.Log("코인 부족");
         }
     }
    

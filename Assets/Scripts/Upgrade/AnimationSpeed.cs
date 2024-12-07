@@ -32,7 +32,6 @@ public class AnimationSpeed : MonoBehaviour
     {
         animSpeed += 0.05f;
         GameManager.Instance.player.AnimationSpeed -= 0.05f;
-        Debug.Log( GameManager.Instance.player.AnimationSpeed);
     }
     
     void Update()
@@ -43,7 +42,6 @@ public class AnimationSpeed : MonoBehaviour
             if (player != null)
             {
                 animator = player.GetComponent<Animator>();
-                Debug.Log("Ã£À½");
             }
             else
             {

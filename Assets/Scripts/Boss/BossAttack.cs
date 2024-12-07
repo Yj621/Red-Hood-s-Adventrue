@@ -12,7 +12,6 @@ public class BossAttack : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log("Hit");
             GameManager.Instance.playerController.DealDamage(20);
         }
     }

@@ -14,7 +14,6 @@ public class PlayerRange : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("isWalking Boss To Player");
             isWalking = true;
         }
     }

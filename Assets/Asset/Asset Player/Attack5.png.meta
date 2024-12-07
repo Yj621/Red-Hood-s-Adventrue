@@ -151,7 +151,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 10
-        width: 73
+        width: 59
         height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -171,7 +171,7 @@ TextureImporter:
       name: red hood itch free Copy-Sheet - Attack5_1
       rect:
         serializedVersion: 2
-        x: 110
+        x: 105
         y: 10
         width: 73
         height: 80
@@ -193,7 +193,7 @@ TextureImporter:
       name: red hood itch free Copy-Sheet - Attack5_2
       rect:
         serializedVersion: 2
-        x: 220
+        x: 217
         y: 10
         width: 73
         height: 80
@@ -215,7 +215,7 @@ TextureImporter:
       name: red hood itch free Copy-Sheet - Attack5_3
       rect:
         serializedVersion: 2
-        x: 330
+        x: 329
         y: 10
         width: 73
         height: 80
@@ -237,7 +237,7 @@ TextureImporter:
       name: red hood itch free Copy-Sheet - Attack5_4
       rect:
         serializedVersion: 2
-        x: 440
+        x: 441
         y: 10
         width: 73
         height: 80
@@ -325,7 +325,7 @@ TextureImporter:
       name: red hood itch free Copy-Sheet - Attack5_8
       rect:
         serializedVersion: 2
-        x: 880
+        x: 885
         y: 10
         width: 73
         height: 80
@@ -347,7 +347,7 @@ TextureImporter:
       name: red hood itch free Copy-Sheet - Attack5_9
       rect:
         serializedVersion: 2
-        x: 990
+        x: 999
         y: 10
         width: 73
         height: 80

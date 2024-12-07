@@ -34,7 +34,6 @@ public class FillAmount : MonoBehaviour
             if (SkillFillObject != null)
             {
                 skillImage = SkillFillObject.GetComponent<Image>();
-                Debug.Log("Ã£À½");
             }
             else
             {

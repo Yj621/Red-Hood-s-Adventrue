@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    public enum AttackType
+    {
+        CutAttack,
+        SeriesCutAttack
+    }
+
+    public AttackType attackType; // Inspector에서 설정할 변수
+
     PlayerController player;
     void Start()
     {
@@ -32,13 +40,21 @@ public class Attack : MonoBehaviour
         if (target == null)
             return;
 
-        if (player.isCut)
+        switch (attackType)
         {
-            player.CutAttack(target);
+            case AttackType.CutAttack:
+                if (player.isCut)
+                {
+                    player.CutAttack(target);
+                }
+                break;
+
+            case AttackType.SeriesCutAttack:
+                if (player.isSeriesCut)
+                {
+                    player.SeriesCutAttack(target);
+                }
+                break;
         }
-        else if (player.isSeriesCut)
-        {
-            player.SeriesCutAttack(target);
-        }
-    }   
+    }
 }

@@ -38,7 +38,6 @@ public class EnemyController : MonoBehaviour, IEnemy
     void Start()
     {
         vx = Vector2.left * speed;
-        Debug.Log("적 체력 : " + hp);
     }
     void Update()
     {
@@ -69,7 +68,6 @@ public class EnemyController : MonoBehaviour, IEnemy
     {
         isHurt = true;
         hp -= (int)damage;
-        Debug.Log($"적({gameObject}) 체력 : {hp}");
         //데미지 텍스트
         GameObject damageTxt = Instantiate(damageText);
         damageTxt.transform.position = damagePos.position;
@@ -82,12 +80,10 @@ public class EnemyController : MonoBehaviour, IEnemy
             GetComponent<Animator>().SetTrigger("Dead");
             if(gameObject.name == "Boar")
             {
-                Debug.Log("BoarDeadSound");
                 SoundManager.Instance.PlaySound(SoundManager.SoundType.BoarDead);
             }
             else if(gameObject.name == "Snail")
             {
-                Debug.Log("SnailDeadSound");
                 SoundManager.Instance.PlaySound(SoundManager.SoundType.SnailDead);
             }
             GetComponent<Rigidbody2D>().simulated = false;

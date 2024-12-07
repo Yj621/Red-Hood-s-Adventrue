@@ -141,13 +141,11 @@ public class BossController : MonoBehaviour, IEnemy
 
         if (hp <= 0)
         {
-            Debug.Log("Dead");
             isDie = true;
             Die();
         }
         else
         {
-            Debug.Log("ReturnToIdle");
             Invoke("ReturnToIdle", 1.0f);
         }
         /*        Debug.Log("Idle3");
