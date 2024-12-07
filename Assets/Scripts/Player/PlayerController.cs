@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
 
         isGround = IsGrounded();
 
-        if (Input.GetButtonDown("Jump") && isGround || Input.GetKey(KeyCode.W) && isGround)
+        if (Input.GetButtonDown("Jump") && isGround || Input.GetKey(KeyCode.W) && isGround || Input.GetKey(KeyCode.UpArrow) && isGround)
         {
             SoundManager.Instance.PlaySound(SoundManager.SoundType.Jump);
             rb.gravityScale = 4f;
