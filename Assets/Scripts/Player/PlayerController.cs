@@ -346,7 +346,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "BossPortal")
         {
             SoundManager.Instance.PlaySound(SoundManager.SoundType.PortalIn);
-            FindObjectOfType<FadeController>().FadeOutAndLoadScene(1); // 전환할 씬의 인덱스
+            FindObjectOfType<FadeController>().FadeOutAndLoadScene(2); // 전환할 씬의 인덱스
         }
     }
     void UpdateHp()

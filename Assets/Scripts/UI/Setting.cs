@@ -20,6 +20,7 @@ public class Setting : MonoBehaviour
 
     public void OnClickQuit()
     {
+        Debug.Log("Quit");
         Application.Quit();
     }
 
