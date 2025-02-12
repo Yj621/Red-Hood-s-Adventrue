@@ -13,6 +13,32 @@
 ## ⏰ 개발 기간
 
 24.11.20 ~ 24.12.07
+## 🛠️ 개발 환경
+
+<div align="center">
+
+### **언어 및 게임 엔진**
+
+</div>
+
+<br/>
+<p align="center">
+<img src="https://img.shields.io/badge/Unity-100000?style=for-the-badge&logo=unity&logoColor=white">
+<img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white">
+
+</p>
+
+<div align="center">
+
+### **버전 및 이슈 관리**
+
+</div>
+
+<p align="center">
+<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white">
+
+<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</p>
 
 ## 🗣️ 느낀점
 
