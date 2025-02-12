@@ -2,9 +2,7 @@
 
 플레이 영상
 
-https://youtu.be/hhVKvoSskMw
-
-https://youtu.be/PZdd4Z2P5N4
+[![썸네일](https://github.com/user-attachments/assets/0e254cbf-3567-4300-b182-55c52515b17d)](https://www.youtube.com/watch?v=PZdd4Z2P5N4)
 
 몬스터를 처치해 경험치를 획득하고, 레벨을 올려 캐릭터의 능력치를 강화합니다.
 재화를 얻어 스킬 능력치를 향상시킬 수도 있습니다.
