@@ -66,6 +66,7 @@ RedHood’s Adventure
 
 ## 게임 플레이 방식
 
+![dsad](https://github.com/user-attachments/assets/3d4bf951-0be5-443c-a126-e5a2e4a986c3)
 
 - 캐릭터 이동 방법
 
